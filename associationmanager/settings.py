@@ -1,5 +1,5 @@
 """
-Django settings for aikikai_django project.
+Django settings for associationmanager project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -49,9 +49,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'aikikai_django.urls'
+ROOT_URLCONF = 'associationmanager.urls'
 
-WSGI_APPLICATION = 'aikikai_django.wsgi.application'
+WSGI_APPLICATION = 'associationmanager.wsgi.application'
 
 
 # Database
