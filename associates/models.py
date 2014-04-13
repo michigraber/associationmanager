@@ -24,6 +24,29 @@ class Associate(models.Model):
     first_name = models.CharField(max_length=128, blank=True, null=True)
     last_name = models.CharField(max_length=128, blank=True, null=True)
 
+    RANK_CHOICES = (
+            (0, 'no rank yet'),
+            (1, '6th Kyu'),
+            (2, '5th Kyu'),
+            (3, '4th Kyu'),
+            (4, '3rd Kyu'),
+            (5, '2nd Kyu'),
+            (6, '1st Kyu'),
+            (7, '1st Dan'),
+            (8, '2nd Dan'),
+            (9, '3rd Dan'),
+            (10, '4th Dan'),
+            (11, '5th Dan'),
+            (12, '6th Dan'),
+            (13, '7th Dan'),
+            (14, '8th Dan'),
+            (15, '9th Dan'),
+            (16, '10th Dan'),
+            )
+
+    rank = models.PositiveSmallIntegerField(choices=RANK_CHOICES, null=True,
+            blank=True)
+
     is_organization_contact = models.BooleanField(default=False)
     organization = models.CharField(max_length=128, blank=True, null=True)
     street_and_nr = models.CharField(max_length=128, blank=True, null=True)

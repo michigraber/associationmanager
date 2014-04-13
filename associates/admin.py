@@ -8,19 +8,23 @@ class AssociateAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('user',),
-        }),
-        (None, {
-            'fields': (('first_name', 'last_name', ),
+            'fields': (('first_name', 'last_name', 'rank', ),
                 ('email_address', 'phone_number', )),
         }),
-        ('Address', {
+        (None, {
+            'fields': ('user',),
+        }),
+        ('Mail Address', {
             'fields': (( 'organization', 'is_organization_contact',),
                 'street_and_nr', 
                 'postal_code',
                 'city', 
                 'country',),
             }),
+        ('Group Memberships', {
+            #'classes': ('collapse',),
+            'fields': ('group_memberships',)
+        }),
         ('Emergency Contact', {
             'classes': ('collapse',),
             'fields': (('emergency_contact_first_name',
@@ -28,10 +32,6 @@ class AssociateAdmin(admin.ModelAdmin):
                 'emergency_contact_relationship',
                 'emergency_contact_phone_number',
                 'emergency_contact_email_address',)
-        }),
-        ('Group Memberships', {
-            'classes': ('collapse',),
-            'fields': ('group_memberships',)
         }),
     )
 
