@@ -25,27 +25,16 @@ class Associate(models.Model):
     last_name = models.CharField(max_length=128, blank=True, null=True)
 
     RANK_CHOICES = (
-            (0, 'no rank yet'),
-            (1, '6th Kyu'),
-            (2, '5th Kyu'),
-            (3, '4th Kyu'),
-            (4, '3rd Kyu'),
-            (5, '2nd Kyu'),
-            (6, '1st Kyu'),
-            (7, '1st Dan'),
-            (8, '2nd Dan'),
-            (9, '3rd Dan'),
-            (10, '4th Dan'),
-            (11, '5th Dan'),
-            (12, '6th Dan'),
-            (13, '7th Dan'),
-            (14, '8th Dan'),
-            (15, '9th Dan'),
+            (0, 'no rank yet'), (1, '6th Kyu'), (2, '5th Kyu'), (3, '4th Kyu'),
+            (4, '3rd Kyu'), (5, '2nd Kyu'), (6, '1st Kyu'), (7, '1st Dan'),
+            (8, '2nd Dan'), (9, '3rd Dan'), (10, '4th Dan'), (11, '5th Dan'),
+            (12, '6th Dan'), (13, '7th Dan'), (14, '8th Dan'), (15, '9th Dan'),
             (16, '10th Dan'),
             )
 
     rank = models.PositiveSmallIntegerField(choices=RANK_CHOICES, null=True,
             blank=True)
+    member_since = models.DateField(blank=True, null=True)
 
     is_organization_contact = models.BooleanField(default=False)
     organization = models.CharField(max_length=128, blank=True, null=True)
@@ -54,8 +43,12 @@ class Associate(models.Model):
     postal_code = models.CharField(max_length=16, blank=True, null=True)
     country = models.CharField(max_length=64, blank=True, null=True)
 
-    phone_number = models.CharField(max_length=128, blank=True, null=True)
-    email_address = models.EmailField(max_length=75, blank=True, null=True)
+    phone_number_private = models.CharField(max_length=128, blank=True,
+            null=True)
+    phone_number_business = models.CharField(max_length=128, blank=True,
+            null=True)
+    email_address = models.EmailField(max_length=75, blank=True, null=True,
+            unique=True)
 
     # emergency contact
     emergency_contact_first_name = models.CharField(max_length=128, blank=True,
@@ -70,7 +63,20 @@ class Associate(models.Model):
             blank=True, null=True)
     
     group_memberships = models.ManyToManyField(AssociateGroup,
-            related_name='associate_groups')
+            related_name='associate_groups', blank=True, null=True)
+
+    class Meta:
+        unique_together = (
+                ('first_name', 'last_name', 'email_address', ),
+                    )
 
     def __unicode__(self):
         return u'%s, %s' % (self.first_name, self.last_name)
+
+    def save(self, *args, **kwargs):
+        # overwrite to make emailfield unique if not null according to
+        # http://stackoverflow.com/questions/15422606/
+        #django-model-email-field-unique-if-not-null-blank
+        if self.email_address == "":
+            self.email_address = None
+        super(Associate, self).save(*args, **kwargs)

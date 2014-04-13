@@ -8,8 +8,9 @@ class AssociateAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': (('first_name', 'last_name', 'rank', ),
-                ('email_address', 'phone_number', )),
+            'fields': (('first_name', 'last_name', ),
+                ('rank', 'member_since',),
+                ('email_address', 'phone_number_private', 'phone_number_business')),
         }),
         (None, {
             'fields': ('user',),
