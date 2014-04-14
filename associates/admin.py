@@ -4,12 +4,15 @@ from associates import models
 
 class AssociateAdmin(admin.ModelAdmin):
 
-    list_display = ('first_name', 'last_name', 'organization', 'email_address', )
+    list_display = ('first_name', 'last_name', 'email_address', )
+    ordering = ('last_name', 'first_name',)
+
+    list_filter = ('group_memberships', )
 
     fieldsets = (
         (None, {
             'fields': (('first_name', 'last_name', ),
-                ('rank', 'member_since',),
+                ('rank', 'date_of_birth', 'member_since',),
                 ('email_address', 'phone_number_private', 'phone_number_business')),
         }),
         (None, {

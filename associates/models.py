@@ -23,6 +23,7 @@ class Associate(models.Model):
 
     first_name = models.CharField(max_length=128, blank=True, null=True)
     last_name = models.CharField(max_length=128, blank=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
 
     RANK_CHOICES = (
             (0, 'no rank yet'), (1, '6th Kyu'), (2, '5th Kyu'), (3, '4th Kyu'),
