@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <title>Hiroshi Ikeda in Zurich{% block head_title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+
+        body {
+        	background:#707070;
+        	font-family: 'Arial';
+        	font-size: '20pt';
+        	font-weight: 200;
+            margin: 0;
+        }
+
+        #container {
+        	background:#ffffff;
+            max-width: 900px;
+        	padding: 2em 4em 4em 4em;
+        	margin-left: auto;
+        	margin-right: auto;
+        }
+
+        #header {
+            background-image: url({% static 'img/FlyerPicSkylineII.png' %});
+        	font-size: 200%;
+        	font-weight: bold;
+        	vertical-align: middle;
+        	height: 426px;
+            width: 900px;
+            overflow: hidden;
+            padding: 0 0 0.1em 0;
+            margin: 0 0 1em 0;
+            position: relative;
+        }
+
+
+        #navigationbar {
+        	font-size: 50%;
+        	font-weight: bold;
+            background-color: rgba(30,0,0,0.3);
+            position: absolute;
+            bottom: 0;
+            width: 900px;
+            height: 3em;
+            color: #ffffff;
+        }
+
+        #navigationbar a {
+        	text-decoration: none;
+            color: #ffffff;
+        }
+
+        #navigationbar a:hover {
+            color: #a00a0a;
+        }
+
+        #navigationbar .activesection {
+            color: #f00000;
+        }
+
+        #navigationbar ul {
+            list-style-type: none;
+        }
+
+        #navigationbar li {
+            float: right;
+            margin: 0 3em 0 1em;
+            vertical-align: center;
+        }
+
+        #content {
+            padding: 1em 
+        }
+
+        #content a {
+        	text-decoration: none;
+        }
+
+        .shaded {
+            color: #a0a0a0;
+            float: right;
+            margin: 0 0 0 2em;
+            font-size: 80%;
+        }
+
+
+        .icon {
+            margin: 0 1em 0 1em;
+        }
+
+        #section {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 3em;
+        }
+
+        #section li {
+            padding: 0.5em 0em 0.5em 0em;
+        }
+
+        #googlemap {
+            width: 90%;
+        	margin: 0 auto;
+        }
+
+
+        #footer {
+        	padding: 50px 180px 0;
+        }
+
+        .fine-print {
+        	color:#ccc;
+        	font-weight:100;
+        	text-align: center;
+        }
+
+
+    </style>
+    {% block extrahead %}{% endblock %}
+</head>
+
+
+<body>
+
+<!-- CONTAINER -->
+<div class="container" id="container">
+
+    <!-- SITE HEADER -->
+    <nav role="navigation">
+    <div id="header" >
+        <div id="navigationbar">
+            {% block navigationbar %}
+            <ul>
+                <a href=''><li>Anmeldung</li></a>
+                <a href='#Zurich'><li>Zurich</li></a>
+                <a href='#Stundenplan'><li>Stundenplan</li></a>
+                <a href='#Willkommen'><li>Willkommen</li></a>
+            </ul>
+            {% endblock %}
+        </div>
+    </div>
+    </nav>
+
+    {% block precontent %}{% endblock %}
+
+    <div id="content"> <!-- used to load in PJAX -->
+        {% block content %}
+            <a href='http://en.wikipedia.org/wiki/Gaul'>Gallia</a> est omnis
+            divisa in partes tres, quarum unam incolunt Belgae, aliam Aquitani,
+            tertiam qui ipsorum lingua Celtae, nostra Galli appellantur. Hi
+            omnes lingua, institutis, legibus inter se differunt. Gallos ab
+            Aquitanis Garumna flumen, a Belgis Matrona et Sequana dividit.
+            Horum omnium fortissimi sunt Belgae, propterea quod a cultu atque
+            humanitate provinciae longissime absunt, minimeque ad eos
+            mercatores saepe commeant atque ea quae ad effeminandos animos
+            pertinent important, proximique sunt Germanis, qui trans Rhenum
+            incolunt, quibuscum continenter bellum gerunt. Qua de causa
+            Helvetii quoque reliquos Gallos virtute praecedunt, quod fere
+            cotidianis proeliis cum Germanis contendunt, cum aut suis finibus
+            eos prohibent aut ipsi in eorum finibus bellum gerunt.  Eorum una,
+            pars, quam Gallos obtinere dictum est, initium capit a flumine
+            Rhodano, continetur Garumna flumine, Oceano, finibus Belgarum,
+            attingit etiam ab Sequanis et Helvetiis flumen Rhenum, vergit ad
+            septentriones. Belgae ab extremis Galliae finibus oriuntur,
+            pertinent ad inferiorem partem fluminis Rheni, spectant in
+            septentrionem et orientem solem. Aquitania a Garumna flumine ad
+            Pyrenaeos montes et eam partem Oceani quae est ad Hispaniam
+            pertinet; spectat inter occasum solis et septentriones.
+        {% endblock %}
+    </div>
+
+    <!-- FOOTER -->
+    <div class="row" id="footer">
+        <p class="fine-print">
+            {% block footer %}Site was last updated on May 1st, 2014{% endblock %}
+            <span id="last-update"></span>
+        </p>
+    </div>
+
+</div>
+
+</body>
+
+</html>
