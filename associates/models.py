@@ -44,10 +44,13 @@ class Associate(models.Model):
     postal_code = models.CharField(max_length=16, blank=True, null=True)
     country = models.CharField(max_length=64, blank=True, null=True)
 
-    phone_number_private = models.CharField(max_length=128, blank=True,
+    phone_number_home = models.CharField(max_length=128, blank=True,
+            null=True)
+    phone_number_mobile = models.CharField(max_length=128, blank=True,
             null=True)
     phone_number_business = models.CharField(max_length=128, blank=True,
             null=True)
+
     email_address = models.EmailField(max_length=75, blank=True, null=True,
             unique=True)
 

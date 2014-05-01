@@ -8,6 +8,7 @@ class Event(models.model):
     title = models.CharField(max_length=511)
     date_from = models.DateField()
     date_until = models.DateField()
+    participant_address = models.TextField()
     description = models.TextField()
     schedule = models.TextField()
 

@@ -13,8 +13,8 @@ class AssociateAdmin(admin.ModelAdmin):
         (None, {
             'fields': (('first_name', 'last_name', ),
                 ('rank', 'date_of_birth', 'member_since',),
-                ('email_address', 'phone_number_private', 'phone_number_business')),
-        }),
+                ('email_address', 'phone_number_home', 'phone_number_mobile',
+                    'phone_number_business')), }),
         (None, {
             'fields': ('user',),
         }),
@@ -38,6 +38,11 @@ class AssociateAdmin(admin.ModelAdmin):
                 'emergency_contact_email_address',)
         }),
     )
+
+    search_fields = ('first_name', 'last_name',
+            'email_address', )
+
+    #list_editable = ('email_address', )
 
 
 admin.site.register(models.Associate, AssociateAdmin)
