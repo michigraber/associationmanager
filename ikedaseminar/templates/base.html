@@ -1,7 +1,7 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
-    {% load staticfiles %}
     <title>Hiroshi Ikeda in Zurich{% block head_title %}{% endblock %}</title>
     <meta charset="utf-8">
     <style type="text/css">
@@ -23,7 +23,6 @@
         }
 
         #header {
-            background-image: url({% static 'img/FlyerPicSkyline_de.png' %});
         	font-size: 200%;
         	font-weight: bold;
         	vertical-align: middle;
@@ -35,6 +34,26 @@
             position: relative;
         }
 
+        .header_en {
+            background-image: url({% static 'img/FlyerPicSkyline_en.png' %});
+        }
+
+        .header_de {
+            background-image: url({% static 'img/FlyerPicSkyline_de.png' %});
+        }
+
+        #header a {
+        	text-decoration: none;
+            color: #ffffff;
+        }
+
+        #header a:hover {
+            color: #a00a0a;
+        }
+
+        #header a.active {
+            color: #a00a0a;
+        }
 
         #navigationbar {
         	font-size: 50%;
@@ -47,18 +66,6 @@
             color: #ffffff;
         }
 
-        #navigationbar a {
-        	text-decoration: none;
-            color: #ffffff;
-        }
-
-        #navigationbar a:hover {
-            color: #a00a0a;
-        }
-
-        #navigationbar .activesection {
-            color: #f00000;
-        }
 
         #navigationbar ul {
             list-style-type: none;
@@ -68,6 +75,15 @@
             float: right;
             margin: 0 3em 0 1em;
             vertical-align: center;
+        }
+
+        #language_selector {
+            position: absolute;
+            height: 2em;
+            bottom: 0;
+            font-size: 70%;
+            float: left;
+            margin: 0 0em 0 1em;
         }
 
         #content {
@@ -95,7 +111,7 @@
             margin: 0 1em 0 1em;
         }
 
-        #section {
+        .section {
             position: relative;
             margin-left: auto;
             margin-right: auto;
@@ -122,7 +138,6 @@
         	text-align: center;
         }
 
-
     </style>
     {% block extrahead %}{% endblock %}
 </head>
@@ -135,14 +150,18 @@
 
     <!-- SITE HEADER -->
     <nav role="navigation">
-    <div id="header" >
+        <div id="header" class={% block headerclass %}'header_de'{% endblock %}>
         <div id="navigationbar">
+            <div id='language_selector'>
+                {% block language_selector %}
+                <a href='/en'>EN</a> / <a href='/de'>DE</a>
+                {% endblock %}
+            </div>
             {% block navigationbar %}
             <ul>
-                <a href=''><li>Anmeldung</li></a>
-                <a href='#Zurich'><li>Zurich</li></a>
-                <a href='#Stundenplan'><li>Stundenplan</li></a>
-                <a href='#Willkommen'><li>Willkommen</li></a>
+                <a href=''><li>Menu1</li></a>
+                <a href=''><li>Menu2</li></a>
+                <a href=''><li>Menu3</li></a>
             </ul>
             {% endblock %}
         </div>

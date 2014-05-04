@@ -1,18 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'base_language.html' %}
+
 
 {% block content %}
 
-<div id="section">
+{% if language == 'de' %}
+
+<div class="section">
 <a id='Willkommen'></a><h3>Willkommen</h3>
 <p>
 Wir freuen uns auf ein Sommer Aikido Seminar mit <b>Hiroshi Ikeda Shihan</b> in Zurich.</p>
 <p> Hiroshi Ikeda ist Aikido Lehrer in Boulder, Colorado. ...</p>
 <p>Die Anzahl Plaetze ist beschraenkt, im Besonderen am Freitag Abend. Deshalb bitten wir Euch, euch ueber diese Webseite anzumelden.</p>
 <p>Neuigkeiten zum Seminar publizieren wir auf <a href='https://www.facebook.com/events/1424373427807139/'>facebook</a>.</p>
+<p>Habt ihr Fragen? Ihr koennt uns via <a href='&#0109;&#0097;&#0105;lt&#0111;&#0058;ikedaseminar&#64;aikikai-zuerich&#46;ch'>ikedaseminar<span class='at'>&#64;</span>aikikai-zuerich&#46;ch</a> erreichen.</p>
+<p>Bis bald!</p>
 </div>
 
 
-<div id="section">
+<div class="section">
 <a id='Stundenplan'></a><h3>Stundenplan</h3>
 <h4>Keikos</h4>
 <ul>
@@ -28,7 +33,7 @@ Trainingslektionen sind beliebig waehlbar. Es gilt der folgende Preisschluessel:
 1 Lektion: 30.- sFr., 2 Lektionen: 60.- sFr., 3 Lektionen: 80.- sFr., 4 Lektionen: 100.- sFr., 5 Lektionen: 120.- sFr..</br>
 </div>
 
-<div id="section">
+<div class="section">
 <a id='Zurich'></a><h3>Zurich</h3>
 <div id="googlemap">
 <iframe src="https://mapsengine.google.com/map/embed?mid=zuA-fL48w284.k6cZGqyIHDQY" width="800" height="550"></iframe>
@@ -44,6 +49,32 @@ In der obigen Karte haben wir einige Hotels und Gasthaeuser aufgelistet. Weitere
 <h4>Oeffentlicher Verkehr</h4>
 Wenn Ihr mit dem oeffentlichen Verkehr unterwegs seid, dann lohnt es sich eine <a href='https://www.stadt-zuerich.ch/vbz/de/index/tickets/sortiment_preise/tageskarte_einzelbillett.secure.html'>VBZ Tageskarte</a> zu kaufen. Bei Anreise vom Flughafen koennen mehrzonen Tickets am SBB- oder VBZ-Schalter am Flughafen bezogen werden.
 </div>
+
+{% elif language == 'en' %}
+
+<div class="section">
+<a id='Welcome'></a><h3>Welcome</h3>
+</div>
+
+
+<div class="section">
+<a id='Stundenplan'></a><h3>Schedule</h3>
+<h4>Keikos</h4>
+<h4>Party</h4>
+<h4>Price</h4>
+</div>
+
+<div class="section">
+<a id='Zurich'></a><h3>Zurich</h3>
+<div id="googlemap">
+<iframe src="https://mapsengine.google.com/map/embed?mid=zuA-fL48w284.k6cZGqyIHDQY" width="800" height="550"></iframe>
+</div>
+
+<h4>Sleeping</h4>
+<h4>Public Transportation</h4>
+</div>
+{% endif %}
+
 
 {% endblock %}
 

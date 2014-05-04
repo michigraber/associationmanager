@@ -7,8 +7,9 @@ import ikedaseminar.urls
 
 urlpatterns = patterns('',
 
-    url(r'^$', include(ikedaseminar.urls)),
-
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^', include(ikedaseminar.urls)),
+
 
 )

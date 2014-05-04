@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block headerclass %}{% if language == 'en' %}'header_en'{% elif language == 'de' %}'header_de'{% endif %}{% endblock %}
+
+
+{% block language_selector %}
+{% if language == 'en' %}
+<a href='/en' class='active'>EN</a> / <a href='/de'>DE</a>
+{% elif language == 'de' %}
+<a href='/en'>EN</a> / <a href='/de' class='active'>DE</a>
+{% endif %}
+{% endblock %}
+
+
+{% block navigationbar %}
+{% if language == 'de' %}
+<ul>
+    <a href='{% url 'registration' 'de' %}'><li>Anmeldung</li></a>
+    <a href='{% url 'welcome' 'de' %}/#Zurich'><li>Z&uumlrich</li></a>
+    <a href='{% url 'welcome' 'de' %}/#Stundenplan'><li>Stundenplan</li></a>
+    <a href='{% url 'welcome' 'de' %}/#Willkommen'><li>Willkommen</li></a>
+</ul>
+{% elif language == 'en' %}
+<ul>
+    <a href='{% url 'registration' 'en' %}'><li>Registration</li></a>
+    <a href='{% url 'welcome' 'en' %}/#Zurich'><li>Zurich</li></a>
+    <a href='{% url 'welcome' 'en' %}/#Schedule'><li>Schedule</li></a>
+    <a href='{% url 'welcome' 'en' %}/#Welcome'><li>Welcome</li></a>
+</ul>
+{% endif %}
+{% endblock %}
