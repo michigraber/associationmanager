@@ -1,5 +1,5 @@
 {% extends 'base_language.html' %}
-
+{% load staticfiles %}
 
 {% block content %}
 
@@ -16,9 +16,9 @@ Organisationszugeh&ouml;rigkeit, herzlich ein, mit uns zu &uuml;ben.
 <strong>Hiroshi Ikeda</strong> ist Aikido Lehrer in Boulder, Colorado, USA.
 In Japan geboren, studierte er unter anderem Judo und Kendo ehe er sich an der
 Kokugakuin Universit&auml;t unter Mitsugi Saotome dem Aikido zu widmen begann.
-Ende der 70er Jahre folgte er seinem Lehrer nach Amerika und gr&uuml;ndete
-einige Jahre sp&auml;ter sein eigenes Dojo,
-<strong><a href='http://www.boulderaikikai.org'> Boulder Aikikai</a>
+Ende der 70er Jahre folgte er seinem Lehrer in die USA und gr&uuml;ndete einige
+Jahre sp&auml;ter sein eigenes Dojo, <strong><a
+href='http://www.boulderaikikai.org'> Boulder Aikikai</a>
 </strong>.<br> Er ist Initiator der weltweit stattfindenden <strong><a
 href='http://www.aikidobridge.com/'> Aikido Bridge</a></strong> Seminare.
 </p>
@@ -27,9 +27,9 @@ Leider ist die Anzahl Pl&auml;tze an diesem Seminar beschr&auml;nkt, im
 Besonderen am Freitag Abend. Deshalb bitten wir Euch, euch &uuml;ber diese
 Webseite anzumelden.<br>
 Die Anmeldung wird bald aufgeschaltet werden. Wir werden dies via facebook und
-per email ank&uuml;ndigen. Wenn Ihr dar&uuml;ber informiert werden
+per Email ank&uuml;ndigen. Wenn Ihr dar&uuml;ber informiert werden
 m&ouml;chtet und noch nicht auf unserer Mailingliste seid, so 'liked' entweder
-den facebook event oder schreibt eine email an die Email-Adresse die ihr weiter
+den facebook event oder schreibt eine Email an die Email-Adresse die ihr weiter
 unten findet.
 </p>
 <p>Weitere Neuigkeiten zum Seminar publizieren wir auf <strong><a
@@ -123,28 +123,132 @@ Mehrzonen-Tickets am SBB- oder VBZ-Schalter am Flughafen bezogen werden.
 </p>
 </div>
 
+
 {% elif language == 'en' %}
+<!-- ENGLISH SECTION -->
 
 <div class="section">
 <a id='Welcome'></a><h3>Welcome</h3>
+<p>
+We are looking forward to a summer aikido seminar with Hiroshi Ikeda Shihan and
+invite all aikidoka irrespective of their affiliation to practice with us. 
+</p>
+<p>
+<strong>Hiroshi Ikeda</strong> is aikido instructor in Boulder, Colorado, USA.
+He grew up in Tokyo where he studied Kendo and Judo before he started aikido at
+Kokugakuin University with Mitsugi Saotome. At the end of the seventies he
+followed his teacher to the United States where he founded a few years later
+his own dojo <strong><a href='http://www.boulderaikikai.org'>
+Boulder Aikikai</a> </strong>.<br>
+He is the Initiator of the international <strong><a
+href='http://www.aikidobridge.com/'> Aikido Bridge</a></strong> seminars.
+</p>
+<p>
+Unfortunately we can offer only a limited number of places on the mats,
+particularly on Friday evening. Therefore we kindly ask you to register in
+advance through this website.<br>
+Registration will be online soon.  We will announce it on <strong><a
+href='https://www.facebook.com/events/1424373427807139/'>facebook</a></strong>
+and by email.  In case you would like to get notified about it, please either
+'like' the event on facebook or write us an email to <a
+href='&#0109;&#0097;&#0105;lt&#0111;&#0058;ikedaseminar&#64;aikikai-zuerich&#46;ch'>
+ikedaseminar<span class='at'>&#64;</span>aikikai-zuerich&#46;ch</a>.</p>
+
+<p>
+In case you have other questions about the seminar, please feel free to contact
+us on the email address mentioned above.
+</p>
+<p>See you soon!</p>
 </div>
 
 
 <div class="section">
 <a id='Schedule'></a><h3>Schedule</h3>
+
 <h4>Keikos</h4>
+<ul>
+    <li><strong>Friday, July 25</strong><br>
+    19:00 - 21:00 in the Dojo of the <a href='#AikiKai'>Aiki-Kai Z&uuml;rich</a></li>
+    <li><strong>Saturday, July 26</strong><br>
+    10:00 - 12:00 & 15:00 - 17:00 Uhr <a href='#Irchel'>Sport Center of University of
+    Z&uuml;rich, Irchel</a></li>
+    <li><strong>Sunday, July 27</strong><br>
+    10:00 - 12:00 & 14:00 - 16:00 <a href='#Irchel'>Sport Center of University 
+    of Z&uuml;rich, Irchel</a></li>
+</ul>
+
 <h4>Party</h4>
+There will be a dinner and subsequent party on Saturday starting at 6pm at  <a
+href='#GZ'>GZ Wipkingen</a>.
+
 <h4>Price</h4>
+Lessons (2 hours) can be combined as you like. The price for your package is
+calculated according to the following key:<br>
+1 Lesson: 30.- sFr., 2 Lessons: 60.- sFr., 3 Lessons: 80.- sFr., 4 Lessons:
+100.- sFr., 5 Lessons: 120.- sFr..</br>
+
 </div>
 
 <div class="section">
 <a id='Zurich'></a><h3>Z&uuml;rich</h3>
+
+<h4>Seminar addresses</h4>
+<p>
+<h5><a id='AikiKai' href='http://www.aikikai-zuerich.ch'>Aiki-Kai Z&uuml;rich</a></h5>
+Hardturmstrasse 168<br>
+8005 Z&uuml;rich<br>
+Tram stop Fischerweg, Tram Nr. 17
+</p>
+<p>
+<h5><a id='GZ'>GZ Wipkingen</a></h5>
+Breitensteinstrasse 19 a<br>
+8037 Z&uuml;rich<br>
+Tram stop F&ouml;rrlibuckstrasse, Tram Nr. 17 oder<br>
+Tram stop Wipkingerplatz, Tram Nr. 13
+</p>
+<p>
+<h5><a id='Irchel' href='http://portal.asvz.ethz.ch/Anlagen/Seiten/Irchel.aspx'>
+Sport Center University of Z&uuml;rich, Irchel</a></h5>
+Winterthurerstrasse 190<br>
+8057 Z&uuml;rich<br>
+Tram stop Irchel, Tram Nr. 10 und 9
+</p>
+
+
 <div id="googlemap">
 <iframe src="https://mapsengine.google.com/map/embed?mid=zuA-fL48w284.k6cZGqyIHDQY" width="800" height="550"></iframe>
 </div>
 
-<h4>Sleeping</h4>
-<h4>Public Transportation</h4>
+<h4>Accomodation</h4>
+<p>
+<h5>Dojo Aiki-Kai Z&uuml;rich</h5>
+You can sleep in our dojo if you wish. We have places for about 40 people.
+</p>
+<p>
+<h5>Camping site at lake Z&uuml;rich</h5>
+Right on the shore of lake Z&uuml;rich there is a scenic <a
+href='http://www.fischers-fritz.ch/en/camping/impressions.html'>Camping
+site</a>. By public transportation it can be reached in about 40 minutes from
+the training sites.
+<p align=center>
+<img src='{% static 'img/zeltplatz.jpeg' %}'>
+</p>
+</p>
+<p>
+<h5>Hotels and hostels</h5>
+We listed a few places in the map you find above. For more offers please have a
+look at the site of <a
+href='http://www.zuerich.com/en/hotels-in-zurich/hotel-zurich-city-center.html'>Z&uuml;rich
+Tourism</a>.  </p>
+<p>
+<h4>Public transportation</h4>
+Z&uuml;rich has a very well developed public transportation system. In case you
+want to use while being in Z&uuml;rich we recommend you to buy <a
+href='https://www.stadt-zuerich.ch/vbz/de/index/tickets/sortiment_preise/tageskarte_einzelbillett.secure.html'>
+VBZ Day Tickets</a>. You can buy them at the ticket machines on every tram
+stop, at the counters of bigger tram stops or when arriving at the airport or
+at the main train station at the counter of SBB or VBZ.
+</p>
 </div>
 {% endif %}
 
