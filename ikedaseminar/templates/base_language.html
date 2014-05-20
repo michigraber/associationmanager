@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block headerclass %}{% if language == 'en' %}'header_en'{% elif language == 'de' %}'header_de'{% endif %}{% endblock %}
 
@@ -29,3 +30,16 @@
 </ul>
 {% endif %}
 {% endblock %}
+
+{% block precontent %}
+{% if language == 'de' %}
+<a href="{% static "img/Flyer_Landscape_de.pdf" %}">
+Flyer
+</a>
+{% elif language == 'en' %}
+<a href="{% static "img/Flyer_Landscape_en.pdf" %}">
+Flyer
+</a>
+{% endif %}
+{% endblock %}
+

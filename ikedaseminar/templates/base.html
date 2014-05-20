@@ -30,7 +30,7 @@
             width: 900px;
             overflow: hidden;
             padding: 0 0 0.1em 0;
-            margin: 0 0 1em 0;
+            margin: 0 0 0.5em 0;
             position: relative;
         }
 
@@ -84,6 +84,17 @@
             font-size: 70%;
             float: left;
             margin: 0 0em 0 1em;
+        }
+
+        #precontent {
+            margin: 0 3em 0 0;
+            float: right;
+        }
+
+        #precontent a {
+        	text-decoration: none;
+            color: #A00A0A;
+            text-align: center;
         }
 
         #content {
@@ -183,7 +194,10 @@
     </div>
     </nav>
 
-    {% block precontent %}{% endblock %}
+    <div id='precontent'>
+    {% block precontent %}
+    {% endblock %}
+    </div>
 
     <div id="content"> <!-- used to load in PJAX -->
         {% block content %}
