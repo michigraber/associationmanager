@@ -150,18 +150,22 @@
 
         #googlemap {
             width: 93%;
-        	margin: 0 auto;
+        	margin: 3em auto;
         }
 
+        .image {
+            width: 93%;
+        	margin: 3em auto;
+        }
 
         #footer {
         	padding: 50px 180px 0;
+        	text-align: center;
         }
 
         .fine-print {
         	color:#ccc;
         	font-weight:100;
-        	text-align: center;
         }
 
     </style>
@@ -182,6 +186,16 @@
 
 
 <body>
+
+<!-- FACEBOOK LIKE BUTTON JAVASCRIPT -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- CONTAINER -->
 <div class="container" id="container">
@@ -239,10 +253,16 @@
 
     <!-- FOOTER -->
     <div class="row" id="footer">
+
+    <!-- FACEBOOK LIKE BUTTON -->
+    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="false" data-share="true" data-colorscheme="dark"></div>
+
+        <div>
         <p class="fine-print">
             {% block footer %}Site was last updated on May 1st, 2014{% endblock %}
             <span id="last-update"></span>
         </p>
+        </div>
     </div>
 
 </div>

@@ -29,7 +29,7 @@ Besonderen am Freitag Abend, deshalb bitten wir um vorzeitige Anmeldung
 Die Anmeldung wird bald aufgeschaltet werden. Wir werden dies via <strong><a
 href='https://www.facebook.com/events/1424373427807139/'>facebook</a></strong>
 und per Email ank&uuml;ndigen. Wenn ihr dar&uuml;ber informiert werden
-m&ouml;chtet und noch nicht auf unserer Mailingliste seid, so 'liked' entweder
+m&ouml;chtet und noch nicht auf unserer Mailingliste seid, so 'joined' entweder
 den facebook event oder schreibt eine Email an die Email-Adresse die ihr weiter
 unten findet.
 </p>
@@ -72,6 +72,16 @@ Lektionen: 100.- sFr., 5 Lektionen: 120.- sFr..</br>
 <div class="section">
 <a id='Zurich'></a><h3>Z&uuml;rich</h3>
 
+<div class="image">
+<p align=center>
+{% if image_nr == '0' %}
+<img src='{% static 'img/zurich_summer_1.jpeg' %}' width=80%>
+{% elif image_nr == '1' %}
+<img src='{% static 'img/zurich_summer_2.jpeg' %}' width=80%>
+{% endif %}
+</p>
+</div>
+
 <h4>Adressen zum Seminar</h4>
 <p>
 <h5><a id='AikiKai' href='http://www.aikikai-zuerich.ch'>Aiki-Kai Z&uuml;rich</a></h5>
@@ -106,9 +116,6 @@ Es besteht die M&ouml;glickeit im Dojo des Aiki-Kai Z&uuml;rich zu &uuml;bernach
 <p>
 <h5>Zeltplatz am Z&uuml;richsee</h5>
 Am Ufer des Z&uuml;richsee liegt ein idyllischer <a href='http://www.fischers-fritz.ch/en/camping/impressions.html'>Zeltplatz</a>. Er ist mit dem &ouml;ffentlichen Verkehr ca 40 Minuten von den Trainingsst&auml;tten entfernt.
-</p>
-<p align=center>
-<img src='{% static 'img/zeltplatz.jpeg' %}'>
 </p>
 <p>
 <h5>Hotels und Gasth&auml;user</h5>
@@ -152,7 +159,7 @@ website.<br>
 Registration will be online soon.  We will announce it on <strong><a
 href='https://www.facebook.com/events/1424373427807139/'>facebook</a></strong>
 and by email.  In case you would like to get notified about it, please either
-'like' the event on facebook or write us an email to <a
+'join' the event on facebook or write us an email to <a
 href='&#0109;&#0097;&#0105;lt&#0111;&#0058;ikedaseminar&#64;aikikai-zuerich&#46;ch'>
 ikedaseminar<span class='at'>&#64;</span>aikikai-zuerich&#46;ch</a>.</p>
 
@@ -232,9 +239,6 @@ Right on the shore of lake Z&uuml;rich there is a scenic <a
 href='http://www.fischers-fritz.ch/en/camping/impressions.html'>Camping
 site</a>. By public transportation it can be reached in about 40 minutes from
 the training sites.
-<p align=center>
-<img src='{% static 'img/zeltplatz.jpeg' %}'>
-</p>
 </p>
 <p>
 <h5>Hotels and hostels</h5>
