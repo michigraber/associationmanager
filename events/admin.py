@@ -10,16 +10,19 @@ class EventAdmin(admin.ModelAdmin):
 
 
 class EventPartAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('__str__', 'datetime_from', 'datetime_until', 
+            'max_number_of_participants', 'is_bookable', )
 
 class RegistrationAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('one_line_description', )
+    readonly_fields = ('price', )
 
 class ArticleAdmin(admin.ModelAdmin):
-    pass
-    
+    list_display = ('name_en', 'is_sold', 'price', 'number_of_items_available', )
+
 class PurchaseAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('one_line_description', )
+    list_filter = ('paid_by', )
     
 class PurchaseItemAdmin(admin.ModelAdmin):
     list_display = ('one_line_description', )

@@ -8,5 +8,9 @@ urlpatterns = patterns('ikedaseminar.views',
     url(r'^$', RedirectView.as_view(url='/de/')),
     url(r'(?P<lang>en|de)/*$', 'welcome', {}, name='welcome'),
     
-    url(r'(?P<lang>en|de)/registration/*$', 'registration', {}, name='registration'),
+    #url(r'(?P<lang>en|de)/registration/*$', 'registration', {}, name='registration'),
+)
+
+urlpatterns += patterns('events.views',
+    url(r'(?P<lang>en|de)/registration/*$', 'select_purchase_items', {}, name='registration'),
 )

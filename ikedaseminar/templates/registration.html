@@ -20,9 +20,17 @@
 
 
 {% block content %}
+<div>
 {% if language == 'de' %}
-<h4>Wird bald online sein ..</h4>
+<h1>{{ request_method }}</h1>
+<h4>Registration step {{ registration_step }} of 6:</h4>
+<form action="{% url 'registration' 'de' %}" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="W&auml;hlen"/>
+</form>
 {% elif language == 'en' %}
-<h4>Will be online soon ..</h4>
+{{ form.as_p }}
+<p><input type="submit" value="Choose" /></p>
 {% endif %}
+</div>
 {% endblock %}

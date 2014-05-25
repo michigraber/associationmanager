@@ -27,6 +27,9 @@ class Event(models.Model):
 
     event_part_set_price_map_json = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.title_en
+
 
 class EventPart(models.Model):
     '''
@@ -42,6 +45,22 @@ class EventPart(models.Model):
     is_bookable = models.BooleanField()
     max_number_of_participants = models.PositiveSmallIntegerField()
 
+    class Meta:
+        unique_together = (
+                ('event', 'short_description_en'),
+                ('event', 'short_description_de')
+                )
+
+    def __str__(self):
+        return self.event.title_en + ' : ' + self.short_description_en
+
+    def no_eventparts_registered(self):
+        return len(self.registration_set.all())
+
+    def still_available(self):
+        no_reg = self.no_eventparts_registered()
+        return  no_reg < self.max_number_of_participants
+
 
 class Registration(models.Model):
     '''
@@ -49,13 +68,6 @@ class Registration(models.Model):
     associate = models.ForeignKey(Associate)
     event_parts = models.ManyToManyField(EventPart)
     price = models.PositiveSmallIntegerField(blank=True, null=True)
-    PAID_BY_CHOICES = (
-            (0, 'not paid'),
-            (1, 'cash'),
-            (2, 'paypal'),
-            (4, 'bank transfer'),
-            )
-    paid_by = models.SmallIntegerField(choices=PAID_BY_CHOICES)
 
     def one_line_description(self, language='de'):
         if language == 'de':
@@ -81,6 +93,7 @@ class Article(models.Model):
     description_de = models.TextField(null=True, blank=True)
     description_en = models.TextField(null=True, blank=True)
 
+    # FIXME : remove field
     article_image = models.ImageField(upload_to='articles', blank=True,
             null=True)
 
@@ -90,6 +103,9 @@ class Article(models.Model):
     price = models.PositiveSmallIntegerField()
     number_of_items_available = models.PositiveSmallIntegerField()
 
+    def __str__(self):
+        return self.one_line_description()
+
     def one_line_description(self, language='de'):
         if language == 'de':
             return self.name_de
@@ -98,22 +114,51 @@ class Article(models.Model):
         else:
             return 'Article - no name in language %s' % language
 
+    def no_articles_sold(self):
+        pis = PurchaseItem.objects.filter(
+                content_type__model='registration',
+                object_id=self.pk)
+        return len(pis)
+
+    def still_available(self):
+        return self.no_articles_sold() < self.number_of_items_available
+
+
 
 class Purchase(models.Model):
     '''
     '''
     associate = models.ForeignKey(Associate)
     is_paid = models.BooleanField()
-    comment = models.TextField(blank=True, null=True)
+    message = models.TextField(blank=True, null=True)
+    PAID_BY_CHOICES = (
+            (0, 'not paid'),
+            (1, 'cash'),
+            (2, 'paypal'),
+            (4, 'bank transfer'),
+            )
+    paid_by = models.SmallIntegerField(choices=PAID_BY_CHOICES)
 
-#   def __str__(self):
-#       items = self.purchaseitem_set.all()
-#       if len(items) > 0:
-#           s = '\n'.join([str(i.one_line_description)+'\t'+str(i.price)+'.-'
-#               for i in items])
-#       else:
-#           s = 'Purchase without items!!'
-#       return s
+    def one_line_description(self):
+        items = self.purchaseitem_set.all()
+        s = 'Purchase Number {pk} :: '.format(pk=self.pk)
+        if len(items) > 0:
+            s += ', '.join([str(i.one_line_description())+\
+                    ' ('+str(i.content_object.price)+'.-)'
+                for i in items])
+        else:
+            s += 'Purchase without items!!'
+
+        s += ' Balance due : {b}.- Payment: {p}'.format(
+                b=self.balance_due(),
+                p=self.get_paid_by_display())
+        return s
+
+    def balance_due(self):
+        balance = 0
+        for i in self.purchaseitem_set.all():
+            balance += i.content_object.price
+        return balance
 
 
 class PurchaseItem(models.Model):
