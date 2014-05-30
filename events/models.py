@@ -15,7 +15,7 @@ class Event(models.Model):
     date_from = models.DateField()
     date_until = models.DateField()
 
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
 
     description_de = models.TextField(blank=True, null=True)
     description_en = models.TextField(blank=True, null=True)
@@ -60,6 +60,14 @@ class EventPart(models.Model):
     def still_available(self):
         no_reg = self.no_eventparts_registered()
         return  no_reg < self.max_number_of_participants
+
+    def percent_full(self):
+        reg = float(self.no_eventparts_registered())
+        maxav = float(self.max_number_of_participants)
+        return int(100*reg/maxav)
+
+    def no_available_places(self):
+        return self.max_number_of_participants - self.no_eventparts_registered()
 
 
 class Registration(models.Model):

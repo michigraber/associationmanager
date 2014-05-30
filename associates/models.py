@@ -51,8 +51,7 @@ class Associate(models.Model):
     phone_number_business = models.CharField(max_length=128, blank=True,
             null=True)
 
-    email_address = models.EmailField(max_length=75, blank=True, null=True,
-            unique=True)
+    email_address = models.EmailField(max_length=75, blank=True, null=True)
 
     # emergency contact
     emergency_contact_first_name = models.CharField(max_length=128, blank=True,

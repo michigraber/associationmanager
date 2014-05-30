@@ -1,9 +1,4 @@
 {% extends 'base_language.html' %}
-{% load i18n %}
-
-{% block extrahead %}
-{{ wizard.form.media }}
-{% endblock %}
 
 {% block navigationbar %}
 {% if language == 'de' %}
@@ -26,53 +21,125 @@
 
 {% block content %}
 <div id='registrationcontainer'>
-<!-- STEP 1 -->
-{% if wizard.steps.step1 == 1 %}
-{% if language == 'de' %}
-<p>
-Willkommen zur Registrierung f&uuml;r unser Seminar mit <strong>Hiroshi
-Ikeda</strong> Shihan!
-</p>
-<p>
-Bisher sind wir wie folgt besetzt:
-</p>
-<p>
-Bitte nimm folgende Punkte zur Kenntnis:
-<li>
-<ul>blabja</ul>
-</li>
-</p>
-{% elif language == 'en' %}
-{% endif %}
 
-<!-- STEP 2 -->
-{% elif wizard.steps.step1 == '2' %}
-{% elif wizard.steps.step1 == '3' %}
-{% endif %}
-<p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+{% if language == 'de' %}
+{% if registration_step == 1 %}
+<div id='registrationheader'>
+<!-- REGISTRATION HEADER -->
+<p>
+<h4>Willkommen zur Seminar-Anmeldung!</h4>
+</p>
+<p>
+Wir haben noch folgende Pl&auml;tze frei:
+<ul>
+    {% for ep in event.eventpart_set.all %}
+    <li><strong>{{ ep.short_description_de }}:</strong> {{ ep.no_available_places }}</li>
+    {% endfor %}
+</ul>
+</p>
+<p>
+Nimm f&uuml;r die Anmeldung bitte folgende Punkte zur Kenntnis:
+<ul>
+<li>Die Bezahlung deiner Anmeldung wird durch Paypal passieren. Daf&uuml;r wirst du eine Kreditkarte ben&ouml;tigen.</li>
+<li>Eine Annulation deiner Anmeldung ist zwar m&ouml;glich, wir werden dir aber kein Geld zur&uuml;ckerstatten k&ouml;nnen. Betrachte dann deinen Beitrag als Spende ;-)</li>
+</ul>
+</p>
+</div>
+
+<!-- FORMS -->
 <div id='registrationform'>
 <form method="post">{% csrf_token %}
+    <h4>Woran m&ouml;chtest du teilnehmen?</h4>
     <table>
-        {{ wizard.management_form }}
-{% if wizard.form.forms %}
-    {{ wizard.form.management_form }}
-    {% for form in wizard.form.forms %}
-        {{ form }}
-    {% endfor %}
-{% else %}
-    {{ wizard.form }}
-{% endif %}
+    {{ selection_form.as_table }}
     </table>
-{% if wizard.steps.prev %}
-<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
-<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
-{% endif %}
-<input type="submit" value="{% trans "submit" %}"/>
+    <h4>Pers&ouml;nliche Angaben:</h4>
+    <table>
+    {{ associate_form.as_table }}
+    </table>
+    <h4>Wen sollen wir in einem Notfall kontaktieren?</h4>
+    <table>
+    {{ emergencycontact_form.as_table }}
+    </table>
+    <h4>M&ouml;chtest du uns eine Nachricht hinterlassen?</h4>
+    <table>
+    {{ message_form.as_table }}
+    </table>
+    <br>    
+<input type="submit" value="Eingabe"/>
 </form>
-</form>
+</div>
 
+{% elif registration_step == 2 %}
+<div id='registrationheader'>
+    {{ associate }}<br>
+{% for ep in eventparts %}
+    {{ ep }}
+{% endfor %}<br>
+{% for art in articles %}
+    {{ art }}
+{% endfor %}<br>
+Preis: {{ price }}<br>
+</div>
+
+{% endif %}
+
+{% elif language == 'en' %}
+{% if registration_step == 1 %}
+<div id='registrationheader'>
+<!-- REGISTRATION HEADER -->
+<p>
+<h4>Welcome to the seminar registrierung!</h4>
+</p>
+<p>
+We do have the following number of places available:
+<ul>
+    {% for ep in event.eventpart_set.all %}
+    <li><strong>{{ ep.short_description_en }}:</strong> {{ ep.no_available_places }}</li>
+    {% endfor %}
+</ul>
+</p>
 
 </div>
 
+<!-- FORMS -->
+<div id='registrationform'>
+<form method="post">{% csrf_token %}
+    <h4>What would you like to participate in?</h4>
+    <table>
+    {{ selection_form.as_table }}
+    </table>
+    <h4>Personal Details</h4>
+    <table>
+    {{ associate_form.as_table }}
+    </table>
+    <h4>Who should we contact in the case of an emergency?</h4>
+    <table>
+    {{ emergencycontact_form.as_table }}
+    </table>
+    <h4>Would you like to leave us a message?</h4>
+    <table>
+    {{ message_form.as_table }}
+    </table>
+    <br>    
+<input type="submit" value="submit"/>
+</form>
+</div>
+
+{% elif registration_step == 2 %}
+<div id='registrationheader'>
+{{ associate }}<br>
+{% for ep in eventparts %}
+    {{ ep }}
+{% endfor %}<br>
+{% for art in articles %}
+    {{ art }}
+{% endfor %}<br>
+price: {{ price }}<br>
+</div>
+
+{% endif %}
+
+{% endif %}
 </div>
 {% endblock %}

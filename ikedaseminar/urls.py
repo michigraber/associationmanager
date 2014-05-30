@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 
 from django.views.generic import RedirectView
 
-from events.views import RegistrationWizard
+#from events.views import RegistrationWizard
 from events.models import Event
 
 from ikedaseminar import views
@@ -25,6 +25,7 @@ INITIAL_DICT = {
 
 urlpatterns += patterns('events.views',
     url(r'(?P<language>en|de)/registration/*$',
-        RegistrationWizard.as_view(initial_dict=INITIAL_DICT),
+        'registration_configuration',
+#       RegistrationWizard.as_view(initial_dict=INITIAL_DICT),
         name='registration'),
 )
