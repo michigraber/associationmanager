@@ -142,19 +142,13 @@ def registration_configuration(request, language=''):
 
 def registration_paypal_return(request, language=None, status=None):
 
-    method  = request.method
-    if request.method == 'POST':
-        post = request.POST
-    else:
-        post = None
-
-
     context = {
             'language': language,
             'status': status, 
             'method': method,
             'POST': post,
             }
+
     return render_to_response('checkout.html', context) 
 
 
@@ -164,3 +158,21 @@ def registration_comingsoon(request, language=None):
             'registration_step' : 0,
             }
     return render_to_response('registration.html', context) 
+
+
+def paypal_ipn(request, language=None):
+    '''
+    '''
+    if request.method == 'POST':
+        post = request.POST
+    else:
+        post = None
+
+    context = {
+            'language': language,
+            'status': 'paypal_ipn',
+            'method': request.method,
+            'post': request.post,
+            }
+
+    return render_to_response('checkout.html', context) 

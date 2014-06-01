@@ -28,9 +28,10 @@ INITIAL_DICT = {
         }
 
 urlpatterns += patterns('events.views',
-    url(r'(?P<language>en|de)/registration/aiki-kai*$',
-        'registration_configuration',
-        name='preregistration'),
+    url(r'(?P<language>en|de)/registration/aiki-kai/*$',
+        'registration_configuration', name='preregistration'),
+    url(r'(?P<language>en|de)/registration/paypal/*$',
+        'paypal_ipn', name='paypal_ipn'),
     url(r'(?P<language>en|de)/registration/*$',
         'registration_comingsoon',
         name='registration'),
