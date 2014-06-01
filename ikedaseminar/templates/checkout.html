@@ -1,33 +1,44 @@
-{% extends 'base_language.html' %}
-{% load i18n %}
-
-{% block navigationbar %}
-{% if language == 'de' %}
-<ul>
-    <a class='active' href='{% url 'registration' 'de' %}'><li>Anmeldung</li></a>
-    <a href='{% url 'welcome' 'de' %}/#Zurich'><li>Z&uumlrich</li></a>
-    <a href='{% url 'welcome' 'de' %}/#Stundenplan'><li>Stundenplan</li></a>
-    <a href='{% url 'welcome' 'de' %}/#Willkommen'><li>Willkommen</li></a>
-</ul>
-{% elif language == 'en' %}
-<ul>
-    <a class='active' href='{% url 'registration' 'en' %}'><li>Registration</li></a>
-    <a href='{% url 'welcome' 'en' %}/#Zurich'><li>Zurich</li></a>
-    <a href='{% url 'welcome' 'en' %}/#Schedule'><li>Schedule</li></a>
-    <a href='{% url 'welcome' 'en' %}/#Welcome'><li>Welcome</li></a>
-</ul>
-{% endif %}
-{% endblock %}
-
+{% extends 'base_registration.html' %}
 
 {% block content %}
-<div id='registrationform'>
-{% if language == 'de' %}
-<h3>Deine Registrierung</h3>
-{{ form_data }}
-{% elif language == 'en' %}
-<h3>Your Registration</h3>
-{{ form_data }}
-{% endif %}
+<div id ='registrationcontainer'>
+<div id='registrationheader'>
+
+    {% if status == 'success' %}
+    <h4>Vielen Dank! Deine Anmeldung wurde erfolgreich abgeschlossen!</h4>
+    <p>Du wirst in den n&auml;chsten Tagen ein Best&auml;tigungs-Email
+    erhalten.</p>
+    <p>Wir freuen uns dich bald zu sehen!</p>
+    <h4>Thank you! Your registration completed successfully!</h4>
+    <p>You will receive a confirmation email in the next few days.</p>
+    <p>We are looking forward to seeing you soon!</p>
+
+    <h4>request info</h4>
+    <p>METHOD: {{ method }}</p>
+    <p>POST: {{ post }}</p>
+
+    {% elif status == 'cancel' %}
+    <h4>Deine Anmeldung wurde NICHT erfolgreich abgeschlossen!</h4>
+    <p>Die Bezahlung via Paypal hat nicht stattgefunden.</p>
+    <p>Melde dich bald komplett an wenn du m&ouml;chtest!</p>
+    <p>F&uuml;r den Fall dass du auf einen Fehler gestossen bist im Anmelde-Prozess, dann melde dich bitte via <a
+    href='&#0109;&#0097;&#0105;lt&#0111;&#0058;ikedaseminar&#64;aikikai-zuerich&#46;ch'>ikedaseminar<span
+        class='at'>&#64;</span>aikikai-zuerich&#46;ch</a> bei uns.</p>
+
+    <h4>Your registration has NOT been completed!</h4>
+    <p>Your paypal payment was not executed.</p>
+    <p>Please register soon if you like!</p>
+    <p>In case you encountered an error in the registration procedure, please
+    do not hesitate to contact us on <a
+    href='&#0109;&#0097;&#0105;lt&#0111;&#0058;ikedaseminar&#64;aikikai-zuerich&#46;ch'>ikedaseminar<span
+        class='at'>&#64;</span>aikikai-zuerich&#46;ch</a></p>
+
+    <h4>request info</h4>
+    <p>METHOD: {{ method }}</p>
+    <p>POST: {{ post }}</p>
+
+    {% endif %}
+
+</div>
 </div>
 {% endblock %}

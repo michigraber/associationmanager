@@ -26,6 +26,7 @@ INITIAL_DICT = {
 urlpatterns += patterns('events.views',
     url(r'(?P<language>en|de)/registration/*$',
         'registration_configuration',
-#       RegistrationWizard.as_view(initial_dict=INITIAL_DICT),
         name='registration'),
+    url(r'(?P<language>en|de)/registration/(?P<status>cancel|success)/*$',
+        'registration_paypal_return', name='registration_paypal_return'),
 )

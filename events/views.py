@@ -63,19 +63,13 @@ def registration_configuration(request, language=''):
             for fk, fv in sel_form.cleaned_data.iteritems():
                 if fv:
                     if language == 'de':
+                        ep = event.eventpart_set.filter(short_description_de=fk)
                         try:
-                            ep = event.eventpart_set.get(short_description_de=fk)
-                        except:
-                            ep = None
-                        try:
-                            art = event.article_set.get(name_de=fk)
+                            art = event.article_set.filter(name_de=fk)
                         except:
                             art = None
                     elif language == 'en':
-                        try:
-                            ep = event.eventpart_set.get(short_description_en=fk)
-                        except:
-                            ep = None
+                        ep = event.eventpart_set.filter(short_description_en=fk)
                         try:
                             art = event.article_set.get(name_de=fk)
                         except:
@@ -85,7 +79,14 @@ def registration_configuration(request, language=''):
                     elif art:
                         arts.append(art)
 
-                    price = EVENTPART_SET_PRICE_MAPPING[len(eps)] + len(arts)*10.
+            print 
+            print eps
+            print arts
+            print
+                
+            # FIXME : this price calculation is not general!!
+            price = int(EVENTPART_SET_PRICE_MAPPING[len(eps)] + len(arts)*10.)
+            paypal_item_id = str(len(eps))+'K'+len(arts)*'P'
 
 
             context = {
@@ -95,6 +96,7 @@ def registration_configuration(request, language=''):
                     'eventparts': eps,
                     'articles': arts,
                     'price': price,
+                    'paypal_item_id': paypal_item_id,
                     }
 
             return render_to_response('registration.html', context)
@@ -126,3 +128,23 @@ def registration_configuration(request, language=''):
 
     context.update(csrf(request))
     return render_to_response('registration.html', context) 
+
+
+def registration_paypal_return(request, language=None, status=None):
+
+    print 
+    print 'PAYPAL RETURN !!!!'
+    method  = request.method
+    if request.method == 'POST':
+        post = request.POST
+    else:
+        None
+
+
+    context = {
+            'language': language,
+            'status': status, 
+            'method': method,
+            'POST', post,
+            }
+    return render_to_response('checkout.html', context) 

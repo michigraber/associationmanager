@@ -1,23 +1,4 @@
-{% extends 'base_language.html' %}
-
-{% block navigationbar %}
-{% if language == 'de' %}
-<ul>
-    <a class='active' href='{% url 'registration' 'de' %}'><li>Anmeldung</li></a>
-    <a href='{% url 'welcome' 'de' %}/#Zurich'><li>Z&uumlrich</li></a>
-    <a href='{% url 'welcome' 'de' %}/#Stundenplan'><li>Stundenplan</li></a>
-    <a href='{% url 'welcome' 'de' %}/#Willkommen'><li>Willkommen</li></a>
-</ul>
-{% elif language == 'en' %}
-<ul>
-    <a class='active' href='{% url 'registration' 'en' %}'><li>Registration</li></a>
-    <a href='{% url 'welcome' 'en' %}/#Zurich'><li>Zurich</li></a>
-    <a href='{% url 'welcome' 'en' %}/#Schedule'><li>Schedule</li></a>
-    <a href='{% url 'welcome' 'en' %}/#Welcome'><li>Welcome</li></a>
-</ul>
-{% endif %}
-{% endblock %}
-
+{% extends 'base_registration.html' %}
 
 {% block content %}
 <div id='registrationcontainer'>
@@ -40,9 +21,12 @@ Wir haben noch folgende Pl&auml;tze frei:
 <p>
 Nimm f&uuml;r die Anmeldung bitte folgende Punkte zur Kenntnis:
 <ul>
-<li>Die Bezahlung deiner Anmeldung wird durch Paypal passieren. Daf&uuml;r wirst du eine Kreditkarte ben&ouml;tigen.</li>
-<li>Eine Annulation deiner Anmeldung ist zwar m&ouml;glich, wir werden dir aber kein Geld zur&uuml;ckerstatten k&ouml;nnen. Betrachte dann deinen Beitrag als Spende ;-)</li>
-</ul>
+<li>Die Bezahlung deiner Anmeldung wird durch Paypal passieren. Daf&uuml;r
+wirst du eine Kreditkarte ben&ouml;tigen. Es ist jedoch weder notwendig einen
+Paypal Account zu besitzen, noch einen zu erstellen.</li>
+<li>Eine Annulation deiner Anmeldung ist zwar m&ouml;glich, doch werden wir dir
+kein Geld zur&uuml;ckerstatten k&ouml;nnen. Betrachte dann deinen Beitrag als
+Spende ;-)</li> </ul>
 </p>
 </div>
 
@@ -72,14 +56,23 @@ Nimm f&uuml;r die Anmeldung bitte folgende Punkte zur Kenntnis:
 
 {% elif registration_step == 2 %}
 <div id='registrationheader'>
-    {{ associate }}<br>
+<h4>Dein Packet:</h4>
+<ul>
 {% for ep in eventparts %}
-    {{ ep }}
-{% endfor %}<br>
+<li>{{ ep.short_description_de }}</li>
+{% endfor %}
 {% for art in articles %}
-    {{ art }}
-{% endfor %}<br>
-Preis: {{ price }}<br>
+<li>{{ art.name_de }}</li>
+{% endfor %}
+</ul>
+<p><strong>Preis:</strong> {{ price }}.- sFr.</p>
+<h4>&Uuml;ber dich:</h4>
+    <p>{{ associate.first_name }}  {{ associate.last_name }}</p>
+    <p>{{ associate.street_and_nr }}</p>
+    <p>{{ associate.postal_code }}  {{ associate.city }}</p>
+    <p>{{ associate.country }}</p>
+<h4>Du kannst deine Anmeldung nun abschliessen durch Bezahlung via Paypal</h4>
+{% include "paypal_buttons.html" %}
 </div>
 
 {% endif %}
@@ -89,14 +82,24 @@ Preis: {{ price }}<br>
 <div id='registrationheader'>
 <!-- REGISTRATION HEADER -->
 <p>
-<h4>Welcome to the seminar registrierung!</h4>
+<h4>Welcome to the seminar registration!</h4>
 </p>
 <p>
-We do have the following number of places available:
+We still have the following number of places available:
 <ul>
     {% for ep in event.eventpart_set.all %}
     <li><strong>{{ ep.short_description_en }}:</strong> {{ ep.no_available_places }}</li>
     {% endfor %}
+</ul>
+</p>
+<p>
+Please consider for the subsequent registration that
+<ul>
+    <li>the payment will happen throught paypal. You will need a credit card to
+    do that. However, neither a paypal account nor a paypal account
+    registration will be necessary.</li>
+    <li>even though cancellation of your registration is possible we will not
+    refund your payments.</li>
 </ul>
 </p>
 
@@ -128,14 +131,23 @@ We do have the following number of places available:
 
 {% elif registration_step == 2 %}
 <div id='registrationheader'>
-{{ associate }}<br>
+<h4>Your Package:</h4>
+<ul>
 {% for ep in eventparts %}
-    {{ ep }}
-{% endfor %}<br>
+<li>{{ ep.short_description_en }}</li>
+{% endfor %}
 {% for art in articles %}
-    {{ art }}
-{% endfor %}<br>
-price: {{ price }}<br>
+<li>{{ art.name_en }}</li>
+{% endfor %}
+</ul>
+<p><strong>Price: </strong>{{ price }}.- sFr.</p>
+<h4>About you:</h4>
+    <p>{{ associate.first_name }}  {{ associate.last_name }}</p>
+    <p>{{ associate.street_and_nr }}</p>
+    <p>{{ associate.postal_code }}  {{ associate.city }}</p>
+    <p>{{ associate.country }}</p>
+<h4>You can now complete your registration by paying through Paypal.</h4>
+{% include "paypal_buttons.html" %}
 </div>
 
 {% endif %}
