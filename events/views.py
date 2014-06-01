@@ -145,8 +145,6 @@ def registration_paypal_return(request, language=None, status=None):
     context = {
             'language': language,
             'status': status, 
-            'method': method,
-            'POST': post,
             }
 
     return render_to_response('checkout.html', context) 
