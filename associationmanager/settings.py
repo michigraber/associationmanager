@@ -54,7 +54,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.formtools',
 
-    'debug_toolbar',
+    #'debug_toolbar',
 
     'associates',
     'events',
