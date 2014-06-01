@@ -1,14 +1,18 @@
+
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 
 from django.views.generic import RedirectView
 
-#from events.views import RegistrationWizard
 from events.models import Event
 
 from ikedaseminar import views
 
 # THE EVENT WE DEAL HERE WITH
-EVENT = Event.objects.get(pk=1)
+try:
+    EVENT = Event.objects.get(pk=settings.IKEDASEMINAR_EVENT_PK)
+except:
+    EVENT = None
 
 urlpatterns = patterns('ikedaseminar.views',
     url(r'^$', RedirectView.as_view(url='/de/')),

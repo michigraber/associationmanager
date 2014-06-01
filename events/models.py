@@ -5,8 +5,15 @@ from django.contrib.contenttypes import generic
 from associates.models import Associate
 
 
+class BaseModel(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_last_modified = models.DateTimeField(auto_now=True)
 
-class Event(models.Model):
+    class Meta:
+        abstract = True
+
+
+class Event(BaseModel):
     '''
     '''
     title_de = models.CharField(max_length=511)
@@ -25,13 +32,14 @@ class Event(models.Model):
 
     show_event = models.BooleanField(default=True)
 
-    event_part_set_price_map_json = models.CharField(max_length=255)
+    event_part_set_price_map_json = models.CharField(max_length=255,
+            blank=True, null=True)
 
     def __str__(self):
         return self.title_en
 
 
-class EventPart(models.Model):
+class EventPart(BaseModel):
     '''
     '''
     event = models.ForeignKey(Event)
@@ -70,7 +78,7 @@ class EventPart(models.Model):
         return self.max_number_of_participants - self.no_eventparts_registered()
 
 
-class Registration(models.Model):
+class Registration(BaseModel):
     '''
     '''
     associate = models.ForeignKey(Associate)
@@ -92,7 +100,7 @@ class Registration(models.Model):
                     fn=self.associate.first_name, ln=self.associate.last_name)
 
  
-class Article(models.Model):
+class Article(BaseModel):
     '''
     '''
     name_de = models.CharField(max_length=255)
@@ -102,8 +110,8 @@ class Article(models.Model):
     description_en = models.TextField(null=True, blank=True)
 
     # FIXME : remove field
-    article_image = models.ImageField(upload_to='articles', blank=True,
-            null=True)
+#   article_image = models.ImageField(upload_to='articles', blank=True,
+#           null=True)
 
     events = models.ManyToManyField(Event, blank=True, null=True)
 
@@ -133,7 +141,7 @@ class Article(models.Model):
 
 
 
-class Purchase(models.Model):
+class Purchase(BaseModel):
     '''
     '''
     associate = models.ForeignKey(Associate)
@@ -169,7 +177,7 @@ class Purchase(models.Model):
         return balance
 
 
-class PurchaseItem(models.Model):
+class PurchaseItem(BaseModel):
     '''
     '''
     ITEM_TYPE_CHOICES = models.Q(app_label='events', model='article') |\

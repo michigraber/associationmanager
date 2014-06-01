@@ -1,8 +1,10 @@
 
-from django.shortcuts import render_to_response
+from django.conf import settings
+from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.formtools.wizard.views import SessionWizardView
 
 from django.core.context_processors import csrf
+
 
 from associates.forms import AssociateForm_de, EmergencyContactForm_de,\
         AssociateForm_en, EmergencyContactForm_en
@@ -10,28 +12,19 @@ from associates.models import Associate
 
 from events.models import Event, EventPart, Registration, Purchase
 
-
-
 from .forms import SelectPurchaseItemsForm, RegistrationMessageForm_de,\
         RegistrationMessageForm_en
 
 
-EVENTPART_SET_PRICE_MAPPING = {
-        0 : 0., 
-        1 : 30.,
-        2 : 60.,
-        3 : 80.,
-        4 : 100., 
-        5 : 120.
-        }
-
 
 def registration_configuration(request, language=''):
-    event = Event.objects.get(pk=1)
+
+    event = get_object_or_404(Event, pk=settings.IKEDASEMINAR_EVENT_PK)
     
     # POST : Forms are filled in
     if request.method == 'POST':
-        sel_form = SelectPurchaseItemsForm(request.POST, event=event, language=language)
+        sel_form = SelectPurchaseItemsForm(request.POST, event=event,
+                language=language)
         if language == 'de':
             ass_form = AssociateForm_de(request.POST)
             em_form = EmergencyContactForm_de(request.POST)
@@ -85,7 +78,8 @@ def registration_configuration(request, language=''):
             print
                 
             # FIXME : this price calculation is not general!!
-            price = int(EVENTPART_SET_PRICE_MAPPING[len(eps)] + len(arts)*10.)
+            mapping = settings.IKEDASEMINAR_EVENTPART_SET_PRICE_MAPPING
+            price = int(mapping[len(eps)] + len(arts)*10.)
             paypal_item_id = str(len(eps))+'K'+len(arts)*'P'
 
 
@@ -138,13 +132,13 @@ def registration_paypal_return(request, language=None, status=None):
     if request.method == 'POST':
         post = request.POST
     else:
-        None
+        post = None
 
 
     context = {
             'language': language,
             'status': status, 
             'method': method,
-            'POST', post,
+            'POST': post,
             }
     return render_to_response('checkout.html', context) 

@@ -2,7 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class AssociateGroup(models.Model):
+class BaseModel(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class AssociateGroup(BaseModel):
     '''
     examples:
     - aikikai member
@@ -16,7 +24,7 @@ class AssociateGroup(models.Model):
         return u'%s' % self.name
 
 
-class Associate(models.Model):
+class Associate(BaseModel):
     '''
     '''
     user = models.OneToOneField(User, blank=True, null=True)
