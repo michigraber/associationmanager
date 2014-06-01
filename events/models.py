@@ -109,7 +109,7 @@ class Article(BaseModel):
     description_de = models.TextField(null=True, blank=True)
     description_en = models.TextField(null=True, blank=True)
 
-    # FIXME : remove field
+    # FIXME : might come in handy at a later stage
 #   article_image = models.ImageField(upload_to='articles', blank=True,
 #           null=True)
 
@@ -145,15 +145,17 @@ class Purchase(BaseModel):
     '''
     '''
     associate = models.ForeignKey(Associate)
-    is_paid = models.BooleanField()
     message = models.TextField(blank=True, null=True)
-    PAID_BY_CHOICES = (
-            (0, 'not paid'),
-            (1, 'cash'),
-            (2, 'paypal'),
-            (4, 'bank transfer'),
+
+    PAYMENT_STATUS_CHOICES = (
+            (0, 'not paid yet'),
+            (1, 'paid by cash'),
+            (2, 'paid by paypal'),
+            (4, 'paid by bank transfer'),
             )
-    paid_by = models.SmallIntegerField(choices=PAID_BY_CHOICES)
+    payment_status = models.SmallIntegerField(choices=PAYMENT_STATUS_CHOICES,
+            default=0)
+    payment_due_by = models.DateField(blank=True, null=True)
 
     def one_line_description(self):
         items = self.purchaseitem_set.all()
@@ -167,7 +169,7 @@ class Purchase(BaseModel):
 
         s += ' Balance due : {b}.- Payment: {p}'.format(
                 b=self.balance_due(),
-                p=self.get_paid_by_display())
+                p=self.get_payment_status_display())
         return s
 
     def balance_due(self):

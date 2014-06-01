@@ -23,7 +23,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 class PurchaseAdmin(admin.ModelAdmin):
     list_display = ('one_line_description', )
-    list_filter = ('paid_by', )
+    list_filter = ('payment_status', )
     readonly_fields = ('date_created', 'date_last_modified', )
     
 class PurchaseItemAdmin(admin.ModelAdmin):

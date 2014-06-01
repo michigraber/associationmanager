@@ -10,7 +10,8 @@ from associates.forms import AssociateForm_de, EmergencyContactForm_de,\
         AssociateForm_en, EmergencyContactForm_en
 from associates.models import Associate
 
-from events.models import Event, EventPart, Registration, Purchase
+from events.models import Event, EventPart, Registration, Purchase,\
+    PurchaseItem
 
 from .forms import SelectPurchaseItemsForm, RegistrationMessageForm_de,\
         RegistrationMessageForm_en
@@ -38,13 +39,14 @@ def registration_configuration(request, language=''):
 
         if ass_form.is_valid() and em_form.is_valid() and mess_form.is_valid()\
                 and sel_form.is_valid():
-            print sel_form.cleaned_data
             
             # find Associate
-            ass, created = Associate.objects.get_or_create(
-                    email_address=ass_form.cleaned_data['email_address'],
-                    date_of_birth=ass_form.cleaned_data['date_of_birth'],
-                    )
+            try:
+                ass = Associate.objects.get(
+                        email_address=ass_form.cleaned_data['email_address'],
+                        date_of_birth=ass_form.cleaned_data['date_of_birth'],)
+            except:
+                ass = Associate()
             for fk, fv in ass_form.cleaned_data.iteritems():
                 setattr(ass, fk, fv)
             for fk, fv in em_form.cleaned_data.iteritems():
@@ -68,24 +70,38 @@ def registration_configuration(request, language=''):
                         except:
                             art = None
                     if ep:
-                        eps.append(ep)
+                        eps.append(ep[0])
                     elif art:
-                        arts.append(art)
+                        arts.append(art[0])
+            ass.save()
 
-            print 
-            print eps
-            print arts
-            print
-                
             # FIXME : this price calculation is not general!!
             mapping = settings.IKEDASEMINAR_EVENTPART_SET_PRICE_MAPPING
             price = int(mapping[len(eps)] + len(arts)*10.)
             paypal_item_id = str(len(eps))+'K'+len(arts)*'P'
 
+            # set up the purchase
+            purchase = Purchase(associate=ass)
+            purchase.save()
+
+            if eps:
+                registration = Registration(associate=ass, price=price)
+                registration.save()
+                for ep in eps:
+                    registration.event_parts.add(ep)
+                registration.save()
+                pi = PurchaseItem(content_object=registration,
+                        purchase=purchase)
+                pi.save()
+            if arts:
+                for art in arts:
+                    pi = PurchaseItem(content_object=art, purchase=purchase)
+                    pi.save()
 
             context = {
                     'language': language,
                     'registration_step': 2,
+                    'purchase': purchase,
                     'associate': ass,
                     'eventparts': eps,
                     'articles': arts,
@@ -126,8 +142,6 @@ def registration_configuration(request, language=''):
 
 def registration_paypal_return(request, language=None, status=None):
 
-    print 
-    print 'PAYPAL RETURN !!!!'
     method  = request.method
     if request.method == 'POST':
         post = request.POST
@@ -142,3 +156,11 @@ def registration_paypal_return(request, language=None, status=None):
             'POST': post,
             }
     return render_to_response('checkout.html', context) 
+
+
+def registration_comingsoon(request, language=None):
+    context = { 
+            'language': language,
+            'registration_step' : 0,
+            }
+    return render_to_response('registration.html', context) 

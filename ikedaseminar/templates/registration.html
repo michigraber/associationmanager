@@ -4,7 +4,11 @@
 <div id='registrationcontainer'>
 
 {% if language == 'de' %}
-{% if registration_step == 1 %}
+
+{% if registration_step == 0 %}
+<h4>Wird demn&auml;chst online sein ..<h4>
+
+{% elif registration_step == 1 %}
 <div id='registrationheader'>
 <!-- REGISTRATION HEADER -->
 <p>
@@ -78,7 +82,10 @@ Spende ;-)</li> </ul>
 {% endif %}
 
 {% elif language == 'en' %}
-{% if registration_step == 1 %}
+{% if registration_step == 0 %}
+<h4>Will be online soon ..<h4>
+
+{% elif registration_step == 1 %}
 <div id='registrationheader'>
 <!-- REGISTRATION HEADER -->
 <p>

@@ -76,10 +76,10 @@ class Associate(BaseModel):
     group_memberships = models.ManyToManyField(AssociateGroup,
             related_name='associate_groups', blank=True, null=True)
 
-    class Meta:
-        unique_together = (
-                ('first_name', 'last_name', 'email_address', ),
-                    )
+#   class Meta:
+#       unique_together = (
+#               ('first_name', 'last_name', 'email_address', ),
+#                   )
 
     def __unicode__(self):
         return u'%s, %s' % (self.first_name, self.last_name)

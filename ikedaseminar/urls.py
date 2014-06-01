@@ -28,8 +28,11 @@ INITIAL_DICT = {
         }
 
 urlpatterns += patterns('events.views',
-    url(r'(?P<language>en|de)/registration/*$',
+    url(r'(?P<language>en|de)/preregistration/*$',
         'registration_configuration',
+        name='preregistration'),
+    url(r'(?P<language>en|de)/registration/*$',
+        'registration_comingsoon',
         name='registration'),
     url(r'(?P<language>en|de)/registration/(?P<status>cancel|success)/*$',
         'registration_paypal_return', name='registration_paypal_return'),
