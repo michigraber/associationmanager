@@ -6,16 +6,12 @@
 
     {% if status == 'success' %}
     <h4>Vielen Dank! Deine Anmeldung wurde erfolgreich abgeschlossen!</h4>
-    <p>Du wirst in den n&auml;chsten Tagen ein Best&auml;tigungs-Email
+    <p>Du wirst in den n&auml;chsten Tagen eine Best&auml;tigungs-Email
     erhalten.</p>
     <p>Wir freuen uns dich bald zu sehen!</p>
     <h4>Thank you! Your registration completed successfully!</h4>
     <p>You will receive a confirmation email in the next few days.</p>
     <p>We are looking forward to seeing you soon!</p>
-
-    <h4>request info</h4>
-    <p>METHOD: {{ method }}</p>
-    <p>POST: {{ post }}</p>
 
     {% elif status == 'cancel' %}
     <h4>Deine Anmeldung wurde NICHT erfolgreich abgeschlossen!</h4>
@@ -32,10 +28,6 @@
     do not hesitate to contact us on <a
     href='&#0109;&#0097;&#0105;lt&#0111;&#0058;ikedaseminar&#64;aikikai-zuerich&#46;ch'>ikedaseminar<span
         class='at'>&#64;</span>aikikai-zuerich&#46;ch</a></p>
-
-    <h4>request info</h4>
-    <p>METHOD: {{ method }}</p>
-    <p>POST: {{ post }}</p>
 
     {% endif %}
 
