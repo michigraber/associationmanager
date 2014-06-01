@@ -4,7 +4,7 @@ from associates import models
 
 class AssociateAdmin(admin.ModelAdmin):
 
-    list_display = ('first_name', 'last_name', 'email_address', )
+    list_display = ('first_name', 'last_name', 'email_address', 'date_created')
     ordering = ('last_name', 'first_name',)
 
     list_filter = ('group_memberships', )
@@ -37,17 +37,23 @@ class AssociateAdmin(admin.ModelAdmin):
                 'emergency_contact_phone_number',
                 'emergency_contact_email_address',)
         }),
+        ('Log', {
+            'fields': (('date_created', 'date_last_modified'),)
+        }),
     )
 
     search_fields = ('first_name', 'last_name',
             'email_address', )
 
-    #list_editable = ('email_address', )
+    readonly_fields = ('date_created', 'date_last_modified', )
 
+    #list_editable = ('email_address', )
 
 admin.site.register(models.Associate, AssociateAdmin)
 
         
 class AssociateGroupAdmin(admin.ModelAdmin):
-    pass
+
+    readonly_fields = ('date_created', 'date_last_modified', )
+
 admin.site.register(models.AssociateGroup, AssociateGroupAdmin)

@@ -1,28 +1,164 @@
-{% extends 'base_language.html' %}
-
-{% block navigationbar %}
-{% if language == 'de' %}
-<ul>
-    <a class='active' href='{% url 'registration' 'de' %}'><li>Anmeldung</li></a>
-    <a href='{% url 'welcome' 'de' %}/#Zurich'><li>Z&uumlrich</li></a>
-    <a href='{% url 'welcome' 'de' %}/#Stundenplan'><li>Stundenplan</li></a>
-    <a href='{% url 'welcome' 'de' %}/#Willkommen'><li>Willkommen</li></a>
-</ul>
-{% elif language == 'en' %}
-<ul>
-    <a class='active' href='{% url 'registration' 'en' %}'><li>Registration</li></a>
-    <a href='{% url 'welcome' 'en' %}/#Zurich'><li>Zurich</li></a>
-    <a href='{% url 'welcome' 'en' %}/#Schedule'><li>Schedule</li></a>
-    <a href='{% url 'welcome' 'en' %}/#Welcome'><li>Welcome</li></a>
-</ul>
-{% endif %}
-{% endblock %}
-
+{% extends 'base_registration.html' %}
 
 {% block content %}
+<div id='registrationcontainer'>
+
 {% if language == 'de' %}
-<h4>Wird bald online sein ..</h4>
-{% elif language == 'en' %}
-<h4>Will be online soon ..</h4>
+
+{% if registration_step == 0 %}
+<h4>Wird demn&auml;chst online sein ..<h4>
+
+{% elif registration_step == 1 %}
+<div id='registrationheader'>
+<!-- REGISTRATION HEADER -->
+<p>
+<h4>Willkommen zur Seminar-Anmeldung!</h4>
+</p>
+<p>
+Wir haben noch folgende Pl&auml;tze frei:
+<ul>
+    {% for ep in event.eventpart_set.all %}
+    <li><strong>{{ ep.short_description_de }}:</strong> {{ ep.no_available_places }}</li>
+    {% endfor %}
+</ul>
+</p>
+<p>
+Nimm f&uuml;r die Anmeldung bitte folgende Punkte zur Kenntnis:
+<ul>
+<li>Die Bezahlung deiner Anmeldung wird durch Paypal passieren. Daf&uuml;r
+wirst du eine Kreditkarte ben&ouml;tigen. Es ist jedoch weder notwendig einen
+Paypal Account zu besitzen, noch einen zu erstellen.</li>
+<li>Eine Annulation deiner Anmeldung ist zwar m&ouml;glich, doch werden wir dir
+kein Geld zur&uuml;ckerstatten k&ouml;nnen. Betrachte dann deinen Beitrag als
+Spende ;-)</li> </ul>
+</p>
+</div>
+
+<!-- FORMS -->
+<div id='registrationform'>
+<form method="post">{% csrf_token %}
+    <h4>Woran m&ouml;chtest du teilnehmen?</h4>
+    <table>
+    {{ selection_form.as_table }}
+    </table>
+    <h4>Pers&ouml;nliche Angaben:</h4>
+    <table>
+    {{ associate_form.as_table }}
+    </table>
+    <h4>Wen sollen wir in einem Notfall kontaktieren?</h4>
+    <table>
+    {{ emergencycontact_form.as_table }}
+    </table>
+    <h4>M&ouml;chtest du uns eine Nachricht hinterlassen?</h4>
+    <table>
+    {{ message_form.as_table }}
+    </table>
+    <br>    
+<input type="submit" value="Eingabe"/>
+</form>
+</div>
+
+{% elif registration_step == 2 %}
+<div id='registrationheader'>
+<h4>Dein Packet:</h4>
+<ul>
+{% for ep in eventparts %}
+<li>{{ ep.short_description_de }}</li>
+{% endfor %}
+{% for art in articles %}
+<li>{{ art.name_de }}</li>
+{% endfor %}
+</ul>
+<p><strong>Preis:</strong> {{ price }}.- sFr.</p>
+<h4>&Uuml;ber dich:</h4>
+    <p>{{ associate.first_name }}  {{ associate.last_name }}</p>
+    <p>{{ associate.street_and_nr }}</p>
+    <p>{{ associate.postal_code }}  {{ associate.city }}</p>
+    <p>{{ associate.country }}</p>
+<h4>Du kannst deine Anmeldung nun abschliessen durch Bezahlung via Paypal</h4>
+{% include "paypal_buttons.html" %}
+</div>
+
 {% endif %}
+
+{% elif language == 'en' %}
+{% if registration_step == 0 %}
+<h4>Will be online soon ..<h4>
+
+{% elif registration_step == 1 %}
+<div id='registrationheader'>
+<!-- REGISTRATION HEADER -->
+<p>
+<h4>Welcome to the seminar registration!</h4>
+</p>
+<p>
+We still have the following number of places available:
+<ul>
+    {% for ep in event.eventpart_set.all %}
+    <li><strong>{{ ep.short_description_en }}:</strong> {{ ep.no_available_places }}</li>
+    {% endfor %}
+</ul>
+</p>
+<p>
+Please consider for the subsequent registration that
+<ul>
+    <li>the payment will happen throught paypal. You will need a credit card to
+    do that. However, neither a paypal account nor a paypal account
+    registration will be necessary.</li>
+    <li>even though cancellation of your registration is possible we will not
+    refund your payments.</li>
+</ul>
+</p>
+
+</div>
+
+<!-- FORMS -->
+<div id='registrationform'>
+<form method="post">{% csrf_token %}
+    <h4>What would you like to participate in?</h4>
+    <table>
+    {{ selection_form.as_table }}
+    </table>
+    <h4>Personal Details</h4>
+    <table>
+    {{ associate_form.as_table }}
+    </table>
+    <h4>Who should we contact in the case of an emergency?</h4>
+    <table>
+    {{ emergencycontact_form.as_table }}
+    </table>
+    <h4>Would you like to leave us a message?</h4>
+    <table>
+    {{ message_form.as_table }}
+    </table>
+    <br>    
+<input type="submit" value="submit"/>
+</form>
+</div>
+
+{% elif registration_step == 2 %}
+<div id='registrationheader'>
+<h4>Your Package:</h4>
+<ul>
+{% for ep in eventparts %}
+<li>{{ ep.short_description_en }}</li>
+{% endfor %}
+{% for art in articles %}
+<li>{{ art.name_en }}</li>
+{% endfor %}
+</ul>
+<p><strong>Price: </strong>{{ price }}.- sFr.</p>
+<h4>About you:</h4>
+    <p>{{ associate.first_name }}  {{ associate.last_name }}</p>
+    <p>{{ associate.street_and_nr }}</p>
+    <p>{{ associate.postal_code }}  {{ associate.city }}</p>
+    <p>{{ associate.country }}</p>
+<h4>You can now complete your registration by paying through Paypal.</h4>
+{% include "paypal_buttons.html" %}
+</div>
+
+{% endif %}
+
+{% endif %}
+</div>
 {% endblock %}

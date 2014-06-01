@@ -2,7 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class AssociateGroup(models.Model):
+class BaseModel(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class AssociateGroup(BaseModel):
     '''
     examples:
     - aikikai member
@@ -16,7 +24,7 @@ class AssociateGroup(models.Model):
         return u'%s' % self.name
 
 
-class Associate(models.Model):
+class Associate(BaseModel):
     '''
     '''
     user = models.OneToOneField(User, blank=True, null=True)
@@ -51,8 +59,7 @@ class Associate(models.Model):
     phone_number_business = models.CharField(max_length=128, blank=True,
             null=True)
 
-    email_address = models.EmailField(max_length=75, blank=True, null=True,
-            unique=True)
+    email_address = models.EmailField(max_length=75, blank=True, null=True)
 
     # emergency contact
     emergency_contact_first_name = models.CharField(max_length=128, blank=True,
@@ -69,10 +76,10 @@ class Associate(models.Model):
     group_memberships = models.ManyToManyField(AssociateGroup,
             related_name='associate_groups', blank=True, null=True)
 
-    class Meta:
-        unique_together = (
-                ('first_name', 'last_name', 'email_address', ),
-                    )
+#   class Meta:
+#       unique_together = (
+#               ('first_name', 'last_name', 'email_address', ),
+#                   )
 
     def __unicode__(self):
         return u'%s, %s' % (self.first_name, self.last_name)

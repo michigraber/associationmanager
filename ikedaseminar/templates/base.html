@@ -10,7 +10,6 @@
         	background:#eaeaea;
         	font-family: 'Arial';
         	font-size: '20pt';
-        	font-weight: 200;
             margin: 0;
         }
 
@@ -137,7 +136,6 @@
             font-size: 80%;
         }
 
-
         .icon {
             margin: 0 1em 0 1em;
         }
@@ -158,6 +156,51 @@
         	margin: 3em auto;
         }
 
+        #registrationcontainer {
+            margin: 0 1em;
+            width: 80%;
+            padding: 2em;
+        }
+
+        #registrationcontainer h4 {
+            border-bottom: 1px black dashed;
+            padding: 1em 0 0.5em 0;
+        }
+
+        #registrationheader {
+            width: 100%;
+            padding: 2em;
+            border: 1px black dashed;
+        }
+
+        #registrationform {
+            margin: 2em 0 0 0;
+            width: 100%;
+            border: 1px black dashed;
+            padding: 2em;
+        }
+
+        #registrationform th, td{
+            padding: 0.5em 2em 0 0; 
+            font-weight: normal;
+        }
+        
+        .errorlist {
+            list-style-type: none;
+            color: #D00000;
+        }
+
+        ul.errorlist {
+            padding-left:0em;
+            margin-left: 0;
+            margin-bottom: 0;
+        }
+        li.errorlist {
+            padding-left:0em;
+            margin-left: 0;
+            margin-bottom: 0;
+        }
+        
         .image {
             width: 93%;
         	margin: 3em auto;
@@ -259,9 +302,7 @@
     <!-- FOOTER -->
     <div class="row" id="footer">
 
-    <!-- FACEBOOK LIKE BUTTON -->
-    <div class="fb-like" data-href="http://ikedaseminar.aikikai-zuerich.ch" data-layout="button" data-action="like" data-show-faces="false" data-share="true" data-colorscheme="dark"></div>
-
+        {% block fbbutton %}{% endblock %}
         <div>
         <p class="fine-print">
             {% block footer %}This site was last updated on May 22nd, 2014{% endblock %}
