@@ -1,14 +1,22 @@
 {% extends 'base_registration.html' %}
 
 {% block content %}
+
+{% if registration_step == 0 %}
+
+{% if language == 'de' %}
+<h4>Wird demn&auml;chst online sein ..<hw4>
+{% elif language == 'en' %}
+<h4>Will be online soon ..<h4>
+{% endif %}
+
+{% else %}
+
 <div id='registrationcontainer'>
 
 {% if language == 'de' %}
 
-{% if registration_step == 0 %}
-<h4>Wird demn&auml;chst online sein ..<h4>
-
-{% elif registration_step == 1 %}
+{% if registration_step == 1 %}
 <div id='registrationheader'>
 <!-- REGISTRATION HEADER -->
 <p>
@@ -82,10 +90,7 @@ Spende ;-)</li> </ul>
 {% endif %}
 
 {% elif language == 'en' %}
-{% if registration_step == 0 %}
-<h4>Will be online soon ..<h4>
-
-{% elif registration_step == 1 %}
+{% if registration_step == 1 %}
 <div id='registrationheader'>
 <!-- REGISTRATION HEADER -->
 <p>
@@ -160,5 +165,8 @@ Please consider for the subsequent registration that
 {% endif %}
 
 {% endif %}
+
 </div>
+
+{% endif %}
 {% endblock %}
