@@ -29,6 +29,13 @@
     href='&#0109;&#0097;&#0105;lt&#0111;&#0058;ikedaseminar&#64;aikikai-zuerich&#46;ch'>ikedaseminar<span
         class='at'>&#64;</span>aikikai-zuerich&#46;ch</a></p>
 
+    {% elif status == 'paypal_ipn' %}
+
+    <h4>METHOD: {{ method }}</h4>
+    {{ post.custom }}
+
+    {{ post }}
+
     {% endif %}
 
 </div>
