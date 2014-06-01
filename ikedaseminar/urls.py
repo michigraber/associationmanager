@@ -17,15 +17,7 @@ except:
 urlpatterns = patterns('ikedaseminar.views',
     url(r'^$', RedirectView.as_view(url='/de/')),
     url(r'(?P<language>en|de)/*$', 'welcome', {}, name='welcome'),
-    
-    #url(r'(?P<lang>en|de)/registration/*$', 'registration', {}, name='registration'),
 )
-
-INITIAL_DICT = { 
-        '0' : {'event': EVENT},
-        '1': {},
-        '2': {},
-        }
 
 urlpatterns += patterns('events.views',
     url(r'(?P<language>en|de)/registration/aiki-kai/*$',
