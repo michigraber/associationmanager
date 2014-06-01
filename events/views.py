@@ -164,7 +164,7 @@ def paypal_ipn(request, language=None):
     '''
     '''
     if request.method == 'POST':
-        post = request.POST
+        post = request.post
     else:
         post = None
 
@@ -172,7 +172,7 @@ def paypal_ipn(request, language=None):
             'language': language,
             'status': 'paypal_ipn',
             'method': request.method,
-            'post': request.post,
+            'post': post,
             }
 
     return render_to_response('checkout.html', context) 
