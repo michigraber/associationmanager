@@ -5,6 +5,7 @@ from django.conf.urls import patterns, include, url
 from django.views.generic import RedirectView
 
 from events.models import Event
+from events.views import PaypalIPNEndpoint
 
 from ikedaseminar import views
 
@@ -22,8 +23,7 @@ urlpatterns = patterns('ikedaseminar.views',
 urlpatterns += patterns('events.views',
     url(r'(?P<language>en|de)/registration/aiki-kai/*$',
         'registration_configuration', name='preregistration'),
-    url(r'(?P<language>en|de)/registration/paypal/*$',
-        'paypal_ipn', name='paypal_ipn'),
+    url(r'(?P<language>en|de)/registration/paypal/*$',PaypalIPNEndpoint()),
     url(r'(?P<language>en|de)/registration/*$',
         'registration_comingsoon',
         name='registration'),

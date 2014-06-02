@@ -110,6 +110,7 @@ STATIC_FILESDIR = (
         os.path.join(BASE_DIR, 'ikedaseminar', 'static'),
         )
 
+
 # LOGGING
 # -----------------------------------------------------------------------------
 LOGGING = {

@@ -58,6 +58,10 @@ Then in urls.py:
 from django.http import HttpResponse
 import urllib
 
+import logging
+log = logging.getLogger(__name__)
+
+
 class Endpoint(object):
     
     default_response_text = 'Nothing to see here'
@@ -77,10 +81,13 @@ class Endpoint(object):
         return HttpResponse(self.default_response_text)
     
     def __call__(self, request):
+        log.info('Endpoint View class called')
         r = None
         if request.method == 'POST':
+            log.info('POST request detected')
             data = dict(request.POST.items())
             # We need to post that BACK to PayPal to confirm it
+            log.info('verify data: '+str(self.verify(data)))
             if self.verify(data):
                 r = self.process(data)
             else:
