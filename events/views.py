@@ -168,6 +168,8 @@ def paypal_ipn(request, language=None):
 
         purchase = Purchase.objects.get(pk=purchase_pk)
         purchase_pk.payment_status = Purchase.PAID_BY_PAYPAL_STATUS
+        purchase.message = post
+        purchase.save()
 
     context = {
             'language': language,
