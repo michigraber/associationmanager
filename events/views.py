@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.formtools.wizard.views import SessionWizardView
 
+from django.views.decorators.csrf import csrf_exempt
+
 from django.core.context_processors import csrf
 
 
@@ -162,12 +164,14 @@ def registration_comingsoon(request, language=None):
     return render_to_response('registration.html', context) 
 
 
+@csrf_exempt
 def paypal_ipn(request, language=None):
     '''
     '''
     if request.method == 'POST':
         post = request.POST
         data = dict(request.POST.items())
+        log.info(str(data))
 
 #       pid = post.get('custom', '')
 #       if pid and pid.startswith('PId-'):
@@ -188,6 +192,7 @@ def paypal_ipn(request, language=None):
     return HttpResponse("Nothing to see here ..")
 
 
+@csrf_exempt
 class PaypalIPNEndpoint(Endpoint):
 
     def process(self, data):
