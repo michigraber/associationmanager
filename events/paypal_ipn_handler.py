@@ -80,7 +80,7 @@ class Endpoint(object):
     def default_response(self):
         return HttpResponse(self.default_response_text)
     
-    def __call__(self, request):
+    def __call__(self, request, **kwargs):
         log.info('Endpoint View class called')
         r = None
         if request.method == 'POST':

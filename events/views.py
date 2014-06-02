@@ -192,7 +192,6 @@ def paypal_ipn(request, language=None):
     return HttpResponse("Nothing to see here ..")
 
 
-@csrf_exempt
 class PaypalIPNEndpoint(Endpoint):
 
     def process(self, data):
