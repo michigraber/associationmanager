@@ -141,12 +141,10 @@ def registration_configuration(request, language=''):
 
 
 def registration_paypal_return(request, language=None, status=None):
-
     context = {
             'language': language,
             'status': status, 
             }
-
     return render_to_response('checkout.html', context) 
 
 
@@ -163,8 +161,13 @@ def paypal_ipn(request, language=None):
     '''
     if request.method == 'POST':
         post = request.post
-    else:
-        post = None
+
+        pid = post.get('custom', '')
+        if pid and pid.startswith('PId-'):
+            purchase_pk = int(pid.replace('PId-', ''))
+
+        purchase = Purchase.objects.get(pk=purchase_pk)
+        purchase_pk.payment_status = Purchase.PAID_BY_PAYPAL_STATUS
 
     context = {
             'language': language,

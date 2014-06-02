@@ -147,12 +147,21 @@ class Purchase(BaseModel):
     associate = models.ForeignKey(Associate)
     message = models.TextField(blank=True, null=True)
 
+    NOT_PAID_STATUS = 0
+    PAID_BY_CASH_STATUS = 1
+    PAID_BY_PAYPAL_STATUS = 2
+    PAID_BY_BANK_TRANSFER_STATUS = 3
+    PAYMENT_FAILED_PAYPAL_STATUS = 4
+    
+
     PAYMENT_STATUS_CHOICES = (
-            (0, 'not paid yet'),
-            (1, 'paid by cash'),
-            (2, 'paid by paypal'),
-            (4, 'paid by bank transfer'),
+            (NOT_PAID_STATUS, 'not paid yet'),
+            (PAID_BY_CASH_STATUS, 'paid by cash'),
+            (PAID_BY_PAYPAL_STATUS, 'paid by paypal'),
+            (PAID_BY_BANK_TRANSFER_STATUS, 'paid by bank transfer'),
+            (PAYMENT_FAILED_PAYPAL_STATUS, 'payment failed paypal'),
             )
+
     payment_status = models.SmallIntegerField(choices=PAYMENT_STATUS_CHOICES,
             default=0)
     payment_due_by = models.DateField(blank=True, null=True)
