@@ -1,5 +1,6 @@
 
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.formtools.wizard.views import SessionWizardView
 
@@ -171,11 +172,11 @@ def paypal_ipn(request, language=None):
         purchase.message = post
         purchase.save()
 
-    context = {
-            'language': language,
-            'status': 'paypal_ipn',
-            'method': request.method,
-            'post': post,
-            }
+        context = {
+                'language': language,
+                'status': 'paypal_ipn',
+                'method': request.method,
+                'post': post,
+                }
 
-    return render_to_response('checkout.html', context) 
+    return HttpResponse("OKAY")
