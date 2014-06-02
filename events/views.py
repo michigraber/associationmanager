@@ -161,24 +161,23 @@ def paypal_ipn(request, language=None):
     '''
     '''
     if request.method == 'POST':
-        post = request.post
+        post = request.POST
+        data = dict(request.POST.items())
 
 #       pid = post.get('custom', '')
 #       if pid and pid.startswith('PId-'):
 #           purchase_pk = int(pid.replace('PId-', ''))
 
-        purchase_pk = 5
+        purchase_pk = 7
 
         purchase = Purchase.objects.get(pk=purchase_pk)
-        purchase_pk.payment_status = Purchase.PAID_BY_PAYPAL_STATUS
-        purchase.message = post
+        #purchase_pk.payment_status = Purchase.PAID_BY_PAYPAL_STATUS
+        purchase.message = str(data)
         purchase.save()
 
         context = {
                 'language': language,
                 'status': 'paypal_ipn',
-                'method': request.method,
-                'post': post,
                 }
 
-    return HttpResponse("OKAY")
+    return HttpResponse("Nothing to see here ..")
