@@ -37,7 +37,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'nng*#6n1+m!!adh%e0)&f^s1mzdp9ele$mz!v7fo#34z!nbz$8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = False
 ALLOWED_HOSTS = ['ikedaseminar.aikikai-zuerich.ch', ]

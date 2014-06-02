@@ -162,9 +162,11 @@ def paypal_ipn(request, language=None):
     if request.method == 'POST':
         post = request.post
 
-        pid = post.get('custom', '')
-        if pid and pid.startswith('PId-'):
-            purchase_pk = int(pid.replace('PId-', ''))
+#       pid = post.get('custom', '')
+#       if pid and pid.startswith('PId-'):
+#           purchase_pk = int(pid.replace('PId-', ''))
+
+        purchase_pk = 5
 
         purchase = Purchase.objects.get(pk=purchase_pk)
         purchase_pk.payment_status = Purchase.PAID_BY_PAYPAL_STATUS
