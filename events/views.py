@@ -17,6 +17,8 @@ from events.models import Event, EventPart, Registration, Purchase,\
 from .forms import SelectPurchaseItemsForm, RegistrationMessageForm_de,\
         RegistrationMessageForm_en
 
+from .paypal_ipn_handler import Endpoint
+
 
 
 def registration_configuration(request, language=''):
@@ -181,3 +183,12 @@ def paypal_ipn(request, language=None):
                 }
 
     return HttpResponse("Nothing to see here ..")
+
+
+class PaypalIPNEndpoint(Endpoint):
+
+    def process(self, data):
+        pass
+
+    def process_invalid(self, data):
+        pass
