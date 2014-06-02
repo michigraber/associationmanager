@@ -1,4 +1,7 @@
 
+import logging
+log = logging.getLogger(__name__)
+
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
@@ -188,7 +191,7 @@ def paypal_ipn(request, language=None):
 class PaypalIPNEndpoint(Endpoint):
 
     def process(self, data):
-        pass
+        log.info(str(data))
 
     def process_invalid(self, data):
-        pass
+        log.error(str(data))
