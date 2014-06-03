@@ -22,6 +22,7 @@ IKEDASEMINAR_EVENTPART_SET_PRICE_MAPPING = {
         5 : 120.
         }
 
+IKEDASEMINAR_DUE_BY_TIMEDELTA = 1
 
 # -----------------------------------------------------------------------------
 

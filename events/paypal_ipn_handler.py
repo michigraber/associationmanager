@@ -1,4 +1,6 @@
 """
+reference: django snippet https://djangosnippets.org/snippets/969/
+
 Classes for accepting PayPal's Instant Payment Notification messages in a 
 Django application (or Django-on-App-Engine):
 

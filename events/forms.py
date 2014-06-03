@@ -32,11 +32,15 @@ class SelectPurchaseItemsForm(forms.Form):
         for ep in event.eventpart_set.all():
             if ep.still_available() and ep.is_bookable:
                 if language == 'en':
-                    self.fields[ep.short_description_en] = BooleanField(required=False)
-                    self.fields[ep.short_description_en].label = ep.short_description_en
+                    self.fields[ep.short_description_en] = BooleanField(
+                            required=False)
+                    self.fields[ep.short_description_en].label =\
+                            ep.short_description_en
                 elif language == 'de':
-                    self.fields[ep.short_description_de] = BooleanField(required=False)
-                    self.fields[ep.short_description_de].label = ep.short_description_de
+                    self.fields[ep.short_description_de] = BooleanField(
+                            required=False)
+                    self.fields[ep.short_description_de].label =\
+                            ep.short_description_de
 
         for art in event.article_set.all():
             if art.still_available() and art.is_sold:

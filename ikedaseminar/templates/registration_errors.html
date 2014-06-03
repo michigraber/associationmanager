@@ -1,0 +1,35 @@
+{% extends 'base_registration.html' %}
+
+{% block content %}
+
+<div id='registrationcontainer'>
+<div id='registrationheader'>
+{% if error_status == 'not_available' %}
+
+{% if language == 'de' %}
+<h4>Das Packet welches du gew&auml;hlt hast ist nicht mehr verf&uuml;gbar.</h4>
+{% elif language == 'en' %}
+<h4>The package you chose is not available anymore.<h4>
+{% endif %}
+
+{% elif error_status == 'nothing_selected' %}
+
+{% if language == 'de' %}
+<h4>Du hast nichts ausgewaehlt. Bitte f&uuml;lle eine neuen Anmeldung aus wenn
+du m&ouml;chtest.</h4>
+{% elif language == 'en' %}
+<h4>You did not select anything. Please fill in another registration if you'd like.<h4>
+{% endif %}
+
+{% else %}
+{% if language == 'de' %}
+<h4>Unbekannter Fehler. Versuch es erneut oder melde dich bei uns.</h4>
+{% elif language == 'en' %}
+<h4>Unknown error. Try it again or contact us.<h4>
+{% endif %}
+
+{% endif %}
+</div>
+</div>
+
+{% endblock %}

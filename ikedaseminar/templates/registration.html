@@ -2,7 +2,9 @@
 
 {% block content %}
 
+
 {% if registration_step == 0 %}
+
 
 {% if language == 'de' %}
 <h4>Wird demn&auml;chst online sein ..<hw4>
@@ -10,7 +12,9 @@
 <h4>Will be online soon ..<h4>
 {% endif %}
 
+
 {% else %}
+
 
 <div id='registrationcontainer'>
 
@@ -38,6 +42,7 @@ wirst du eine Kreditkarte ben&ouml;tigen. Es ist jedoch weder notwendig einen
 Paypal Account zu besitzen, noch einen zu erstellen.</li>
 <li>Eine Annulation deiner Anmeldung ist zwar m&ouml;glich, doch werden wir
 dir kein Geld zur&uuml;ckerstatten k&ouml;nnen.</li>
+<li>F&uuml;r die Party Samstag Abend werden wir einen kleinen Unkostenbeitrag von 10.- sFr. verrechnen.</li>
 </ul>
 </p>
 </div>
@@ -77,7 +82,7 @@ dir kein Geld zur&uuml;ckerstatten k&ouml;nnen.</li>
 <li>{{ art.name_de }}</li>
 {% endfor %}
 </ul>
-<p><strong>Preis:</strong> {{ price }}.- sFr.</p>
+<p><strong>Preis:</strong> {{ purchase.balance_due }}.- sFr.</p>
 <h4>&Uuml;ber dich:</h4>
     <p>{{ associate.first_name }}  {{ associate.last_name }}</p>
     <p>{{ associate.street_and_nr }}</p>
@@ -112,6 +117,8 @@ Please consider for the subsequent registration that
     registration will be necessary.</li>
     <li>even though cancellation of your registration is possible we will not
     refund your payments.</li>
+    <li>we will charge a small contribution towards expenses of 10.- sFr. for
+    the party on Saturday evening.</li>
 </ul>
 </p>
 
@@ -152,7 +159,7 @@ Please consider for the subsequent registration that
 <li>{{ art.name_en }}</li>
 {% endfor %}
 </ul>
-<p><strong>Price: </strong>{{ price }}.- sFr.</p>
+<p><strong>Price: </strong>{{ purchase.balance_due }}.- sFr.</p>
 <h4>About you:</h4>
     <p>{{ associate.first_name }}  {{ associate.last_name }}</p>
     <p>{{ associate.street_and_nr }}</p>
@@ -166,7 +173,10 @@ Please consider for the subsequent registration that
 
 {% endif %}
 
+
 </div>
 
 {% endif %}
+
+
 {% endblock %}

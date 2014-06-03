@@ -10,25 +10,26 @@ class EventAdmin(admin.ModelAdmin):
 
 class EventPartAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'datetime_from', 'datetime_until', 
-            'max_number_of_participants', 'is_bookable', )
+            'max_no_participants', 'no_eventparts_assigned', 'is_bookable', 'still_available', )
     readonly_fields = ('date_created', 'date_last_modified', )
 
 class RegistrationAdmin(admin.ModelAdmin):
-    list_display = ('one_line_description', )
+    list_display = ('one_line_description', 'get_payment_status_display', )
     readonly_fields = ('price', 'date_created', 'date_last_modified', )
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('name_en', 'is_sold', 'price', 'number_of_items_available', )
+    list_display = ('name_en', 'is_sold', 'price', 'no_articles_available', )
     readonly_fields = ('date_created', 'date_last_modified', )
 
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ('one_line_description', )
+    list_display = ('one_line_description', 'get_payment_status_display',)
     list_filter = ('payment_status', )
     readonly_fields = ('date_created', 'date_last_modified', )
     
 class PurchaseItemAdmin(admin.ModelAdmin):
-    list_display = ('one_line_description', )
-    readonly_fields = ('date_created', 'date_last_modified', )
+    list_display = ('one_line_description', 'get_payment_status_display', ) 
+    readonly_fields = ('date_created',
+                    'date_last_modified', )
 
     
 admin.site.register(models.Event, EventAdmin)

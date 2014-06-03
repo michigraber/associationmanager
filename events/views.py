@@ -2,6 +2,8 @@
 import logging
 log = logging.getLogger(__name__)
 
+from datetime import timedelta
+
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
@@ -29,11 +31,20 @@ from .paypal_ipn_handler import Endpoint
 def registration_configuration(request, language=''):
 
     event = get_object_or_404(Event, pk=settings.IKEDASEMINAR_EVENT_PK)
-    
+
     # POST : Forms are filled in
     if request.method == 'POST':
         sel_form = SelectPurchaseItemsForm(request.POST, event=event,
                 language=language)
+
+        if sel_form.is_valid():
+            if not any(sel_form.cleaned_data.values()):
+                context = {
+                        'language': language,
+                        'error_status':  'nothing_selected',
+                        }
+                return render_to_response('registration_errors.html', context)
+        
         if language == 'de':
             ass_form = AssociateForm_de(request.POST)
             em_form = EmergencyContactForm_de(request.POST)
@@ -45,10 +56,8 @@ def registration_configuration(request, language=''):
         else:
             raise ValueError('language has to be from ("de", "en")')
 
-        if ass_form.is_valid() and em_form.is_valid() and mess_form.is_valid()\
-                and sel_form.is_valid():
-            
-            # find Associate
+        if ass_form.is_valid() and em_form.is_valid() and mess_form.is_valid():
+            # find Associate and fill it with latest data
             try:
                 ass = Associate.objects.get(
                         email_address=ass_form.cleaned_data['email_address'],
@@ -68,7 +77,7 @@ def registration_configuration(request, language=''):
                     if language == 'de':
                         ep = event.eventpart_set.filter(short_description_de=fk)
                         try:
-                            art = event.article_set.filter(name_de=fk)
+                            art = event.article_set.get(name_de=fk)
                         except:
                             art = None
                     elif language == 'en':
@@ -80,20 +89,38 @@ def registration_configuration(request, language=''):
                     if ep:
                         eps.append(ep[0])
                     elif art:
-                        arts.append(art[0])
+                        arts.append(art)
             ass.save()
 
-            # FIXME : this price calculation is not general!!
+            # check whether the package requested actuall can still be purchased
+            item_not_available_anymore = False
+            for ep in eps:
+                if not ep.still_available():
+                    item_not_available_anymore = True
+            for art in arts:
+                if not art.still_available():
+                    item_not_available_anymore = True
+
+            if item_not_available_anymore:
+                context = {
+                        'language': language,
+                        'error_status':  'not_available',
+                        }
+                return render_to_response('registration_errors.html', context)
+
+            # FIXME : this price calculation is not general !!!
             mapping = settings.IKEDASEMINAR_EVENTPART_SET_PRICE_MAPPING
-            price = int(mapping[len(eps)] + len(arts)*10.)
+            registration_price = int(mapping[len(eps)])
             paypal_item_id = str(len(eps))+'K'+len(arts)*'P'
 
             # set up the purchase
             purchase = Purchase(associate=ass)
             purchase.save()
+            purchase.payment_due_by = purchase.date_created +\
+                    timedelta(settings.IKEDASEMINAR_DUE_BY_TIMEDELTA)
 
             if eps:
-                registration = Registration(associate=ass, price=price)
+                registration = Registration(associate=ass, price=registration_price)
                 registration.save()
                 for ep in eps:
                     registration.event_parts.add(ep)
@@ -113,7 +140,6 @@ def registration_configuration(request, language=''):
                     'associate': ass,
                     'eventparts': eps,
                     'articles': arts,
-                    'price': price,
                     'paypal_item_id': paypal_item_id,
                     }
 
@@ -196,6 +222,69 @@ class PaypalIPNEndpoint(Endpoint):
 
     def process(self, data):
         log.info(str(data))
+        pid = data['custom']
+        purchase_pk = int(pid.replace('PId-', ''))
+
+        # FIXME
+        # identify purchase object
+        # add data to ipn log
+        # set purchase payment_status according to data
+        # AVAILABLE PLACES RECOMPUTE
+        # send confirmation mail bcc myself
+
 
     def process_invalid(self, data):
         log.error(str(data))
+
+
+
+'''
+
+[02/Jun/2014 15:33:49] INFO [events.paypal_ipn_handler:84] Endpoint View class called
+[02/Jun/2014 15:33:49] INFO [events.paypal_ipn_handler:87] POST request detected
+[02/Jun/2014 15:33:51] INFO [events.paypal_ipn_handler:90] verify data: True
+
+[02/Jun/2014 15:33:51] INFO [events.views:198]
+
+{
+u'protection_eligibility': u'Ineligible', 
+u'last_name': u'Graber', 
+u'txn_id': u'7TT023172U000992N', 
+u'shipping _method': u'Default',
+u'shipping_discount': u'0.00',
+u'receiver_email': u'ikedaseminar@aikikai-zuerich.ch',
+u'payment_status': u'Completed',
+u'payment_gross': u'', 
+u'tax': u'0.00', 
+u'residence_country': u'CH',
+u'payer_status': u'verified', 
+u'txn_type': u'web_accept', 
+u'handling_amount': u'0.00',
+u'payment_date': u' 08:33:39 Jun 02, 2014 PDT', 
+u'first_name': u'Michael', 
+u'btn_id': u'82159917', 
+u'item_name': u'3 Keikos (80.- sFr.) + Party (10.- sFr.)',
+u'charset': u'window s-1252',
+u'custom': u'PId-9',
+u'notify_version': u'3.8',
+u'transaction_subject': u'PId-9',
+u'item_number': u'3KP',
+u'receiver_id': u'ZHNPMGEBT7GF6', 
+u'business': u'ikedaseminar@aikikai-zuerich.ch',
+u'payer_id': u'45G69B646H5QL',
+u'discount': u'0.00',
+u'verify_sign': u'Axa7.vqN.YIfM1RBeQgOQmNWLfZEA13oXRuSNK.nslGCh4YYI0oxCnvl',
+u'payment_fee': u'',
+u'insurance_amount': u'0.00',
+u'mc_fee': u'0.10',
+u'mc_currency': u'CHF',
+u'shipping': u'0.00',
+u'payer_email': u'semike@bluewin.ch',
+u'payment_type': u'instant',
+u'mc_gross': u'0.10',
+u'ipn_track_id': u'7b6c369c6dd3d',
+u'quantity': u'1'
+}
+
+
+'''
