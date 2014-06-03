@@ -27,7 +27,7 @@
 <h4>Willkommen zur Seminar-Anmeldung!</h4>
 </p>
 <p>
-Wir haben noch folgende Pl&auml;tze frei:
+Wir haben ungef&auml;hr noch folgende Anzahl Pl&auml;tze frei:
 <ul>
     {% for ep in event.eventpart_set.all %}
     <li><strong>{{ ep.short_description_de }}:</strong> {{ ep.no_available_places }}</li>
@@ -102,7 +102,7 @@ dir kein Geld zur&uuml;ckerstatten k&ouml;nnen.</li>
 <h4>Welcome to the seminar registration!</h4>
 </p>
 <p>
-We still have the following number of places available:
+We still have the following approximate number of places available:
 <ul>
     {% for ep in event.eventpart_set.all %}
     <li><strong>{{ ep.short_description_en }}:</strong> {{ ep.no_available_places }}</li>
