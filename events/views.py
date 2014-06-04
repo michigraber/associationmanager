@@ -256,7 +256,7 @@ class PaypalIPNEndpoint(Endpoint):
             mail_body = mail_body.format(
                     first_name=pur_obj.associate.first_name,
                     pid = pur_obj.pid,
-                    package=get_purchase_summary()
+                    package=pur_obj.get_purchase_summary()
                     )
             send_mail(
                     '[Hiroshi Ikeda Shihan Seminar Zurich 2014]',
