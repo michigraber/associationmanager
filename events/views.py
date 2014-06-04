@@ -11,7 +11,7 @@ from django.contrib.formtools.wizard.views import SessionWizardView
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.core.context_processors import csrf
 
 
@@ -258,14 +258,14 @@ class PaypalIPNEndpoint(Endpoint):
                     pid = pur_obj.pid,
                     package=pur_obj.get_purchase_summary()
                     )
-            send_mail(
+            email = EmailMessage(
                     '[Hiroshi Ikeda Shihan Seminar Zurich 2014]',
                     mail_body,
                     'ikedaseminar@aikikai-zuerich.ch',
                     [pur_obj.associate.email_address, ],
                     ['michigraber@aikikai-zuerich.ch', ],
-                    fail_silently=False,
                     )
+            email.send(fail_silently=False)
         else:
             pur_obj.payment_status = Purchase.PAYPAL_FAILED_PAYMENT_STATUS
         pur_obj.save()
