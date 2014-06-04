@@ -239,7 +239,7 @@ class PaypalIPNEndpoint(Endpoint):
 
         pur_obj = Purchase.objects.get(pk=purchase_pk)
         pur_obj.paypal_ipn_log += '\n\nUTC TIMESTAMP: [{now}]\n'.format(
-                now=now().strftime('%Y-%m-%d %H:%M'))
+                now=timezone.now().strftime('%Y-%m-%d %H:%M'))
         pur_obj.paypal_ipn_log += str(data)
         
         if data['payment_status'] == 'Completed':
@@ -274,7 +274,7 @@ class PaypalIPNEndpoint(Endpoint):
 
         pur_obj = Purchase.objects.get(pk=purchase_pk)
         pur_obj.paypal_ipn_log += '\n\nUTC TIMESTAMP: [{now}]\n'.format(
-                now=now().strftime('%Y-%m-%d %H:%M'))
+                now=timezone.now().strftime('%Y-%m-%d %H:%M'))
         pur_obj.paypal_ipn_log += str(data)
         
 
