@@ -33,6 +33,15 @@ class Associate(BaseModel):
     last_name = models.CharField(max_length=128, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
 
+    LANGUAGE_GERMAN = 0
+    LANGUAGE_ENGLISH = 1
+    LANGUAGE_CHOICES = (
+            (LANGUAGE_GERMAN, 'de'),
+            (LANGUAGE_ENGLISH, 'en'),
+            )
+    language = models.PositiveSmallIntegerField(choices=LANGUAGE_CHOICES,
+            blank=True, null=True)
+
     RANK_CHOICES = (
             (0, 'no rank yet'), (1, '6th Kyu'), (2, '5th Kyu'), (3, '4th Kyu'),
             (4, '3rd Kyu'), (5, '2nd Kyu'), (6, '1st Kyu'), (7, '1st Dan'),

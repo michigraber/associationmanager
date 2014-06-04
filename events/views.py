@@ -8,9 +8,10 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.formtools.wizard.views import SessionWizardView
-
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
+from django.core.mail import send_mail
 from django.core.context_processors import csrf
 
 
@@ -64,10 +65,17 @@ def registration_configuration(request, language=''):
                         date_of_birth=ass_form.cleaned_data['date_of_birth'],)
             except:
                 ass = Associate()
+
             for fk, fv in ass_form.cleaned_data.iteritems():
                 setattr(ass, fk, fv)
             for fk, fv in em_form.cleaned_data.iteritems():
                 setattr(ass, fk, fv)
+
+            if language == 'de':
+                ass.language = Associate.LANGUAGE_GERMAN
+            elif language == 'en':
+                ass.language = Associate.LANGUAGE_ENGLISH
+            ass.save()
 
             # find EventParts
             eps = []
@@ -90,7 +98,6 @@ def registration_configuration(request, language=''):
                         eps.append(ep[0])
                     elif art:
                         arts.append(art)
-            ass.save()
 
             # check whether the package requested actuall can still be purchased
             item_not_available_anymore = False
@@ -190,32 +197,37 @@ def registration_comingsoon(request, language=None):
     return render_to_response('registration.html', context) 
 
 
-@csrf_exempt
-def paypal_ipn(request, language=None):
-    '''
-    '''
-    if request.method == 'POST':
-        post = request.POST
-        data = dict(request.POST.items())
-        log.info(str(data))
+REGISTRATION_EMAIL_EN = '''
 
-#       pid = post.get('custom', '')
-#       if pid and pid.startswith('PId-'):
-#           purchase_pk = int(pid.replace('PId-', ''))
+Hi {first_name},
 
-        purchase_pk = 7
+Thanks for registering for our Seminar with Hiroshi Ikeda Shihan!
 
-        purchase = Purchase.objects.get(pk=purchase_pk)
-        #purchase_pk.payment_status = Purchase.PAID_BY_PAYPAL_STATUS
-        purchase.message = str(data)
-        purchase.save()
+Your registration id is : {pid}
 
-        context = {
-                'language': language,
-                'status': 'paypal_ipn',
-                }
+{package}
 
-    return HttpResponse("Nothing to see here ..")
+You will here from us shortly before the seminar.
+
+Kind regards,
+Michael
+'''
+
+REGISTRATION_EMAIL_DE = '''
+
+Hi {first_name},
+
+Herzlichen Dank fuer die Anmeldung zum Seminar mit Hiroshi Ikeda Shihan!
+
+Deine Anmelde id ist : {pid}
+
+{package}
+
+Du wirst kurz vor dem Seminar wieder von uns hoeren.
+
+Herzliche Gruesse,
+Michael
+'''
 
 
 class PaypalIPNEndpoint(Endpoint):
@@ -225,18 +237,46 @@ class PaypalIPNEndpoint(Endpoint):
         pid = data['custom']
         purchase_pk = int(pid.replace('PId-', ''))
 
-        # FIXME
-        # identify purchase object
-        # add data to ipn log
-        # set purchase payment_status according to data
-        # AVAILABLE PLACES RECOMPUTE
-        # send confirmation mail bcc myself
+        pur_obj = Purchase.objects.get(pk=purchase_pk)
+        pur_obj.paypal_ipn_log += '\n\nUTC TIMESTAMP: [{now}]\n'.format(
+                now=now().strftime('%Y-%m-%d %H:%M'))
+        pur_obj.paypal_ipn_log += str(data)
+        
+        if data['payment_status'] == 'Completed':
+            pur_obj.payment_status = Purchase.PAID_BY_PAYPAL_PAYMENT_STATUS
+
+            if pur_obj.associate.language = Associate.LANGUAGE_GERMAN:
+                mail_body = REGISTRATION_EMAIL_DE
+            else:
+                mail_body = REGISTRATION_EMAIL_EN:w
+            mail_body = mail_body.format(
+                    first_name=pur_obj.associate.first_name,
+                    pid = pur_obj.pid,
+                    package=get_purchase_summary()
+                    )
+            send_mail(
+                    '[Hiroshi Ikeda Shihan Seminar Zurich 2014]',
+                    mail_body,
+                    'ikedaseminar@aikikai-zuerich.ch',
+                    [pur_obj.associate.email_address, ],
+                    ['michigraber@aikikai-zuerich.ch', ],
+                    fail_silently=False,
+                    )
+        else:
+            pur_obj.payment_status = Purchase.PAYPAL_FAILED_PAYMENT_STATUS
+        pur_obj.save()
 
 
     def process_invalid(self, data):
-        log.error(str(data))
+        log.info(str(data))
+        pid = data['custom']
+        purchase_pk = int(pid.replace('PId-', ''))
 
-
+        pur_obj = Purchase.objects.get(pk=purchase_pk)
+        pur_obj.paypal_ipn_log += '\n\nUTC TIMESTAMP: [{now}]\n'.format(
+                now=now().strftime('%Y-%m-%d %H:%M'))
+        pur_obj.paypal_ipn_log += str(data)
+        
 
 '''
 

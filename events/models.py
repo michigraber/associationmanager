@@ -70,6 +70,10 @@ class Purchase(BaseModel):
             default=0)
     payment_due_by = models.DateField(blank=True, null=True)
 
+    @property
+    def pid(self):
+        return 'PId-'+str(self.pk)
+
     def one_line_description(self):
         items = self.purchaseitem_set.all()
         s = 'Purchase Number {pk} :: '.format(pk=self.pk)
@@ -90,6 +94,18 @@ class Purchase(BaseModel):
         for i in self.purchaseitem_set.all():
             balance += i.content_object.price
         return balance
+
+    def get_purchase_summary(self):
+        summary = '\nPackage\n'+79*'-'+'\n'
+        pis = self.purchaseitem_set.all()
+        for pi in pis:
+            summary += pi.one_line_description() + '\n'
+        summary += 79*'-'+'\n'
+        summary += 'Price: '+str(self.balance_due())+'.- sFr.\n'
+        summary += 'Payment Status: ' + self.get_payment_status_display()
+        summary += '\n'+79*'-'+'\n'+79*'-'
+
+        return summary
 
 
 class PurchaseItem(BaseModel):
