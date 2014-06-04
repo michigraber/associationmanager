@@ -251,25 +251,25 @@ class PaypalIPNEndpoint(Endpoint):
             pur_obj.payment_status = Purchase.PAID_BY_PAYPAL_PAYMENT_STATUS
             pur_obj.save()
 
-            if pur_obj.associate.language == Associate.LANGUAGE_GERMAN:
-                mail_body = REGISTRATION_EMAIL_DE
-            else:
-                mail_body = REGISTRATION_EMAIL_EN
+         #  if pur_obj.associate.language == Associate.LANGUAGE_GERMAN:
+         #      mail_body = REGISTRATION_EMAIL_DE
+         #  else:
+         #      mail_body = REGISTRATION_EMAIL_EN
 
-            mail_body = mail_body.format(
-                    first_name=pur_obj.associate.first_name,
-                    pid = pur_obj.pid,
-                    package=pur_obj.get_purchase_summary()
-                    )
+         #  mail_body = mail_body.format(
+         #          first_name=pur_obj.associate.first_name,
+         #          pid = pur_obj.pid,
+         #          package=pur_obj.get_purchase_summary()
+         #          )
 
-            email = EmailMessage(
-                    '[Hiroshi Ikeda Shihan Seminar Zurich 2014]',
-                    mail_body,
-                    'ikedaseminar@aikikai-zuerich.ch',
-                    [pur_obj.associate.email_address, ],
-                    ['michigraber@aikikai-zuerich.ch', ],
-                    )
-            email.send(fail_silently=False)
+         #  email = EmailMessage(
+         #          '[Hiroshi Ikeda Shihan Seminar Zurich 2014]',
+         #          mail_body,
+         #          'ikedaseminar@aikikai-zuerich.ch',
+         #          [pur_obj.associate.email_address, ],
+         #          ['michigraber@aikikai-zuerich.ch', ],
+         #          )
+         #  email.send(fail_silently=False)
 
         else:
             pur_obj.payment_status = Purchase.PAYPAL_FAILED_PAYMENT_STATUS
