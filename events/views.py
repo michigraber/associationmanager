@@ -245,10 +245,10 @@ class PaypalIPNEndpoint(Endpoint):
         if data['payment_status'] == 'Completed':
             pur_obj.payment_status = Purchase.PAID_BY_PAYPAL_PAYMENT_STATUS
 
-            if pur_obj.associate.language = Associate.LANGUAGE_GERMAN:
+            if pur_obj.associate.language == Associate.LANGUAGE_GERMAN:
                 mail_body = REGISTRATION_EMAIL_DE
             else:
-                mail_body = REGISTRATION_EMAIL_EN:w
+                mail_body = REGISTRATION_EMAIL_EN
             mail_body = mail_body.format(
                     first_name=pur_obj.associate.first_name,
                     pid = pur_obj.pid,
