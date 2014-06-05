@@ -96,18 +96,18 @@ class Purchase(BaseModel):
         return balance
 
     def pretty_print(self, language='en'):
-        summary = 79*'-'+'\n'
+        summary = 40*'* '+'\n'
         pis = self.purchaseitem_set.all()
         for pi in pis:
-            summary += pi.one_line_description(language=language) + '\n'
-        summary += 79*'-'+'\n'
+            summary += pi.content_object.pretty_print(language=language)
+        summary += 40*'* '+'\n'
         if language == 'en':
             summary += 'Price: '+str(self.balance_due())+'.- sFr.\n'
         elif language == 'de':
             summary += 'Preis: '+str(self.balance_due())+'.- sFr.\n'
-        summary += '\n'+79*'-'+'\n'+79*'-'
+        summary += 40*'* '
 
-        return summary
+        return summary + '\n'
 
 
 class PurchaseItem(BaseModel):
@@ -189,6 +189,17 @@ class EventPart(BaseModel):
     def no_available_places(self):
         return self.max_no_participants - self.no_eventparts_assigned()
 
+    def pretty_time(self):
+        prettytime = '{tfrom} - {tuntil}'.format(
+                tfrom=self.datetime_from.strftime('%H:%M'),
+                tuntil=self.datetime_until.strftime('%H:%M'),
+                )
+        return prettytime
+
+    def pretty_print(self, language='de'):
+        if language == 'de':
+            return self.short_description_de + ' : ' + self.pretty_time()
+
 
 class Registration(BaseModel):
     '''
@@ -231,6 +242,18 @@ class Registration(BaseModel):
                     'Registration with pk='+str(self.pk)))
         else:
             return pis[0]
+
+    def pretty_print(self, language='de'):
+        for i, ep in enumerate(self.event_parts.all()):
+            if i == 0:
+                s = ep.event.title_de if language == 'de' else ep.event.title_en
+                s += '\n'
+                s += len(s)*'-'
+            if language == 'de':
+                s += '\n'+ep.short_description_de + ' : ' + ep.pretty_time()
+            else:
+                s += '\n'+ep.short_description_en + ' : ' + ep.pretty_time()
+        return s + '\n'
  
 
 class Article(BaseModel):
@@ -290,6 +313,12 @@ class Article(BaseModel):
 
     def still_available(self):
         return self.no_articles_assigned() < self.no_articles_initially
+
+    def pretty_print(self, language='de'):
+        if language == 'de':
+            return self.name_de + '\n'
+        else:
+            return self.name_en + '\n'
 
 
 
