@@ -33,7 +33,7 @@ Michael
 
 
 REGISTRATION_EMAIL_DE = '''
-Hi {first_name},
+Hi {first_name}
 
 
 Herzlichen Dank fuer deine Anmeldung zum Seminar mit Hiroshi Ikeda Shihan!

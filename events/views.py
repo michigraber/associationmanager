@@ -22,8 +22,6 @@ from associates.models import Associate
 from events.models import Event, EventPart, Registration, Purchase,\
     PurchaseItem
 
-from ikedaseminar import EMAIL_TEMPLATES
-
 from .forms import SelectPurchaseItemsForm, RegistrationMessageForm_de,\
         RegistrationMessageForm_en
 
@@ -221,32 +219,11 @@ class PaypalIPNEndpoint(Endpoint):
             pur_obj.payment_status = Purchase.PAID_BY_PAYPAL_PAYMENT_STATUS
             pur_obj.save()
 
-            if pur_obj.associate.language == Associate.LANGUAGE_GERMAN:
-                mail_body = EMAIL_TEMPLATES.REGISTRATION_EMAIL_DE.format(
-                        first_name=pur_obj.associate.first_name,
-                        pid=pur_obj.pid,
-                        package=pur_obj.pretty_print(language='de'),
-                        associate=pur_obj.associate.pretty_print_basic(),
-                        message=pur_obj.associate_message,
-                        )
-            else:
-                mail_body = EMAIL_TEMPLATES.REGISTRATION_EMAIL_EN.format(
-                        first_name=pur_obj.associate.first_name,
-                        pid=pur_obj.pid,
-                        package=pur_obj.pretty_print(language='en'),
-                        associate=pur_obj.associate.pretty_print_basic(),
-                        message=pur_obj.associate_message,
-                        )
-
-            email = EmailMessage(
-                    '[Hiroshi Ikeda Shihan Seminar Zurich 2014]',
-                    mail_body,
-                    'ikedaseminar@aikikai-zuerich.ch',
-                    [pur_obj.associate.email_address, ],
-                    ['michigraber@aikikai-zuerich.ch', 
-                     'herbert.looser@bluewin.ch', ],
-                    )
-            email.send(fail_silently=False)
+            try:
+                send_confirmation_mail_for_purchase(pur_obj.pk)
+            except Exception, e:
+                err = 'EMAIL SENDING for purchase pk = %s\n' % pur_obj.pk
+                log.error(err+e)
 
         else:
             pur_obj.payment_status = Purchase.PAYPAL_FAILED_PAYMENT_STATUS

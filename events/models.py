@@ -107,7 +107,7 @@ class Purchase(BaseModel):
             summary += 'Preis: '+str(self.balance_due())+'.- sFr.\n'
         summary += 40*'* '
 
-        return summary + '\n'
+        return summary.encode('utf-8') + '\n'
 
 
 class PurchaseItem(BaseModel):
@@ -194,13 +194,14 @@ class EventPart(BaseModel):
                 tfrom=self.datetime_from.strftime('%H:%M'),
                 tuntil=self.datetime_until.strftime('%H:%M'),
                 )
-        return prettytime
+        return prettytime.encode('utf-8')
 
     def pretty_print(self, language='de'):
         if language == 'de':
-            return self.short_description_de + ' : ' + self.pretty_time()
+            s = self.short_description_de.encode + ' : ' + self.pretty_time()
         else:
-            return self.short_description_en + ' : ' + self.pretty_time()
+            s = self.short_description_en + ' : ' + self.pretty_time()
+        return s.encode('utf-8')
 
 
 class Registration(BaseModel):
@@ -255,7 +256,8 @@ class Registration(BaseModel):
                 s += '\n'+ep.short_description_de + ' : ' + ep.pretty_time()
             else:
                 s += '\n'+ep.short_description_en + ' : ' + ep.pretty_time()
-        return s + '\n'
+        s += '\n'
+        return s.encode('utf-8') 
  
 
 class Article(BaseModel):
@@ -318,9 +320,10 @@ class Article(BaseModel):
 
     def pretty_print(self, language='de'):
         if language == 'de':
-            return self.name_de + '\n'
+            s = self.name_de + '\n'
         else:
-            return self.name_en + '\n'
+            s = self.name_en + '\n'
+        return s.encode('utf-8')
 
 
 

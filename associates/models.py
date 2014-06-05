@@ -106,4 +106,4 @@ class Associate(BaseModel):
         s += self.street_and_nr + '\n'
         s += self.postal_code + ' ' + self.city + '\n'
         s += self.country + '\n'
-        return s
+        return s.encode('utf-8')
