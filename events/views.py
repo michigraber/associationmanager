@@ -22,6 +22,8 @@ from associates.models import Associate
 from events.models import Event, EventPart, Registration, Purchase,\
     PurchaseItem
 
+from ikedaseminar import EMAIL_TEMPLATES
+
 from .forms import SelectPurchaseItemsForm, RegistrationMessageForm_de,\
         RegistrationMessageForm_en
 
@@ -122,6 +124,7 @@ def registration_configuration(request, language=''):
 
             # set up the purchase
             purchase = Purchase(associate=ass)
+            purchase.associate_message = mess_form.cleaned_data['message']
             purchase.save()
             purchase.payment_due_by = purchase.date_created +\
                     timedelta(settings.IKEDASEMINAR_DUE_BY_TIMEDELTA)
@@ -195,39 +198,6 @@ def registration_comingsoon(request, language=None):
             'registration_step' : 0,
             }
     return render_to_response('registration.html', context) 
-
-
-REGISTRATION_EMAIL_EN = '''
-
-Hi {first_name},
-
-Thanks for registering for our Seminar with Hiroshi Ikeda Shihan!
-
-Your registration id is : {pid}
-
-{package}
-
-You will here from us shortly before the seminar.
-
-Kind regards,
-Michael
-'''
-
-REGISTRATION_EMAIL_DE = '''
-
-Hi {first_name},
-
-Herzlichen Dank fuer die Anmeldung zum Seminar mit Hiroshi Ikeda Shihan!
-
-Deine Anmelde id ist : {pid}
-
-{package}
-
-Du wirst kurz vor dem Seminar wieder von uns hoeren.
-
-Herzliche Gruesse,
-Michael
-'''
 
 
 class PaypalIPNEndpoint(Endpoint):
