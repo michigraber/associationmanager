@@ -93,7 +93,7 @@ def registration_configuration(request, language=''):
                     elif language == 'en':
                         ep = event.eventpart_set.filter(short_description_en=fk)
                         try:
-                            art = event.article_set.get(name_de=fk)
+                            art = event.article_set.get(name_en=fk)
                         except:
                             art = None
                     if ep:
