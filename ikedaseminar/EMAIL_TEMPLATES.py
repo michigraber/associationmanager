@@ -10,6 +10,7 @@ Your registration id is : {pid}
 
 The seminar takes place from Friday, July 25 until Sunday, July 27 2014.
 
+
 Your registration contains 
 
 {package}
@@ -41,6 +42,7 @@ Deine Anmeldungs-id ist : {pid}
 
 
 Das Seminar findet von Freitag 25. bis Sonntag 27. Juli 2014 statt.
+
 
 Hierfuer hast du dich angemeldet:
 
