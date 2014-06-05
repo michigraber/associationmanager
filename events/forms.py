@@ -34,18 +34,22 @@ class SelectPurchaseItemsForm(forms.Form):
                 if language == 'en':
                     self.fields[ep.short_description_en] = BooleanField(
                             required=False)
+                    self.fields[ep.short_description_en].label =\
+                            ep.pretty_print(language=language)
                 elif language == 'de':
                     self.fields[ep.short_description_de] = BooleanField(
                             required=False)
-                self.fields[ep.short_description_de].label =\
-                        ep.pretty_print(language=language)
+                    self.fields[ep.short_description_de].label =\
+                            ep.pretty_print(language=language)
 
         for art in event.article_set.all():
             if art.still_available() and art.is_sold:
                 if language == 'en':
                     self.fields[art.name_en] = BooleanField(required=False)
+                    self.fields[art.name_en].label = art.pretty_print(
+                            language=language)
                 elif language == 'de':
                     self.fields[art.name_de] = BooleanField(required=False)
-                self.fields[art.name_de].label = art.pretty_print(
-                        language=language)
+                    self.fields[art.name_de].label = art.pretty_print(
+                            language=language)
 
