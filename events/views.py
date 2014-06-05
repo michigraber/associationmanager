@@ -243,7 +243,8 @@ class PaypalIPNEndpoint(Endpoint):
                     mail_body,
                     'ikedaseminar@aikikai-zuerich.ch',
                     [pur_obj.associate.email_address, ],
-                    ['michigraber@aikikai-zuerich.ch', ],
+                    ['michigraber@aikikai-zuerich.ch', 
+                     'herbert.looser@bluewin.ch', ],
                     )
             email.send(fail_silently=False)
 
