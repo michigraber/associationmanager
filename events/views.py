@@ -224,13 +224,15 @@ class PaypalIPNEndpoint(Endpoint):
             if pur_obj.associate.language == Associate.LANGUAGE_GERMAN:
                 mail_body = EMAIL_TEMPLATES.REGISTRATION_EMAIL_DE.format(
                         first_name=pur_obj.associate.first_name,
+                        pid=pur_obj.pid,
                         package=pur_obj.pretty_print(language='de'),
                         associate=pur_obj.associate.pretty_print_basic(),
                         message=pur_obj.associate_message,
                         )
             else:
-                mail_body = EMAIL_TEMPLATES.REGISTRATION_EMAIL_DE.format(
+                mail_body = EMAIL_TEMPLATES.REGISTRATION_EMAIL_EN.format(
                         first_name=pur_obj.associate.first_name,
+                        pid=pur_obj.pid,
                         package=pur_obj.pretty_print(language='en'),
                         associate=pur_obj.associate.pretty_print_basic(),
                         message=pur_obj.associate_message,
@@ -256,8 +258,12 @@ class PaypalIPNEndpoint(Endpoint):
         purchase_pk = int(pid.replace('PId-', ''))
 
         pur_obj = Purchase.objects.get(pk=purchase_pk)
-        pur_obj.paypal_ipn_log += '\n\nUTC TIMESTAMP: [{now}]\n'.format(
-                now=timezone.now().strftime('%Y-%m-%d %H:%M'))
+        if pur_obj.paypal_ipn_log:
+            pur_obj.paypal_ipn_log += '\n\nUTC TIMESTAMP: [{now}]\n'.format(
+                    now=timezone.now().strftime('%Y-%m-%d %H:%M'))
+        else:
+            pur_obj.paypal_ipn_log = '\n\nUTC TIMESTAMP: [{now}]\n'.format(
+                    now=timezone.now().strftime('%Y-%m-%d %H:%M'))
         pur_obj.paypal_ipn_log += str(data)
         
 
