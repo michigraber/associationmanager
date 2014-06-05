@@ -199,6 +199,8 @@ class EventPart(BaseModel):
     def pretty_print(self, language='de'):
         if language == 'de':
             return self.short_description_de + ' : ' + self.pretty_time()
+        else:
+            return self.short_description_en + ' : ' + self.pretty_time()
 
 
 class Registration(BaseModel):
