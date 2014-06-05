@@ -101,7 +101,7 @@ class Associate(BaseModel):
             self.email_address = None
         super(Associate, self).save(*args, **kwargs)
 
-    def pretty_print_basic():
+    def pretty_print_basic(self):
         s = self.first_name + ' ' + self.last_name + '\n'
         s += self.street_and_nr + '\n'
         s += self.postal_code + ' ' + self.city + '\n'
