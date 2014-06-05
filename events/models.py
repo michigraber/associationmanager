@@ -95,14 +95,16 @@ class Purchase(BaseModel):
             balance += i.content_object.price
         return balance
 
-    def get_purchase_summary(self):
-        summary = '\nPackage\n'+79*'-'+'\n'
+    def pretty_print(self, language='en'):
+        summary = 79*'-'+'\n'
         pis = self.purchaseitem_set.all()
         for pi in pis:
-            summary += pi.one_line_description() + '\n'
+            summary += pi.one_line_description(language=language) + '\n'
         summary += 79*'-'+'\n'
-        summary += 'Price: '+str(self.balance_due())+'.- sFr.\n'
-        summary += 'Payment Status: ' + self.get_payment_status_display()
+        if language == 'en':
+            summary += 'Price: '+str(self.balance_due())+'.- sFr.\n'
+        elif language == 'de':
+            summary += 'Preis: '+str(self.balance_due())+'.- sFr.\n'
         summary += '\n'+79*'-'+'\n'+79*'-'
 
         return summary
