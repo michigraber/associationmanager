@@ -22,7 +22,7 @@ class ArticleAdmin(admin.ModelAdmin):
     readonly_fields = ('date_created', 'date_last_modified', )
 
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ('one_line_description', 'get_payment_status_display',)
+    list_display = ('one_line_description', 'associate', 'balance_due', 'get_payment_status_display',)
     list_filter = ('payment_status', )
     readonly_fields = ('date_created', 'date_last_modified', )
     

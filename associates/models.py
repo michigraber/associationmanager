@@ -93,6 +93,9 @@ class Associate(BaseModel):
     def __unicode__(self):
         return u'%s, %s' % (self.first_name, self.last_name)
 
+    def __str__(self):
+        return u'%s, %s' % (self.first_name, self.last_name)
+
     def save(self, *args, **kwargs):
         # overwrite to make emailfield unique if not null according to
         # http://stackoverflow.com/questions/15422606/

@@ -76,17 +76,13 @@ class Purchase(BaseModel):
 
     def one_line_description(self):
         items = self.purchaseitem_set.all()
-        s = 'Purchase Number {pk} :: '.format(pk=self.pk)
+        s = u'Purchase Number {pk} :: '.format(pk=self.pk)
         if len(items) > 0:
-            s += ', '.join([str(i.one_line_description())+\
-                    ' ('+str(i.content_object.price)+'.-)'
-                for i in items])
+            for obj in self.purchaseitem_set.all():
+                s += u'| {obj} |'.format(
+                        obj=obj.content_object.one_line_description())
         else:
-            s += 'Purchase without items!!'
-
-        s += ' Balance due : {b}.- Payment: {p}'.format(
-                b=self.balance_due(),
-                p=self.get_payment_status_display())
+            s += u'Purchase without items!!'
         return s
 
     def balance_due(self):
@@ -135,7 +131,10 @@ class PurchaseItem(BaseModel):
 
     def one_line_description(self, language='en'):
         obj_desr = self.content_object.one_line_description(language=language)
-        return obj_desr + ' :: ' + str(self.purchase.associate) 
+        s =  u'{descr} :: {ass}'.format(
+                descr=obj_desr,
+                ass=self.purchase.associate,)
+        return s
 
 
 class EventPart(BaseModel):
@@ -215,17 +214,16 @@ class Registration(BaseModel):
 
     def one_line_description(self, language='de'):
         if language == 'de':
-            return 'Registration ({pk}) : {fn} {ln}'.format(
+            s = u'Registration ({pk}) : {fn} {ln}'.format(
                     pk=self.pk,
-                    fn=self.associate.first_name, ln=self.associate.last_name)
-        elif language == 'en':
-            return 'Registration ({pk}) : {fn} {ln}'.format(
-                    pk=self.pk,
-                    fn=self.associate.first_name, ln=self.associate.last_name)
+                    fn=self.associate.first_name,
+                    ln=self.associate.last_name)
         else:
-            return 'Registration ({pk}) : {fn} {ln}'.format(
+            s = u'Registration ({pk}) : {fn} {ln}'.format(
                     pk=self.pk,
-                    fn=self.associate.first_name, ln=self.associate.last_name)
+                    fn=self.associate.first_name,
+                    ln=self.associate.last_name)
+        return s
 
     ## FIXME
     @property
@@ -282,15 +280,14 @@ class Article(BaseModel):
     purchase_items = GenericRelation(PurchaseItem)
 
     def __str__(self):
-        return self.one_line_description()
+        return u'%s' % self.one_line_description()
 
     def one_line_description(self, language='de'):
         if language == 'de':
-            return self.name_de
-        elif language == 'en':
-            return self.name_en
+            s = u'%s' % self.name_de
         else:
-            return 'Article - no name in language %s' % language
+            s = u'%s' % self.name_en
+        return s
 
     def no_articles_assigned(self):
         '''
