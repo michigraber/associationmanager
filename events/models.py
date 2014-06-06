@@ -197,10 +197,10 @@ class EventPart(BaseModel):
 
     def pretty_print(self, language='de'):
         if language == 'de':
-            s = self.short_description_de.encode + ' : ' + self.pretty_time()
+            s =  u'%s : %s' % (self.short_description_de, self.pretty_time())
         else:
-            s = self.short_description_en + ' : ' + self.pretty_time()
-        return s.encode('utf-8')
+            s =  + u'%s : %s' % (self.short_description_en, self.pretty_time())
+        return s
 
 
 class Registration(BaseModel):

@@ -126,6 +126,7 @@ def registration_configuration(request, language=''):
             purchase.save()
             purchase.payment_due_by = purchase.date_created +\
                     timedelta(settings.IKEDASEMINAR_DUE_BY_TIMEDELTA)
+            purchase.save()
 
             if eps:
                 registration = Registration(associate=ass, price=registration_price)
