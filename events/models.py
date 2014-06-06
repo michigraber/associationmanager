@@ -199,7 +199,7 @@ class EventPart(BaseModel):
         if language == 'de':
             s =  u'%s : %s' % (self.short_description_de, self.pretty_time())
         else:
-            s =  + u'%s : %s' % (self.short_description_en, self.pretty_time())
+            s =  u'%s : %s' % (self.short_description_en, self.pretty_time())
         return s
 
 
