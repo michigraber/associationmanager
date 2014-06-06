@@ -21,6 +21,7 @@ from associates.models import Associate
 
 from events.models import Event, EventPart, Registration, Purchase,\
     PurchaseItem
+from events.utils.emails import send_confirmation_mail_for_purchase
 
 from .forms import SelectPurchaseItemsForm, RegistrationMessageForm_de,\
         RegistrationMessageForm_en
