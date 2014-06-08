@@ -2,8 +2,7 @@
 from .. import models
 
 def associates_for_event(event, display=True):
-    '''
-    '''
+    ''' '''
     if type(event) == int:
         event = models.Event.objects.get(pk=1)
     
@@ -13,7 +12,8 @@ def associates_for_event(event, display=True):
         ep_associates[epname] = []
         for registration in ep.registration_set.all():
             if registration.associate not in ep_associates[epname]:
-                ep_associates[epname].append(registration.associate)
+                if registration.is_paid_or_pending():
+                    ep_associates[epname].append(registration.associate)
 
     if display:
         print '\n'+50*'* '+'\n', event.title_en, '\n'+50*'* '+'\n'
@@ -25,4 +25,9 @@ def associates_for_event(event, display=True):
                         ln=ass.last_name, fn=ass.first_name,
                         city=ass.city, country=ass.country)
 
-    return ep_associates
+        associate_set = []
+        for ep in ep_associates:
+            associate_set.extend(ep_associates[ep])
+        associate_set = sorted(list(set(associate_set)))
+
+    return associate_set

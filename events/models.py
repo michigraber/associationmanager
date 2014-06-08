@@ -225,6 +225,15 @@ class Registration(BaseModel):
                     ln=self.associate.last_name)
         return s
 
+    def __unicode__(self):
+        if not self.event_parts:
+            event = 'Empty registration!'
+        else:
+            event = self.event_parts.all()[0].event.title_en
+        return u'{fn} {ln} : {ev}'.format(
+                fn=self.associate.first_name, ln=self.associate.last_name,
+                ev=event)
+
     ## FIXME
     @property
     def payment_status(self):
@@ -232,6 +241,15 @@ class Registration(BaseModel):
 
     def get_payment_status_display(self):
         return self.purchase_item.get_payment_status_display()
+
+    def is_paid_or_pending(self):
+        if self.payment_status == Purchase.PAID_BY_PAYPAL_PAYMENT_STATUS or\
+                self.payment_status == Purchase.PAID_BY_CASH_PAYMENT_STATUS or\
+                self.payment_status == Purchase.PAID_BY_BANK_TRANSFER_PAYMENT_STATUS or\
+                self.payment_status == Purchase.PENDING_PAYMENT_STATUS:
+            return True
+        else:
+            return False
     
     @property
     def purchase_item(self):

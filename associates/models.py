@@ -96,6 +96,25 @@ class Associate(BaseModel):
     def __str__(self):
         return u'%s, %s' % (self.first_name, self.last_name)
 
+    def _cmpstr(self):
+        cmpstr = u'{ln}{fn}{em}'.format(
+                ln=self.last_name if self.last_name else '',
+                fn=self.first_name if self.first_name else '',
+                em=self.email_address if self.email_address else '')
+        return cmpstr.lower()
+
+    def __gt__(self, other):
+        return self._cmpstr() > other._cmpstr()
+
+    def __lt__(self, other):
+        return self._cmpstr() < other._cmpstr()
+
+    def __ge__(self, other):
+        return self._cmpstr() >= other._cmpstr()
+
+    def __le__(self, other):
+        return self._cmpstr() <= other._cmpstr()
+
     def save(self, *args, **kwargs):
         # overwrite to make emailfield unique if not null according to
         # http://stackoverflow.com/questions/15422606/
