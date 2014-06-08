@@ -51,7 +51,7 @@ class Purchase(BaseModel):
     paypal_ipn_log = models.TextField(blank=True, null=True)
 
     PENDING_PAYMENT_STATUS = 0
-    ELAPSED_PAYMENT_STATUS = 1
+    EXPIRED_PAYMENT_STATUS = 1
     PAYPAL_FAILED_PAYMENT_STATUS = 2
     PAID_BY_CASH_PAYMENT_STATUS = 3
     PAID_BY_PAYPAL_PAYMENT_STATUS = 4
@@ -59,7 +59,7 @@ class Purchase(BaseModel):
 
     PAYMENT_STATUS_CHOICES = (
             (PENDING_PAYMENT_STATUS, 'pending'),
-            (ELAPSED_PAYMENT_STATUS, 'elapsed'),
+            (EXPIRED_PAYMENT_STATUS, 'expired'),
             (PAYPAL_FAILED_PAYMENT_STATUS, 'payment failed paypal'),
             (PAID_BY_CASH_PAYMENT_STATUS, 'paid by cash'),
             (PAID_BY_PAYPAL_PAYMENT_STATUS, 'paid by paypal'),

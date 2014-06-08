@@ -219,6 +219,7 @@ class PaypalIPNEndpoint(Endpoint):
         
         if data['payment_status'] == 'Completed':
             pur_obj.payment_status = Purchase.PAID_BY_PAYPAL_PAYMENT_STATUS
+            pur_obj.payment_due_by = None
             pur_obj.save()
 
             try:

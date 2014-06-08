@@ -37,9 +37,9 @@ Wir haben ungef&auml;hr noch folgende Anzahl Pl&auml;tze frei:
 <p>
 Nimm f&uuml;r die Anmeldung bitte folgende Punkte zur Kenntnis:
 <ul>
-<li>Die Bezahlung deiner Anmeldung wird durch Paypal passieren. Daf&uuml;r
+<li>Die Bezahlung deiner Anmeldung wird durch PayPal passieren. Daf&uuml;r
 wirst du eine Kreditkarte ben&ouml;tigen. Es ist jedoch weder notwendig einen
-Paypal Account zu besitzen, noch einen zu erstellen.</li>
+PayPal Account zu besitzen, noch einen zu erstellen.</li>
 <li>Eine Annulation deiner Anmeldung ist zwar m&ouml;glich, doch werden wir
 dir kein Geld zur&uuml;ckerstatten k&ouml;nnen.</li>
 <li>F&uuml;r die Party Samstag Abend werden wir einen kleinen Unkostenbeitrag von 10.- sFr. verrechnen.</li>
@@ -88,8 +88,13 @@ dir kein Geld zur&uuml;ckerstatten k&ouml;nnen.</li>
     <p>{{ associate.street_and_nr }}</p>
     <p>{{ associate.postal_code }}  {{ associate.city }}</p>
     <p>{{ associate.country }}</p>
-<h4>Du kannst deine Anmeldung nun abschliessen durch Bezahlung via Paypal</h4>
+<h4>Du kannst deine Anmeldung nun abschliessen durch Bezahlung via PayPal:</h4>
+<p>Klick auf den gelben 'Pay Now' Knopf gleich unterhalb, um auf die PayPal Seite zum Abwickeln der Bezahlung gef&uuml;hrt zu werden.</p>
 {% include "paypal_buttons.html" %}
+<p>Nach erfolgreichem Abschluss der Bezahlung wirst du innert kurzer Zeit eine Email von uns erhalten.</p>
+<p>Z&ouml;gere nicht bei uns zu nachzufragen wenn etwas unklar ist via
+<a href='&#0109;&#0097;&#0105;lt&#0111;&#0058;ikedaseminar&#64;aikikai-zuerich&#46;ch'>ikedaseminar<span
+    class='at'>&#64;</span>aikikai-zuerich&#46;ch</a>.
 </div>
 
 {% endif %}
@@ -165,8 +170,14 @@ Please consider for the subsequent registration that
     <p>{{ associate.street_and_nr }}</p>
     <p>{{ associate.postal_code }}  {{ associate.city }}</p>
     <p>{{ associate.country }}</p>
-<h4>You can now complete your registration by paying through Paypal.</h4>
+<h4>You can now complete your registration by paying through PayPal.</h4>
+<p>Click on the yellow 'Pay Now' button below to be guided to the PayPal website. There you can execute the transaction.</p> 
 {% include "paypal_buttons.html" %}
+<p>As soon as the transaction has been carried out successfully you will
+receive an email confirming your registration.</p>
+<p>If you have questions, do not hesitate to contact us via 
+<a href='&#0109;&#0097;&#0105;lt&#0111;&#0058;ikedaseminar&#64;aikikai-zuerich&#46;ch'>ikedaseminar<span
+    class='at'>&#64;</span>aikikai-zuerich&#46;ch</a>.
 </div>
 
 {% endif %}
