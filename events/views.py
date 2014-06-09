@@ -119,7 +119,9 @@ def registration_configuration(request, language=''):
             # FIXME : this price calculation is not general !!!
             mapping = settings.IKEDASEMINAR_EVENTPART_SET_PRICE_MAPPING
             registration_price = int(mapping[len(eps)])
-            paypal_item_id = str(len(eps))+'K'+len(arts)*'P'
+            has_party = any([art.name_de == 'Party Samstag Abend' 
+                for art in arts])
+            paypal_item_id = str(len(eps))+'K'+has_party*'P'
 
             # set up the purchase
             purchase = Purchase(associate=ass)
