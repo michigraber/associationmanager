@@ -6,7 +6,7 @@ from datetime import timedelta
 
 from django.conf import settings
 from django.http import HttpResponse
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.formtools.wizard.views import SessionWizardView
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -28,6 +28,9 @@ from .forms import SelectPurchaseItemsForm, RegistrationMessageForm_de,\
 
 from .paypal_ipn_handler import Endpoint
 
+
+def redirect_to_registration(request, language=''):
+    return redirect('registration', language=language)
 
 
 def registration_configuration(request, language=''):

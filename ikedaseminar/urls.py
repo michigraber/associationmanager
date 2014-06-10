@@ -16,15 +16,19 @@ try:
 except:
     EVENT = None
 
+
 urlpatterns = patterns('ikedaseminar.views',
     url(r'^$', RedirectView.as_view(url='/de/')),
     url(r'(?P<language>en|de)/*$', 'welcome', {}, name='welcome'),
 )
 
 urlpatterns += patterns('events.views',
+#   url(r'(?P<language>en|de)/registration/aiki-kai/*$',
+#       'registration_configuration', name='preregistration'),
     url(r'(?P<language>en|de)/registration/aiki-kai/*$',
-        'registration_configuration', name='preregistration'),
-    url(r'(?P<language>en|de)/registration/paypal/*$', csrf_exempt(PaypalIPNEndpoint())),
+        'redirect_to_registration'),
+    url(r'(?P<language>en|de)/registration/paypal/*$',
+        csrf_exempt(PaypalIPNEndpoint())),
 #   url(r'(?P<language>en|de)/registration/*$',
 #       'registration_comingsoon',
     url(r'(?P<language>en|de)/registration/*$',
@@ -33,3 +37,4 @@ urlpatterns += patterns('events.views',
     url(r'(?P<language>en|de)/registration/(?P<status>cancel|success)/*$',
         'registration_paypal_return', name='registration_paypal_return'),
 )
+
