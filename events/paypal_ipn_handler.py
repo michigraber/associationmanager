@@ -77,6 +77,9 @@ class Endpoint(object):
             'cmd': '_notify-validate',
         }
         args.update(data)
+        # FIXME ?? following two lines added ..
+        args = { k: '{v}'.format(v=val.encode('utf-8')) for k, val in
+                args.iteritems() }
         return self.do_post(self.verify_url, args) == 'VERIFIED'
     
     def default_response(self):

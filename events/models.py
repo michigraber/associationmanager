@@ -70,6 +70,9 @@ class Purchase(BaseModel):
             default=0)
     payment_due_by = models.DateField(blank=True, null=True)
 
+    # FIXME :
+    # confirmation_mail_sent = models.BooleanField(default=False)
+
     @property
     def pid(self):
         return 'PId-'+str(self.pk)
