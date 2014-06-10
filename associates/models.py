@@ -124,8 +124,12 @@ class Associate(BaseModel):
         super(Associate, self).save(*args, **kwargs)
 
     def pretty_print_basic(self):
-        s = self.first_name + ' ' + self.last_name + '\n'
-        s += self.street_and_nr + '\n'
-        s += self.postal_code + ' ' + self.city + '\n'
-        s += self.country + '\n'
-        return s.encode('utf-8')
+        s = '{fn} {ln}\n{sn}\n{pc} {ci}\n{co}\n'.format(
+                fn=self.first_name.encode('utf-8'),
+                ln=self.last_name.encode('utf-8'),
+                sn=self.street_and_nr.encode('utf-8'), 
+                pc=self.postal_code.encode('utf-8'),
+                ci=self.city.encode('utf-8'),
+                co=self.country.encode('utf-8')
+                )
+        return s
