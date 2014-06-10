@@ -12,19 +12,21 @@ def send_confirmation_mail_for_purchase(purchase_pk):
 
     if pur_obj.associate.language == Associate.LANGUAGE_GERMAN:
         mail_body = EMAIL_TEMPLATES.REGISTRATION_EMAIL_DE.format(
-                first_name=u'{fn}'.format(fn=pur_obj.associate.first_name),
+                first_name='{fn}'.format(
+                    fn=pur_obj.associate.first_name.encode('utf-8')),
                 pid=pur_obj.pid,
                 package=pur_obj.pretty_print(language='de'),
                 associate=pur_obj.associate.pretty_print_basic(),
-                message=u'{m}'.format(m=pur_obj.associate_message),
+                message='{m}'.format(m=pur_obj.associate_message.encode('utf-8')),
                 )
     else:
         mail_body = EMAIL_TEMPLATES.REGISTRATION_EMAIL_EN.format(
-                first_name=u'{fn}'.format(fn=pur_obj.associate.first_name),
+                first_name='{fn}'.format(
+                    fn=pur_obj.associate.first_name.encode('utf-8')),
                 pid=pur_obj.pid,
                 package=pur_obj.pretty_print(language='en'),
                 associate=pur_obj.associate.pretty_print_basic(),
-                message=u'{m}'.format(m=pur_obj.associate_message),
+                message='{m}'.format(m=pur_obj.associate_message.encode('utf-8')),
                 )
 
     email = EmailMessage(
