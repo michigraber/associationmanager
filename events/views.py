@@ -228,7 +228,7 @@ class PaypalIPNEndpoint(Endpoint):
                 send_confirmation_mail_for_purchase(pur_obj.pk)
             except Exception, e:
                 err = 'EMAIL SENDING for purchase pk = %s\n' % pur_obj.pk
-                log.error(err+e)
+                log.error(str(err)+e)
 
         else:
             pur_obj.payment_status = Purchase.PAYPAL_FAILED_PAYMENT_STATUS
