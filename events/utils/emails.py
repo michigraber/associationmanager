@@ -20,11 +20,11 @@ def send_confirmation_mail_for_purchase(purchase_pk):
                 )
     else:
         mail_body = EMAIL_TEMPLATES.REGISTRATION_EMAIL_EN.format(
-                first_name=pur_obj.associate.first_name,
+                first_name=u'{fn}'.format(fn=pur_obj.associate.first_name),
                 pid=pur_obj.pid,
                 package=pur_obj.pretty_print(language='en'),
                 associate=pur_obj.associate.pretty_print_basic(),
-                message=pur_obj.associate_message,
+                message=u'{m}'.format(m=pur_obj.associate_message),
                 )
 
     email = EmailMessage(
