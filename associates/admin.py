@@ -11,7 +11,7 @@ class AssociateAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': (('first_name', 'last_name', ),
+            'fields': (('first_name', 'last_name', 'language', ),
                 ('rank', 'date_of_birth', 'member_since',),
                 ('email_address', 'phone_number_home', 'phone_number_mobile',
                     'phone_number_business')), }),
