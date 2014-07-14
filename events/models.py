@@ -73,6 +73,10 @@ class Purchase(BaseModel):
     # FIXME :
     # confirmation_mail_sent = models.BooleanField(default=False)
 
+    def __unicode__(self):
+        us = u'Purchase (pk={pk}, associate={ass})'
+        return us.format(pk=self.pk, ass=self.associate.last_name)
+
     @property
     def pid(self):
         return 'PId-'+str(self.pk)
