@@ -240,10 +240,16 @@ class Registration(BaseModel):
     ## FIXME
     @property
     def payment_status(self):
-        return self.purchase_item.payment_status
+        if self.purchase_item:
+            return self.purchase_item.payment_status
+        else:
+            return None
 
     def get_payment_status_display(self):
-        return self.purchase_item.get_payment_status_display()
+        if self.purchase_item:
+            return self.purchase_item.get_payment_status_display()
+        else:
+            return 'no purchase item associated.'
 
     def is_paid_or_pending(self):
         if self.payment_status == Purchase.PAID_BY_PAYPAL_PAYMENT_STATUS or\
