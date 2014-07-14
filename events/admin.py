@@ -15,7 +15,7 @@ class EventPartAdmin(admin.ModelAdmin):
 
 class RegistrationAdmin(admin.ModelAdmin):
     list_display = ('one_line_description', 'get_payment_status_display', )
-    readonly_fields = ('price', 'date_created', 'date_last_modified', )
+    readonly_fields = ('date_created', 'date_last_modified', )
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('name_en', 'is_sold', 'price', 'no_articles_available', )
