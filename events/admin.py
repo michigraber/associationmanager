@@ -28,8 +28,7 @@ class PurchaseAdmin(admin.ModelAdmin):
     
 class PurchaseItemAdmin(admin.ModelAdmin):
     list_display = ('one_line_description', 'get_payment_status_display', ) 
-    readonly_fields = ('date_created',
-                    'date_last_modified', )
+    readonly_fields = ('date_created', 'date_last_modified', )
 
     
 admin.site.register(models.Event, EventAdmin)
