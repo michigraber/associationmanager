@@ -14,14 +14,15 @@ def associates_for_event(event, display=True):
             if registration.associate not in ep_associates[epname]:
                 if registration.is_paid_or_pending():
                     ep_associates[epname].append(registration.associate)
+        ep_associates[epname] = sorted(list(set(ep_associates[epname])))
 
     if display:
         print '\n'+50*'* '+'\n', event.title_en, '\n'+50*'* '+'\n'
 
         for ep in ep_associates:
-            print '\n', ep, '\n'+50*'--'+'\n'
+            print '\n', ep, ' : ', len(ep_associates[ep]), ' Registrations\n'+50*'--'+'\n'
             for ass in ep_associates[ep]:
-                print u'{ln} {fn}, {city}, {country}\n'.format(
+                print u'o   {ln} {fn}, {city}, {country}\n'.format(
                         ln=ass.last_name, fn=ass.first_name,
                         city=ass.city, country=ass.country)
 
