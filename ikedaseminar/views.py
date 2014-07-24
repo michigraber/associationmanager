@@ -10,8 +10,9 @@ def welcome(request, language=''):
     return render_to_response('welcome.html', ddict )
 
 
-def registration(request, lang='de'):
+def registration(request, language='de'):
     ddict = { 
-            'language': lang,
+            'language': language,
+            'reason': 'end',
             }
-    return render_to_response('registration.html', ddict )
+    return render_to_response('registration_offline.html', ddict )
