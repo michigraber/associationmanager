@@ -1,0 +1,16 @@
+{% extends 'base_registration.html' %}
+
+{% block content %}
+
+
+{% if reason == 'end' %}
+
+{% if language == 'de' %}
+<h4>Die online Anmeldung ist nicht mehr verf&uuml;gbar.</h4>
+{% elif language == 'en' %}
+<h4>The online registration is not available anymore.</h4>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}
