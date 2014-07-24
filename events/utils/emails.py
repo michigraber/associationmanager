@@ -45,3 +45,51 @@ def create_confirmation_mail_body_for_purchase(pur_obj):
                 )
     return mail_body
 
+
+def send_lastinfo_mail_for_purchase(purchase_pk):
+    pur_obj = Purchase.objects.get(pk=purchase_pk)
+    mail_body = create_lastinfo_mail_body_for_purchase(pur_obj)
+
+    email = EmailMessage(
+            '[Hiroshi Ikeda Shihan Seminar Zurich 2014]',
+            mail_body,
+            'ikedaseminar@aikikai-zuerich.ch',
+            [pur_obj.associate.email_address, ],
+            ['michigraber@aikikai-zuerich.ch', ],
+            )
+    email.send(fail_silently=False)
+
+
+def create_lastinfo_mail_body_for_purchase(pur_obj):
+    ''' '''
+    if pur_obj.associate.language == Associate.LANGUAGE_GERMAN:
+        mail_body = EMAIL_TEMPLATES.LAST_INFO_EMAIL_DE.format(
+                first_name='{fn}'.format(
+                    fn=pur_obj.associate.first_name.encode('utf-8')),
+                    package=pur_obj.pretty_print(language='de'),
+                )
+    else:
+        mail_body = EMAIL_TEMPLATES.LAST_INFO_EMAIL_EN.format(
+                first_name='{fn}'.format(
+                    fn=pur_obj.associate.first_name.encode('utf-8')),
+                    package=pur_obj.pretty_print(),
+                )
+    return mail_body
+
+
+def send_all_last_info():
+
+    ps = Purchase.objects.all()
+
+    for p in ps:
+        if p.payment_status == p.EXPIRED_PAYMENT_STATUS:
+            continue
+        elif p.pk == 50:
+            continue
+        else:
+            print 
+            print u'{ass}'.format(ass=p.associate)
+            print p
+            send_lastinfo_mail_for_purchase(p.pk)
+            print 'sent'
+
