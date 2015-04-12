@@ -17,14 +17,14 @@
 {% if language == 'de' %}
 <ul>
     <a href='{% url 'registration' 'de' %}'><li>Anmeldung</li></a>
-    <a href='{% url 'welcome' 'de' %}/#Zurich'><li>Z&uumlrich</li></a>
+    <!--<a href='{% url 'welcome' 'de' %}/#Zurich'><li>Z&uuml;rich</li></a>-->
     <a href='{% url 'welcome' 'de' %}/#Stundenplan'><li>Stundenplan</li></a>
     <a href='{% url 'welcome' 'de' %}/#Willkommen'><li>Willkommen</li></a>
 </ul>
 {% elif language == 'en' %}
 <ul>
     <a href='{% url 'registration' 'en' %}'><li>Registration</li></a>
-    <a href='{% url 'welcome' 'en' %}/#Zurich'><li>Z&uuml;rich</li></a>
+    <!--<a href='{% url 'welcome' 'en' %}/#Zurich'><li>Z&uuml;rich</li></a>-->
     <a href='{% url 'welcome' 'en' %}/#Schedule'><li>Schedule</li></a>
     <a href='{% url 'welcome' 'en' %}/#Welcome'><li>Welcome</li></a>
 </ul>
@@ -33,11 +33,11 @@
 
 {% block precontent %}
 {% if language == 'de' %}
-<a href="{% static "img/Flyer_Landscape_de.pdf" %}">
+<a href="{% static "img/Flyer2015_de.pdf" %}">
 Flyer
 </a>
 {% elif language == 'en' %}
-<a href="{% static "img/Flyer_Landscape_en.pdf" %}">
+<a href="{% static "img/Flyer2015_en.pdf" %}">
 Flyer
 </a>
 {% endif %}

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hiroshi Ikeda in Zurich{% block head_title %}{% endblock %}</title>
+    <title>Hiroshi Ikeda in Z&uuml;rich{% block head_title %}{% endblock %}</title>
     <meta charset="utf-8">
     <style type="text/css">
 
@@ -25,7 +25,7 @@
         	font-size: 200%;
         	font-weight: bold;
         	vertical-align: middle;
-        	height: 426px;
+        	height: 422px;
             width: 900px;
             overflow: hidden;
             padding: 0 0 0.1em 0;
@@ -34,11 +34,11 @@
         }
 
         .header_en {
-            background-image: url({% static 'img/Flyer_with_skyline_en.png' %});
+            background-image: url({% static 'img/HeaderPic2015_en.png' %});
         }
 
         .header_de {
-            background-image: url({% static 'img/Flyer_with_skyline_de.png' %});
+            background-image: url({% static 'img/HeaderPic2015_de.png' %});
         }
 
         #header a {
@@ -57,7 +57,7 @@
         #navigationbar {
         	font-size: 50%;
         	font-weight: bold;
-            background-color: rgba(30,0,0,0.3);
+            background-color: rgba(30,0,0,0.35);
             position: absolute;
             bottom: 0;
             width: 900px;
@@ -217,6 +217,7 @@
             margin-left: 0;
             margin-bottom: 0;
         }
+
         li.errorlist {
             padding-left:0em;
             margin-left: 0;
@@ -237,6 +238,21 @@
         	color:#ccc;
         	font-weight:100;
         }
+
+        .lightbox-image-set {
+            width: 100%;
+        }
+
+        .lightbox-image-row {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .lightbox-imagelink {
+            float: center;
+        }
+
 
     </style>
     
@@ -327,7 +343,7 @@
         {% block fbbutton %}{% endblock %}
         <div>
         <p class="fine-print">
-            {% block footer %}This site was last updated on May 22nd, 2014{% endblock %}
+            {% block footer %}This site was last updated on April 12, 2015{% endblock %}
             <span id="last-update"></span>
         </p>
         </div>
