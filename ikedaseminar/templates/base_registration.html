@@ -4,14 +4,14 @@
 {% if language == 'de' %}
 <ul>
     <a class='active' href='{% url 'registration' 'de' %}'><li>Anmeldung</li></a>
-    <!--<a href='{% url 'welcome' 'de' %}/#Zurich'><li>Z&uumlrich</li></a>-->
+    <a href='{% url 'welcome' 'de' %}/#Zurich'><li>Z&uumlrich</li></a>
     <a href='{% url 'welcome' 'de' %}/#Stundenplan'><li>Stundenplan</li></a>
     <a href='{% url 'welcome' 'de' %}/#Willkommen'><li>Willkommen</li></a>
 </ul>
 {% elif language == 'en' %}
 <ul>
     <a class='active' href='{% url 'registration' 'en' %}'><li>Registration</li></a>
-    <!--<a href='{% url 'welcome' 'en' %}/#Zurich'><li>Zurich</li></a>-->
+    <a href='{% url 'welcome' 'en' %}/#Zurich'><li>Zurich</li></a>
     <a href='{% url 'welcome' 'en' %}/#Schedule'><li>Schedule</li></a>
     <a href='{% url 'welcome' 'en' %}/#Welcome'><li>Welcome</li></a>
 </ul>
