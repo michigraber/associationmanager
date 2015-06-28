@@ -21,33 +21,33 @@ class AssociateForm_de(forms.ModelForm):
     class Meta:
         model = Associate
         fields = (
-                'first_name', 'last_name', 'date_of_birth', 'organization',
+                'first_name', 'last_name', 'date_of_birth',
                 'street_and_nr', 'postal_code', 'city', 'country',
-                'email_address',
+                'email_address', 'organization',
                 )
 
         widgets = {
             'first_name': forms.widgets.TextInput(attrs={'size': 40,}),
             'last_name': forms.widgets.TextInput(attrs={'size': 40,}),
-            'organization': forms.widgets.TextInput(attrs={'size': 40,}),
             'date_of_birth': SelectDateWidget(years=BIRTH_YEAR_CHOICES),
             'street_and_nr': forms.widgets.TextInput(attrs={'size': 40,}),
             'city': forms.widgets.TextInput(attrs={'size': 40,}),
             'country': forms.widgets.TextInput(attrs={'size': 40,}),
             'email_address': forms.widgets.TextInput(attrs={'size': 40,}),
+            'organization': forms.widgets.TextInput(attrs={'size': 40,}),
             }
 
 
         labels = {
                 'first_name': 'Vorname',
                 'last_name': 'Nachname',
-                'organization': 'Dojo',
                 'date_of_birth': 'Geburtsdatum',
                 'street_and_nr': 'Strasse und Nummer',
                 'postal_code': 'Postleitzahl',
                 'city': 'Ort', 
                 'country': 'Land', 
                 'email_address': 'Email Adresse',
+                'organization': 'Dojo',
                 }
 
 
@@ -103,33 +103,33 @@ class AssociateForm_en(forms.ModelForm):
     class Meta:
         model = Associate
         fields = (
-                'first_name', 'last_name', 'date_of_birth', 'organization',
+                'first_name', 'last_name', 'date_of_birth', 
                 'street_and_nr', 'postal_code', 'city', 'country', 
-                'email_address',
+                'email_address', 'organization',
                 )
 
         widgets = {
             'first_name': forms.widgets.TextInput(attrs={'size': 40,}),
             'last_name': forms.widgets.TextInput(attrs={'size': 40,}),
-            'organization': forms.widgets.TextInput(attrs={'size': 40,}),
             'date_of_birth': SelectDateWidget(years=BIRTH_YEAR_CHOICES),
             'street_and_nr': forms.widgets.TextInput(attrs={'size': 40,}),
             'city': forms.widgets.TextInput(attrs={'size': 40,}),
             'country': forms.widgets.TextInput(attrs={'size': 40,}),
             'email_address': forms.widgets.TextInput(attrs={'size': 40,}),
+            'organization': forms.widgets.TextInput(attrs={'size': 40,}),
             }
 
 
         labels = {
                 'first_name': 'Firstname',
                 'last_name': 'Lastname',
-                'organization': 'Dojo',
                 'date_of_birth': 'Birthdate',
                 'street_and_nr': 'Address',
                 'postal_code': 'Postal Code',
                 'city': 'City', 
                 'country': 'Country', 
                 'email_address': 'E-mail Address',
+                'organization': 'Dojo',
                 }
 
 
