@@ -7,11 +7,13 @@ BIRTH_YEAR_CHOICES = tuple([int(i) for i in range(1910, 2014)])
 
 class AssociateForm_de(forms.ModelForm):
 
+    required_css_class = 'required'
+
     def __init__(self, *args, **kwargs):
         super(AssociateForm_de, self).__init__(*args, **kwargs)
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
-        self.fields['date_of_birth'].required = True
+#       self.fields['date_of_birth'].required = True
         self.fields['street_and_nr'].required = True
         self.fields['postal_code'].required = True
         self.fields['city'].required = True
@@ -53,11 +55,13 @@ class AssociateForm_de(forms.ModelForm):
 
 class EmergencyContactForm_de(forms.ModelForm):
 
+    required_css_class = 'required'
+
     def __init__(self, *args, **kwargs):
         super(EmergencyContactForm_de, self).__init__(*args, **kwargs)
-        self.fields['emergency_contact_first_name'].required = True
-        self.fields['emergency_contact_last_name'].required = True
-        self.fields['emergency_contact_phone_number'].required = True
+#       self.fields['emergency_contact_first_name'].required = True
+#       self.fields['emergency_contact_last_name'].required = True
+#       self.fields['emergency_contact_phone_number'].required = True
 
     class Meta:
         model = Associate
@@ -89,11 +93,13 @@ class EmergencyContactForm_de(forms.ModelForm):
 
 class AssociateForm_en(forms.ModelForm):
 
+    required_css_class = 'required'
+
     def __init__(self, *args, **kwargs):
         super(AssociateForm_en, self).__init__(*args, **kwargs)
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
-        self.fields['date_of_birth'].required = True
+#       self.fields['date_of_birth'].required = True
         self.fields['street_and_nr'].required = True
         self.fields['postal_code'].required = True
         self.fields['city'].required = True
@@ -135,11 +141,13 @@ class AssociateForm_en(forms.ModelForm):
 
 class EmergencyContactForm_en(forms.ModelForm):
 
+    required_css_class = 'required'
+
     def __init__(self, *args, **kwargs):
         super(EmergencyContactForm_en, self).__init__(*args, **kwargs)
-        self.fields['emergency_contact_first_name'].required = True
-        self.fields['emergency_contact_last_name'].required = True
-        self.fields['emergency_contact_phone_number'].required = True
+#       self.fields['emergency_contact_first_name'].required = True
+#       self.fields['emergency_contact_last_name'].required = True
+#       self.fields['emergency_contact_phone_number'].required = True
 
     class Meta:
         model = Associate
