@@ -176,6 +176,10 @@
             border-color: #A00909;
         }
 
+        th, td {
+            font-weight: normal;
+        }
+
         #registrationcontainer {
             margin: 0 1em;
             width: 80%;
@@ -200,9 +204,12 @@
             padding: 2em;
         }
 
-        #registrationform th, td{
+        #registrationform tr.required th {
+            font-weight: bold;
+        }
+
+        #registrationform th, td {
             padding: 0.5em 2em 0 0; 
-            font-weight: normal;
         }
         
         .errorlist {
