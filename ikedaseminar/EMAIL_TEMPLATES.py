@@ -8,7 +8,7 @@ Thanks for registering for our Seminar with Hiroshi Ikeda Shihan!
 Your registration id is : {pid}
 
 
-The seminar takes place from Friday, August 14 July 25 until Sunday, August 16 2015.
+The seminar takes place from Friday, August 14 until Sunday, August 16 2015.
 
 
 Your registration contains 
