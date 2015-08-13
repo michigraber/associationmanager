@@ -133,3 +133,8 @@ class Associate(BaseModel):
                 co=self.country.encode('utf-8')
                 )
         return s
+
+    @property
+    def sort_string(self):
+        return self.last_name.lower()+self.first_name.lower()
+
