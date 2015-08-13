@@ -209,6 +209,22 @@ class EventPart(BaseModel):
             s =  u'%s : %s' % (self.short_description_en, self.pretty_time())
         return s
 
+    def get_participants(self):
+        participants = []
+        for registration in self.registration_set.all():
+            #if registration.associate not in ep_associates[epname]:
+            if registration.is_paid_or_pending():
+                participants.append(
+                        {
+                        'ass_sort_key': registration.associate.sort_string,
+                        'ass': registration.associate,
+                        'payment_status': registration.get_payment_status_display(),
+                        }
+                        )
+        participants = sorted(participants, key=lambda k:k['ass_sort_key'])
+
+        return participants
+
 
 class Registration(BaseModel):
     '''
@@ -320,12 +336,12 @@ class Article(BaseModel):
             s = u'%s' % self.name_en
         return s
 
-    def no_articles_assigned(self):
+    def get_articles_assigned(self):
         '''
         Purchase of PurchaseItem has
         payment_status 'pending', 'paid_by_xxx', ' 
         '''
-        pis = self.purchase_items.all() 
+        pis = self.purchase_items.all()
         pis_assigned = []
         for pi in pis:
             if pi.payment_status in [
@@ -335,7 +351,15 @@ class Article(BaseModel):
                     Purchase.PAID_BY_CASH_PAYMENT_STATUS,
                     ]:
                 pis_assigned.append(pi)
-        return len(pis)
+        return pis_assigned
+
+
+    def no_articles_assigned(self):
+        '''
+        Purchase of PurchaseItem has
+        payment_status 'pending', 'paid_by_xxx', ' 
+        '''
+        return len(self.get_articles_assigned())
 
     def no_items_assigned(self):
         return self.no_articles_assigned()
@@ -353,7 +377,18 @@ class Article(BaseModel):
             s = self.name_en + '\n'
         return s.encode('utf-8')
 
-
+    def get_buyers(self):
+        pis = self.get_articles_assigned()
+        buyers = []
+        for pi in pis:
+                buyers.append(
+                        {
+                        'ass_sort_key': pi.purchase.associate.sort_string,
+                        'ass': pi.purchase.associate,
+                        'payment_status': pi.purchase.get_payment_status_display(),
+                        }
+                        )
+        return buyers
 
 class DB_Inconsistency_Error(Exception):
     pass
