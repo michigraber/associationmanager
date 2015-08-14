@@ -51,7 +51,7 @@ def send_lastinfo_mail_for_purchase(purchase_pk):
     mail_body = create_lastinfo_mail_body_for_purchase(pur_obj)
 
     email = EmailMessage(
-            '[Hiroshi Ikeda Shihan Seminar Zurich 2014]',
+            '[Hiroshi Ikeda Shihan Seminar Zurich 2015]',
             mail_body,
             'ikedaseminar@aikikai-zuerich.ch',
             [pur_obj.associate.email_address, ],
@@ -84,7 +84,7 @@ def send_all_last_info():
     for p in ps:
         if p.payment_status == p.EXPIRED_PAYMENT_STATUS:
             continue
-        elif p.pk == 50:
+        if p.pk == 1:
             continue
         else:
             print 
