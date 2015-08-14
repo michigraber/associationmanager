@@ -105,9 +105,11 @@ class Purchase(BaseModel):
             summary += pi.content_object.pretty_print(language=language)
         summary += 40*'* '+'\n'
         if language == 'en':
-            summary += 'Price: '+str(self.balance_due())+'.- sFr.\n'
+            ps = 'remains open' if self.payment_status < 3 else 'paid'
+            summary += 'Price: '+str(self.balance_due())+'.- sFr. - ' + ps + '\n'
         elif language == 'de':
-            summary += 'Preis: '+str(self.balance_due())+'.- sFr.\n'
+            ps = 'noch offen' if self.payment_status < 3 else 'bezahlt'
+            summary += 'Preis: '+str(self.balance_due())+'.- sFr. - ' + ps + '\n'
         summary += 40*'* '
 
         return summary.encode('utf-8') + '\n'
