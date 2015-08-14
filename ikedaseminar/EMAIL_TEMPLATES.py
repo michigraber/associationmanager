@@ -81,11 +81,10 @@ Du hast dich fuer die folgenden Dinge eingeschrieben:
 Das Keiko Freitag Abend findet bei uns im Dojo statt:
 
 Aiki-Kai Zuerich 
-Hardturmstrasse 169
-8005 Zuerich
+Bernerstrasse Nord 182
+8064 Zuerich
 
-Tramhaltestelle Fischerweg, Tramlinie 17
-
+Tramhaltestelle Gruenaustrasse / Bahnhof Altstetten
 
 Samstag und Sonntag befinden wir uns in der Sportanlage der Universitaet
 Zuerich, Irchel:
@@ -113,14 +112,17 @@ helfen kommen kannst und dich dafuer bereits ca 09:00 Uhr in der Sportanlage
 Irchel einfindest.
 
 
-Die Party Samstag Abend findet im GZ Wipkingen statt:
+Die Party Samstag Abend findet im GZ Bachwiesen statt:
 
-GZ Wipkingen
-Breitensteinstrasse 19 a
-8037 Zuerich
+GZ Bachwiesen 
+Bachwiesenstrasse 40
+8047 Zuerich
 
-Tramhaltestelle Foerrlibuckstrasse, Tramlinie  17 oder
-Tramhaltestelle Wipkingerplatz, Tramlinie 13
+Bushaltestelle Untermoosstrasse, Bus Nr. 80, 7 min Fussweg
+Tramhaltestelle Fellenbergstrasse, Tram Nr. 3, 8 min Fussweg
+
+
+Weitere Infos findest du auf unserer Website: http://ikedaseminar.aikikai-zuerich.ch
 
 
 Herzliche Gruesse und bis bald,
@@ -133,7 +135,7 @@ LAST_INFO_EMAIL_EN = '''
 Hi {first_name},
 
 
-We are looking forward to seeing you soon on our aikido seminar with Hiroshi
+We are looking forward to seeing you soon at our aikido seminar with Hiroshi
 Ikeda Shihan. We send you here the latest Information.
 
 You registered for the following things:
@@ -144,11 +146,10 @@ You registered for the following things:
 The keiko on Friday evening will take place in our dojo:
 
 Aiki-Kai Zuerich 
-Hardturmstrasse 169
-8057 Zuerich
+Bernerstrasse Nord 182
+8064 Zuerich
 
-Tram stop Fischerweg, tram line 14
-
+Tram stop Gruenaustrasse / Bahnhof Altstetten
 
 On Saturday and Sunday the keiko will take place in the Sport Center of the
 University of Zuerich Irchel.
@@ -175,14 +176,17 @@ glad for all helping hands. Therefore we kindly ask you to join us already
 around 09:00 at the Irchel Sports Center.
 
 
-The Party Saturday evening will take place in GZ Wipkingen:
+The Party Saturday evening will take place in GZ Bachwiesen:
 
-GZ Wipkingen
-Breitensteinstrasse 19 a
-8037 Zuerich
+GZ Bachwiesen 
+Bachwiesenstrasse 40
+8047 Zuerich
 
-Tram stop Foerrlibuckstrasse, tram line  17 or
-Tram stop Wipkingerplatz, tram line 13
+Bus stop Untermoosstrasse, Bus Nr. 80, 7 min walk 
+Tram stop Fellenbergstrasse, Tram Nr. 3, 8 min walk 
+
+
+Some more information you can find on our website: http://ikedaseminar.aikikai-zuerich.ch
 
 
 Kind regards and see you soon!
