@@ -25,20 +25,22 @@
         	font-size: 200%;
         	font-weight: bold;
         	vertical-align: middle;
-        	height: 422px;
+        	height: 400px;
             width: 900px;
             overflow: hidden;
             padding: 0 0 0.1em 0;
             margin: 0 0 0.5em 0;
             position: relative;
+            border: 0em dashed;
+            border-color: #FFAA00;
         }
 
         .header_en {
-            background-image: url({% static 'img/HeaderPic2015_en.png' %});
+            background-image: url({% static 'img/HeaderPic2016_en.png' %});
         }
 
         .header_de {
-            background-image: url({% static 'img/HeaderPic2015_de.png' %});
+            background-image: url({% static 'img/HeaderPic2016_de.png' %});
         }
 
         #header a {
@@ -47,27 +49,28 @@
         }
 
         #header a:hover {
-            color: #a00a0a;
+            color: #000f0f;
         }
 
         #header a.active {
-            color: #a00a0a;
+            color: #000f0f;
         }
 
         #navigationbar {
         	font-size: 50%;
         	font-weight: bold;
-            background-color: rgba(30,0,0,0.35);
+            background-color: rgba(0,0,0,0.5);
             position: absolute;
             bottom: 0;
             width: 900px;
-            height: 3em;
+            height: 2em;
             color: #ffffff;
         }
 
 
         #navigationbar ul {
             list-style-type: none;
+            margin: 0.5em 0em 0 1em;
         }
 
         #navigationbar li {
@@ -104,6 +107,7 @@
         #content {
             padding: 1em; 
             text-align: justify;
+            line-height: 1.5em;
         }
 
         #content a {
@@ -348,7 +352,7 @@
         {% block fbbutton %}{% endblock %}
         <div>
         <p class="fine-print">
-            {% block footer %}This site was last updated on April 12, 2015{% endblock %}
+            {% block footer %}This site was last updated on April 16, 2016{% endblock %}
             <span id="last-update"></span>
         </p>
         </div>
