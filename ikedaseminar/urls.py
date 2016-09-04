@@ -25,10 +25,10 @@ urlpatterns = patterns('ikedaseminar.views',
 )
 
 urlpatterns += patterns('events.views',
+    url(r'(?P<language>en|de)/registration/pre/*$',
+        'registration_configuration', name='preregistration'),
 #   url(r'(?P<language>en|de)/registration/aiki-kai/*$',
-#       'registration_configuration', name='preregistration'),
-    url(r'(?P<language>en|de)/registration/aiki-kai/*$',
-        'redirect_to_registration'),
+#       'redirect_to_registration'),
 #   url(r'(?P<language>en|de)/registration/paypal/*$',
 #       csrf_exempt(PaypalIPNEndpoint())),
 #   url(r'(?P<language>en|de)/registration/*$',
