@@ -8,7 +8,7 @@ Thanks for registering for our Seminar with Hiroshi Ikeda Shihan!
 Your registration id is : {pid}
 
 
-The seminar takes place from Friday, August 14 until Sunday, August 16 2015.
+The seminar takes place from Friday, September 30 until Sunday, October 2, 2016.
 
 
 Your registration contains 
@@ -41,7 +41,7 @@ Herzlichen Dank fuer deine Anmeldung zum Seminar mit Hiroshi Ikeda Shihan!
 Deine Anmeldungs-id ist : {pid}
 
 
-Das Seminar findet von Freitag 14. bis Sonntag 16. August 2015 statt.
+Das Seminar findet von Freitag 30. Septeber bis Sonntag 2. Oktober 2016 statt.
 
 
 Hierfuer hast du dich angemeldet:
