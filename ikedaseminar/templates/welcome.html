@@ -5,9 +5,15 @@
 
 {% if language == 'de' %}
 
-<!--<div class='announcements'>-->
+<div class='announcements'>
     <!--<h4>Neuste Seminar Infos</h4>-->
     <!--<ul>-->
+        <!--<li>-->
+            <h4>Die <a href={% url 'registration' 'de' %}>Anmeldung</a> online!</h4>
+            <p>
+            Bitte helft uns mit, den Anlass zu planen und meldet euch fr&uuml;hzeitig an. Danke!
+            </p>
+        <!--</li>-->
 
         <!--<li>-->
         <!--[>[><p>Die Anmeldung ist offline seit Donnerstag, 24. Juli 2014.<p><]<]-->
@@ -29,7 +35,7 @@
         <!--[></li><]-->
 
     <!--</ul>-->
-<!--</div>-->
+</div>
 
 <div class="section">
 <a id='Willkommen'></a><h3>Willkommen</h3>
@@ -56,9 +62,9 @@ href='http://www.aikidobridge.com/'> Aikido Bridge</a></strong> Seminare.
 <!--Wir freuen uns aber auch auf Kurzentschlossene und Spontane. Melde dich dann-->
 <!--doch zur Einschreibung vor Ort an der Tageskasse.-->
 <!--</p>-->
-<p>
-Anmeldung sowie weitere Informationen werden wir im August online schalten.
-</p>
+<!--<p>-->
+<!--Anmeldung sowie weitere Informationen werden wir im August online schalten.-->
+<!--</p>-->
 <p>
 Habt ihr Fragen? Ihr k&ouml;nnt uns via <a
 href='&#0109;&#0097;&#0105;lt&#0111;&#0058;ikedaseminar&#64;aikikai-zuerich&#46;ch'>ikedaseminar<span
@@ -87,8 +93,8 @@ class='at'>&#64;</span>aikikai-zuerich&#46;ch</a> erreichen.
 Einsatz kommen werden. Wir m&ouml;chten, dass Sensei vor Ort entscheiden
 kann.</p>
 
-<!--<h4>Party</h4>-->
-<!--Am Samstag Abend wird ein gemeinsames Essen stattfinden, ab 18:00 Uhr im <a href='#GZ'>GZ Bachwiesen</a><br/>Partyteilnahme kostet 20.- sFr.-->
+<h4>Party</h4>
+Am Samstag Abend wird ein gemeinsames Essen stattfinden, ab 18:00 Uhr im <a href='#GZ'>GZ Bachwiesen</a><br/>Partyteilnahme kostet 20.- sFr.
 
 <h4>Preise</h4>
 Trainingslektionen sind beliebig w&auml;hlbar. Es gilt der folgende
@@ -114,7 +120,6 @@ Lektionen: 100.- sFr., 5 Lektionen: 120.- sFr..</br>
 <h4>Adressen zum Seminar</h4>
 <p>
 <h5><a id='AikiKai' href='http://www.aikikai-zuerich.ch'>Aiki-Kai Z&uuml;rich</a></h5>
-</br>
 Bernerstrasse Nord 182<br>
 8064 Z&uuml;rich<br>
 Tramhaltestelle Grünaustrasse / Bahnhof Altstetten
@@ -127,13 +132,13 @@ Tramhaltestelle Grünaustrasse / Bahnhof Altstetten
 <!--Tramhaltestelle Irchel, Tram Nr. 10 und 9-->
 <!--</p>-->
 
-<!--<p>-->
-<!--<h5><a id='GZ' href='http://www.gz-zh.ch/gz-bachwiesen/gz-bachwiesen/'>GZ Bachwiesen</a></h5>-->
-<!--Bachwiesenstrasse 40<br>-->
-<!--8047 Z&uuml;rich<br>-->
-<!--Bushaltestelle Untermoosstrasse, Bus Nr. 80, 7 min Fussweg<br>-->
-<!--Tramhaltestelle Fellenbergstrasse, Tram Nr. 3, 8 min Fussweg<br>-->
-<!--</p>-->
+<p>
+<h5><a id='GZ' href='http://www.gz-zh.ch/gz-bachwiesen/gz-bachwiesen/'>GZ Bachwiesen</a></h5>
+Bachwiesenstrasse 40<br>
+8047 Z&uuml;rich<br>
+Bushaltestelle Untermoosstrasse, Bus Nr. 80, 7 min Fussweg<br>
+Tramhaltestelle Fellenbergstrasse, Tram Nr. 3, 8 min Fussweg<br>
+</p>
 
 <!--GZ Bachwiesen, Bachwiesenstrasse 40, 8047 Zürich, Switzerland-->
 <!--www.gz-zh.ch-->
@@ -171,7 +176,13 @@ Mehrzonen-Tickets am SBB- oder VBZ-Schalter am Flughafen bezogen werden.
 {% elif language == 'en' %}
 <!-- ENGLISH SECTION -->
 
-<!--<div class='announcements'>-->
+<div class='announcements'>
+
+    <h4>The <a href={% url 'registration' 'en' %}>registration</a> is online now!</h4>
+    <p>
+    Please help us to plan our event and register beforehand. Thanks!
+    </p>
+
     <!--<h4>Latest Seminar Information</h4>-->
     <!--<ul>-->
 
@@ -194,7 +205,7 @@ Mehrzonen-Tickets am SBB- oder VBZ-Schalter am Flughafen bezogen werden.
         <!--[></li><]-->
 
     <!--</ul>-->
-<!--</div>-->
+</div>
 
 <div class="section">
 <a id='Welcome'></a><h3>Welcome</h3>
@@ -254,10 +265,10 @@ ikedaseminar<span class='at'>&#64;</span>aikikai-zuerich&#46;ch</a>.
 </ul>
 <p>Please bring Bokken, Jo and Tanto with you. We do not know yet whether we will use them, but we would like that Sensei can decide on the spot.</p>
 
-<!--<h4>Party</h4>-->
-<!--There will be a dinner and subsequent party on Saturday starting at 6pm at <a href='#GZ'>GZ Bachwiesen</a>.-->
-<!--<br/>-->
-<!--Participation will cost 20.- sFr.-->
+<h4>Party</h4>
+There will be a dinner and subsequent party on Saturday starting at 6pm at <a href='#GZ'>GZ Bachwiesen</a>.
+<br/>
+Participation will cost 20.- sFr.
 
 <h4>Price</h4>
 Lessons (2 hours) can be combined as you like. The price for your package is
@@ -283,7 +294,6 @@ calculated according to the following key:<br>
 <h4>Seminar addresses</h4>
 <p>
 <h5><a id='AikiKai' href='http://www.aikikai-zuerich.ch'>Aiki-Kai Z&uuml;rich</a></h5>
-</br>
 Bernerstrasse Nord 182<br>
 8064 Z&uuml;rich<br>
 Tram stop Grünaustrasse / Bahnhof Altstetten
@@ -296,13 +306,13 @@ Tram stop Grünaustrasse / Bahnhof Altstetten
 <!--Tram stop Irchel, Tram Nr. 10 und 9-->
 <!--</p>-->
 
-<!--<p>-->
-<!--<h5><a id='GZ' href='http://www.gz-zh.ch/gz-bachwiesen/gz-bachwiesen/'>GZ Bachwiesen</a></h5>-->
-<!--Bachwiesenstrasse 40<br>-->
-<!--8047 Z&uuml;rich<br>-->
-<!--Bus stop Untermoosstrasse, Bus Nr. 80, 7 min by foot<br>-->
-<!--Tram stop Fellenbergstrasse, Tram Nr. 3, 8 min by foot<br>-->
-<!--</p>-->
+<p>
+<h5><a id='GZ' href='http://www.gz-zh.ch/gz-bachwiesen/gz-bachwiesen/'>GZ Bachwiesen</a></h5>
+Bachwiesenstrasse 40<br>
+8047 Z&uuml;rich<br>
+Bus stop Untermoosstrasse, Bus Nr. 80, 7 min by foot<br>
+Tram stop Fellenbergstrasse, Tram Nr. 3, 8 min by foot<br>
+</p>
 
 <!--<p><a href="{% static "img/Directions.pdf" %}">Directions for Restaurants and Party for Download</a></p>-->
 
