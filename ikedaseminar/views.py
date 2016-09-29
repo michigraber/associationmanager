@@ -47,6 +47,6 @@ def welcome(request, language=''):
 def registration(request, language='de'):
     ddict = { 
             'language': language,
-            'reason': 'before',
+            'reason': 'end',
             }
     return render_to_response('registration_offline.html', ddict )
