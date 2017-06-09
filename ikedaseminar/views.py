@@ -44,9 +44,10 @@ def welcome(request, language=''):
     return render_to_response('welcome.html', ddict )
 
 
-def registration(request, language='de'):
+def registration(request, language='de', **kwargs):
     ddict = { 
             'language': language,
             'reason': 'end',
             }
+    ddict.update(kwargs)
     return render_to_response('registration_offline.html', ddict )

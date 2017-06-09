@@ -21,7 +21,9 @@ urlpatterns = patterns('ikedaseminar.views',
     url(r'^$', RedirectView.as_view(url='/de/')),
     url(r'(?P<language>en|de)/*$', 'welcome', {}, name='welcome'),
     #url(r'(?P<language>en|de)/memory/*$', 'memory', {}, name='memory'),
-    url(r'(?P<language>en|de)/registration/*$', 'registration', {}, name='registration'),
+
+    # this is the registration offline view :: reason can be 'before' / 'end'
+    url(r'(?P<language>en|de)/registration/*$', 'registration', {'reason': 'before'}, name='registration'),
 )
 
 urlpatterns += patterns('events.views',
