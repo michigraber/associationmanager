@@ -78,7 +78,7 @@ Du hast dich fuer die folgenden Dinge eingeschrieben:
 {package}
 
 
-Das Keiko Freitag Abend findet bei uns im Dojo statt:
+Dieses Jahr findet das gesamte Seminar bei uns im Dojo statt:
 
 Aiki-Kai Zuerich 
 Bernerstrasse Nord 182
@@ -86,30 +86,22 @@ Bernerstrasse Nord 182
 
 Tramhaltestelle Gruenaustrasse / Bahnhof Altstetten
 
-Samstag und Sonntag befinden wir uns in der Sportanlage der Universitaet
-Zuerich, Irchel:
+Es gibt eine beschraenkte Anzahl Parkplaetze die wir benuetzen duerfen
+unmittelbar vor dem Dojo (nicht alle und zudem muss eine spezielle Parkkarte
+hinterlegt werden, informiert euch bei Dojo Mitgliedern). Einige weitere,
+teilweise zeitlich beschraenkte sind in der Umgebung des Dojos zu finden.
+Weitere Park-Moeglichkeiten sind in der Karte zum Seminar eingezeichnet :
 
-Sportanlagen Universitaet Irchel    
-Winterthurerstrasse 180
-8057 Zuerich
-
-Tramhaltestelle Irchel, Tramlinie 10 und 9
+https://www.google.com/maps/d/viewer?mid=1E2DnMZT8tm3JL-SNV8sGTyKjJFU&usp=sharing
 
 
 Und nun noch:
 
 - Sei bitte rechtzeitig vor Ort damit Sensei das Keiko puenktlich und ungestoert
   beginnen kann.
-- Die Sportanlage Irchel wird waehrend dem Keiko geschlossen werden und du
-  wirst klingeln muessen um Einlass zu erhalten.
-- Du wirst Zoris/Slippers fuer den Weg von der Garderobe bis zu den Tatami
-  brauchen.
+- Du wirst Zoris/Slippers brauchen fuer den Weg von der Garderobe zu den Tatami.
 - Bring bitte Jo und Bokken mit damit Sensei diese mit uns verwenden kann wenn
   er moechte.
-
-Wir legen Samstag Morgen gemeinsam die Matten aus und sind froh wenn du uns
-helfen kommen kannst und dich dafuer bereits ca 09:00 Uhr in der Sportanlage
-Irchel einfindest.
 
 
 Die Party Samstag Abend findet im GZ Bachwiesen statt:
@@ -122,7 +114,8 @@ Bushaltestelle Untermoosstrasse, Bus Nr. 80, 7 min Fussweg
 Tramhaltestelle Fellenbergstrasse, Tram Nr. 3, 8 min Fussweg
 
 
-Weitere Infos findest du auf unserer Website: http://ikedaseminar.aikikai-zuerich.ch
+Weitere Infos findest du auf unserer Website:
+http://ikedaseminar.aikikai-zuerich.ch
 
 
 Herzliche Gruesse und bis bald,
@@ -151,29 +144,22 @@ Bernerstrasse Nord 182
 
 Tram stop Gruenaustrasse / Bahnhof Altstetten
 
-On Saturday and Sunday the keiko will take place in the Sport Center of the
-University of Zuerich Irchel.
+There is a limited number of parking spaces right in front of the dojo that we
+are allowed to use (not all of them and you'll need to display a special card,
+talk to Dojo members). A few more, some of them temporally limited, can be
+found in the vicinity of the Dojo. And finally we marked some more in the map
+of the seminar:
 
-Sportanlagen Universitaet Irchel    
-Winterthurerstrasse 190
-8057 Zuerich
+https://www.google.com/maps/d/viewer?mid=1E2DnMZT8tm3JL-SNV8sGTyKjJFU&usp=sharing
 
-Tram stop Irchel, tram line 10 und 9
 
 And finally:
 
 - Please be on time on the mats so that Sensei can begin with the Keiko
   timely and uninterruptedly.
-- We will have to close the doors to the Sports Center at the University during
-  the keiko. Therefore you will have to ring the bell to be let in should you
-  run late.
 - You will need zoris/slippers for the way from the wardrobe to the tatami.
 - Please bring Jo and Bokken so that Sensei could use them together with us in
   case he wanted to.
-
-We will lay out the mats on Saturday morning in a collective effort and are
-glad for all helping hands. Therefore we kindly ask you to join us already
-around 09:00 at the Irchel Sports Center.
 
 
 The Party Saturday evening will take place in GZ Bachwiesen:
@@ -186,7 +172,8 @@ Bus stop Untermoosstrasse, Bus Nr. 80, 7 min walk
 Tram stop Fellenbergstrasse, Tram Nr. 3, 8 min walk 
 
 
-Some more information you can find on our website: http://ikedaseminar.aikikai-zuerich.ch
+Some more information you can find on our website:
+http://ikedaseminar.aikikai-zuerich.ch
 
 
 Kind regards and see you soon!
