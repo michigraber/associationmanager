@@ -12,7 +12,7 @@ def send_confirmation_mail_for_purchase(purchase_pk):
     mail_body = create_confirmation_mail_body_for_purchase(pur_obj)
 
     email = EmailMessage(
-            '[Hiroshi Ikeda Shihan Seminar Zurich 2016]',
+            '[Hiroshi Ikeda Shihan Seminar Zurich 2017]',
             mail_body,
             'ikedaseminar@aikikai-zuerich.ch',
 #           ['michigraber@gmail.com', ]
@@ -51,7 +51,7 @@ def send_lastinfo_mail_for_purchase(purchase_pk):
     mail_body = create_lastinfo_mail_body_for_purchase(pur_obj)
 
     email = EmailMessage(
-            '[Hiroshi Ikeda Shihan Seminar Zurich 2016]',
+            '[Hiroshi Ikeda Shihan Seminar Zurich 2017]',
             mail_body,
             'ikedaseminar@aikikai-zuerich.ch',
             [pur_obj.associate.email_address, ],
