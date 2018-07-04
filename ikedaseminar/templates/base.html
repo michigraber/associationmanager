@@ -7,7 +7,7 @@
     <style type="text/css">
 
         body {
-        	background:#eaeaea;
+        	background: rgba(0,0,0,0.04);
         	font-family: 'Arial';
         	font-size: '20pt';
             margin: 0;
@@ -25,7 +25,7 @@
         	font-size: 200%;
         	font-weight: bold;
         	vertical-align: middle;
-        	height: 400px;
+        	height: 500px;
             width: 900px;
             overflow: hidden;
             padding: 0 0 0.1em 0;
@@ -36,11 +36,11 @@
         }
 
         .header_en {
-            background-image: url({% static 'img/HeaderPic2017.png' %});
+            background-image: url({% static 'img/HeaderPic2018.png' %});
         }
 
         .header_de {
-            background-image: url({% static 'img/HeaderPic2017.png' %});
+            background-image: url({% static 'img/HeaderPic2018.png' %});
         }
 
         #header a {
@@ -283,14 +283,14 @@
 <body>
 
 <!-- FACEBOOK LIKE BUTTON JAVASCRIPT -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<!--<div id="fb-root"></div>-->
+<!--<script>(function(d, s, id) {-->
+  <!--var js, fjs = d.getElementsByTagName(s)[0];-->
+  <!--if (d.getElementById(id)) return;-->
+  <!--js = d.createElement(s); js.id = id;-->
+  <!--js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";-->
+  <!--fjs.parentNode.insertBefore(js, fjs);-->
+<!--}(document, 'script', 'facebook-jssdk'));</script>-->
 
 <!-- CONTAINER -->
 <div class="container" id="container">
@@ -352,7 +352,7 @@
         {% block fbbutton %}{% endblock %}
         <div>
         <p class="fine-print">
-            {% block footer %}This site was last updated in September 2017{% endblock %}
+            {% block footer %}This site was last updated in July 2018{% endblock %}
             <span id="last-update"></span>
         </p>
         </div>
