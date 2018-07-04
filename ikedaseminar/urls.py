@@ -23,7 +23,7 @@ urlpatterns = patterns('ikedaseminar.views',
     #url(r'(?P<language>en|de)/memory/*$', 'memory', {}, name='memory'),
 
     # this is the registration offline view :: reason can be 'before' / 'end'
-    url(r'(?P<language>en|de)/registration/*$', 'registration', {'reason': 'end'}, name='registration'),
+    url(r'(?P<language>en|de)/registration/*$', 'registration', {'reason': 'before'}, name='registration'),
 )
 
 urlpatterns += patterns('events.views',
