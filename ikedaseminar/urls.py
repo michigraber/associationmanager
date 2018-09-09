@@ -23,17 +23,17 @@ urlpatterns = patterns('ikedaseminar.views',
     #url(r'(?P<language>en|de)/memory/*$', 'memory', {}, name='memory'),
 
     # this is the registration offline view :: reason can be 'before' / 'end'
-    url(r'(?P<language>en|de)/registration/*$', 'registration', {'reason': 'before'}, name='registration'),
+    #url(r'(?P<language>en|de)/registration/*$', 'registration', {'reason': 'before'}, name='registration'),
 )
 
 urlpatterns += patterns('events.views',
-    #url(r'(?P<language>en|de)/registration/*$',
-        #'registration_configuration', name='registration'),
+    url(r'(?P<language>en|de)/registration/*$',
+        'registration_configuration', name='registration'),
 
-    #url(r'(?P<language>en|de)/registration/pre/*$',
-        #'registration_configuration', name='preregistration'),
-    #url(r'(?P<language>en|de)/registration/aiki-kai/*$',
-        #'redirect_to_registration'),
+    url(r'(?P<language>en|de)/registration/pre/*$',
+        'registration_configuration', name='preregistration'),
+    url(r'(?P<language>en|de)/registration/aiki-kai/*$',
+        'redirect_to_registration'),
 
     url(r'(?P<language>en|de)/registration/paypal/*$',
         csrf_exempt(PaypalIPNEndpoint())),
