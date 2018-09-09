@@ -1,5 +1,5 @@
 '''
-Populate the database with IKEDA SEMINAR 2014 events DATA
+Populate the database with IKEDA SEMINAR 2018 events DATA
 '''
 
 from datetime import date, datetime
@@ -8,67 +8,67 @@ from events.models import Event, EventPart, Article
 
 
 EVENT = {
-        'title_en': 'Hiroshi Ikeda Shihan 2014', 
-        'title_de': 'Hiroshi Ikeda Shihan 2014',
+        'title_en': 'Hiroshi Ikeda Shihan 2018', 
+        'title_de': 'Hiroshi Ikeda Shihan 2018',
 
-        'date_from': date(2014, 07, 25),
-        'date_until': date(2014, 07, 27),
+        'date_from': date(2018, 10, 5),
+        'date_until': date(2018, 10, 7),
 
-        'slug': 'hiroshi-ikeda-shihan-2014',
+        'slug': 'hiroshi-ikeda-shihan-2018',
         
         'show_event': True,
         }
 
 EVENT_PARTS = [
         {
-            'datetime_from': datetime(2014, 07, 25, 19, 00, 00),
-            'datetime_until': datetime(2014, 07, 25, 21, 00, 00),
+            'datetime_from': datetime(2018, 10, 5, 19, 00, 00),
+            'datetime_until': datetime(2018, 10, 5, 21, 00, 00),
 
             'short_description_de': 'Keiko Freitag Abend',
             'short_description_en': 'Keiko Friday Evening',
 
             'is_bookable': True,
-            'max_no_participants': 50,
+            'max_no_participants': 60,
             },
         {
-            'datetime_from': datetime(2014, 07, 26, 10, 00, 00),
-            'datetime_until': datetime(2014, 07, 26, 12, 00, 00),
+            'datetime_from': datetime(2018, 10, 6, 10, 00, 00),
+            'datetime_until': datetime(2018, 10, 6, 12, 00, 00),
 
             'short_description_de': 'Keiko Samstag Morgen',
             'short_description_en': 'Keiko Saturday Morning',
 
             'is_bookable': True,
-            'max_no_participants': 120,
+            'max_no_participants': 60,
             },
         {
-            'datetime_from': datetime(2014, 07, 26, 15, 00, 00),
-            'datetime_until': datetime(2014, 07, 26, 17, 00, 00),
+            'datetime_from': datetime(2018, 10, 6, 15, 00, 00),
+            'datetime_until': datetime(2018, 10, 6, 17, 00, 00),
 
             'short_description_de': 'Keiko Samstag Nachmittag',
             'short_description_en': 'Keiko Saturday Afternoon',
 
             'is_bookable': True,
-            'max_no_participants': 120,
+            'max_no_participants': 60,
             },
         {
-            'datetime_from': datetime(2014, 07, 27, 10, 00, 00),
-            'datetime_until': datetime(2014, 07, 27, 12, 00, 00),
+            'datetime_from': datetime(2018, 10, 7, 10, 00, 00),
+            'datetime_until': datetime(2018, 10, 7, 12, 00, 00),
 
             'short_description_de': 'Keiko Sonntag Morgen',
             'short_description_en': 'Keiko Sunday Morning',
 
             'is_bookable': True,
-            'max_no_participants': 120,
+            'max_no_participants': 60,
             },
         {
-            'datetime_from': datetime(2014, 07, 27, 14, 00, 00),
-            'datetime_until': datetime(2014, 07, 27, 16, 00, 00),
+            'datetime_from': datetime(2018, 10, 7, 14, 00, 00),
+            'datetime_until': datetime(2018, 10, 7, 16, 00, 00),
 
             'short_description_de': 'Keiko Sonntag Nachmittag',
             'short_description_en': 'Keiko Sunday Afternoon',
 
             'is_bookable': True,
-            'max_no_participants': 120,
+            'max_no_participants': 60,
             },
         ]
 
@@ -77,8 +77,15 @@ ARTICLES = [
             'name_de': 'Party Samstag Abend',
             'name_en': 'Party Saturday Evening',
 
-            'price': 10,
-            'no_articles_initially': 120,
+            'price': 20,
+            'no_articles_initially': 80,
+            },
+        {
+            'name_de': 'Schlafen im Dojo',
+            'name_en': 'Sleeping in the Dojo',
+
+            'price': 0,
+            'no_articles_initially': 30,
             },
         ]
 
