@@ -57,6 +57,7 @@ def send_lastinfo_mail_for_purchase(purchase_pk):
             [pur_obj.associate.email_address, ],
             ['michigraber@aikikai-zuerich.ch', ],
             )
+    #print mail_body
     email.send(fail_silently=False)
 
 
