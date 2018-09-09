@@ -8,7 +8,7 @@ Thanks for registering for our Seminar with Hiroshi Ikeda Shihan!
 Your registration id is : {pid}
 
 
-The seminar takes place from Friday, September 29 until Sunday, October 1, 2017.
+The seminar takes place from Friday, October 5 until Sunday, October 7, 2018.
 
 
 Your registration contains 
@@ -41,7 +41,7 @@ Herzlichen Dank fuer deine Anmeldung zum Seminar mit Hiroshi Ikeda Shihan!
 Deine Anmeldungs-id ist : {pid}
 
 
-Das Seminar findet von Freitag 29. September bis Sonntag 1. Oktober 2017 statt.
+Das Seminar findet von Freitag 5. Oktober bis Sonntag 7. Oktober 2018 statt.
 
 
 Hierfuer hast du dich angemeldet:
@@ -70,8 +70,9 @@ LAST_INFO_EMAIL_DE = '''
 Hi {first_name}
 
 
-Wir freuen uns dich bald zu unserem Aikido Seminar mit Hiroshi Ikeda Shihan
-begruessen zu duerfen. Hier noch einige letzte Infos:
+Wir freuen uns dich am kommenden Wochenende vom 29. September bis zum 1.
+Oktober 2017 zu unserem Aikido Seminar mit Hiroshi Ikeda Shihan begruessen zu
+duerfen. Hier noch einige letzte Infos:
 
 Du hast dich fuer die folgenden Dinge eingeschrieben:
 
@@ -87,10 +88,11 @@ Bernerstrasse Nord 182
 Tramhaltestelle Gruenaustrasse / Bahnhof Altstetten
 
 Es gibt eine beschraenkte Anzahl Parkplaetze die wir benuetzen duerfen
-unmittelbar vor dem Dojo (nicht alle und zudem muss eine spezielle Parkkarte
-hinterlegt werden, informiert euch bei Dojo Mitgliedern). Einige weitere,
-teilweise zeitlich beschraenkte sind in der Umgebung des Dojos zu finden.
-Weitere Park-Moeglichkeiten sind in der Karte zum Seminar eingezeichnet :
+unmittelbar vor dem Dojo (leider nicht alle und zudem muss eine spezielle
+Parkkarte hinterlegt werden, informiert euch bei Dojo Mitgliedern). Einige
+weitere, teilweise zeitlich beschraenkte sind in der Umgebung des Dojos zu
+finden. Weitere Park-Moeglichkeiten sind in der Karte zum Seminar
+eingezeichnet :
 
 https://www.google.com/maps/d/viewer?mid=1E2DnMZT8tm3JL-SNV8sGTyKjJFU&usp=sharing
 
@@ -104,15 +106,13 @@ Und nun noch:
   er moechte.
 
 
-Die Party Samstag Abend findet im GZ Bachwiesen statt:
+Die Party Samstag Abend findet im Haus Sonneg in Hoengg statt:
 
-GZ Bachwiesen 
-Bachwiesenstrasse 40
-8047 Zuerich
+Haus Sonnegg
+Bauherrenstrasse 53
+8049 Zuerich
 
-Bushaltestelle Untermoosstrasse, Bus Nr. 80, 7 min Fussweg
-Tramhaltestelle Fellenbergstrasse, Tram Nr. 3, 8 min Fussweg
-
+Bus-/ Tram-Haltestelle Zwielplatz : Bus Nr. 80, Tram Nr. 13
 
 Weitere Infos findest du auf unserer Website:
 http://ikedaseminar.aikikai-zuerich.ch
@@ -128,15 +128,16 @@ LAST_INFO_EMAIL_EN = '''
 Hi {first_name},
 
 
-We are looking forward to seeing you soon at our aikido seminar with Hiroshi
-Ikeda Shihan. We send you here the latest Information.
+We are looking forward to seeing you on the upcoming weekend Sept 29 - Oct 1 2017
+at our aikido seminar with Hiroshi Ikeda Shihan. We send you here the latest
+Information.
 
 You registered for the following things:
 
 {package}
 
 
-The keiko on Friday evening will take place in our dojo:
+All the Keikos will take place in our dojo:
 
 Aiki-Kai Zuerich 
 Bernerstrasse Nord 182
@@ -145,10 +146,10 @@ Bernerstrasse Nord 182
 Tram stop Gruenaustrasse / Bahnhof Altstetten
 
 There is a limited number of parking spaces right in front of the dojo that we
-are allowed to use (not all of them and you'll need to display a special card,
-talk to Dojo members). A few more, some of them temporally limited, can be
-found in the vicinity of the Dojo. And finally we marked some more in the map
-of the seminar:
+are allowed to use (unfortunately not all of them and you'll need to display a
+special card, talk to Dojo members). A few more, some of them temporally
+limited, can be found in the vicinity of the Dojo. And finally we marked some
+more in the map of the seminar:
 
 https://www.google.com/maps/d/viewer?mid=1E2DnMZT8tm3JL-SNV8sGTyKjJFU&usp=sharing
 
@@ -162,15 +163,13 @@ And finally:
   case he wanted to.
 
 
-The Party Saturday evening will take place in GZ Bachwiesen:
+The Party Saturday evening will take place at Haus Sonnegg in Hoengg:
 
-GZ Bachwiesen 
-Bachwiesenstrasse 40
-8047 Zuerich
+Haus Sonnegg
+Bauherrenstrasse 53
+8049 Zuerich
 
-Bus stop Untermoosstrasse, Bus Nr. 80, 7 min walk 
-Tram stop Fellenbergstrasse, Tram Nr. 3, 8 min walk 
-
+Bus / Tram stop Zwielplatz : Bus Nr. 80, Tram Nr. 13
 
 Some more information you can find on our website:
 http://ikedaseminar.aikikai-zuerich.ch
