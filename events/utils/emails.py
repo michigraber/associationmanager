@@ -98,12 +98,18 @@ def send_all_last_info(dryrun=True, verbose=True):
             continue
         else:
             print 
-            print u'{ass}'.format(ass=p.associate)
+            print '--------------------------------------------------'
+            print u'{ass}, {email}'.format(ass=p.associate, email=p.associate.email_address)
             print p
             try:
                 send_lastinfo_mail_for_purchase(p.pk, verbose=verbose,
                         dryrun=dryrun)
+                print
                 print 'sent'
-            except:
+                print
+            except Exception as e:
+                print
                 print 'NOT SENT !!'
+                print e
+                print
 
