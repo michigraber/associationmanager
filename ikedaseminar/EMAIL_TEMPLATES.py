@@ -70,8 +70,8 @@ LAST_INFO_EMAIL_DE = '''
 Hi {first_name}
 
 
-Wir freuen uns dich am kommenden Wochenende vom 29. September bis zum 1.
-Oktober 2017 zu unserem Aikido Seminar mit Hiroshi Ikeda Shihan begruessen zu
+Wir freuen uns dich am kommenden Wochenende vom 5. Oktober bis zum 7.
+Oktober 2018 zu unserem Aikido Seminar mit Hiroshi Ikeda Shihan begruessen zu
 duerfen. Hier noch einige letzte Infos:
 
 Du hast dich fuer die folgenden Dinge eingeschrieben:
@@ -102,7 +102,7 @@ Und nun noch:
 - Sei bitte rechtzeitig vor Ort damit Sensei das Keiko puenktlich und ungestoert
   beginnen kann.
 - Du wirst Zoris/Slippers brauchen fuer den Weg von der Garderobe zu den Tatami.
-- Bring bitte Jo und Bokken mit damit Sensei diese mit uns verwenden kann wenn
+- Bring bitte Jo und Bokken mit, damit Sensei diese mit uns verwenden kann wenn
   er moechte.
 
 
@@ -128,7 +128,7 @@ LAST_INFO_EMAIL_EN = '''
 Hi {first_name},
 
 
-We are looking forward to seeing you on the upcoming weekend Sept 29 - Oct 1 2017
+We are looking forward to seeing you on the upcoming weekend Oct 5-7 2018
 at our aikido seminar with Hiroshi Ikeda Shihan. We send you here the latest
 Information.
 
