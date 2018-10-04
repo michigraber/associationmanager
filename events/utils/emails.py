@@ -46,12 +46,20 @@ def create_confirmation_mail_body_for_purchase(pur_obj):
     return mail_body
 
 
-def send_lastinfo_mail_for_purchase(purchase_pk):
+def send_lastinfo_mail_for_purchase(purchase_pk, verbose=True):
     pur_obj = Purchase.objects.get(pk=purchase_pk)
     mail_body = create_lastinfo_mail_body_for_purchase(pur_obj)
 
+    subject = '[Hiroshi Ikeda Shihan Seminar Zurich 2018]',
+
+    if verbose:
+        print '--------------------------------------------------'
+        print subject
+        print
+        print mail_body
+
     email = EmailMessage(
-            '[Hiroshi Ikeda Shihan Seminar Zurich 2018]',
+            subject,
             mail_body,
             'ikedaseminar@aikikai-zuerich.ch',
             [pur_obj.associate.email_address, ],
@@ -78,7 +86,7 @@ def create_lastinfo_mail_body_for_purchase(pur_obj):
     return mail_body
 
 
-def send_all_last_info(dryrun=True):
+def send_all_last_info(dryrun=True, verbose=True):
 
     ps = Purchase.objects.all()
 
@@ -92,6 +100,9 @@ def send_all_last_info(dryrun=True):
             print u'{ass}'.format(ass=p.associate)
             print p
             if not dryrun:
-                send_lastinfo_mail_for_purchase(p.pk)
-                print 'sent'
+                try:
+                    send_lastinfo_mail_for_purchase(p.pk, verbose=verbose)
+                    print 'sent'
+                except:
+                    print 'NOT SENT !!'
 
