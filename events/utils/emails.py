@@ -78,7 +78,7 @@ def create_lastinfo_mail_body_for_purchase(pur_obj):
     return mail_body
 
 
-def send_all_last_info():
+def send_all_last_info(dryrun=True):
 
     ps = Purchase.objects.all()
 
@@ -91,6 +91,7 @@ def send_all_last_info():
             print 
             print u'{ass}'.format(ass=p.associate)
             print p
-            send_lastinfo_mail_for_purchase(p.pk)
-            print 'sent'
+            if not dryrun:
+                send_lastinfo_mail_for_purchase(p.pk)
+                print 'sent'
 
