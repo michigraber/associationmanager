@@ -46,7 +46,7 @@ def create_confirmation_mail_body_for_purchase(pur_obj):
     return mail_body
 
 
-def send_lastinfo_mail_for_purchase(purchase_pk, verbose=True):
+def send_lastinfo_mail_for_purchase(purchase_pk, verbose=True, dryrun=True):
     pur_obj = Purchase.objects.get(pk=purchase_pk)
     mail_body = create_lastinfo_mail_body_for_purchase(pur_obj)
 
@@ -58,15 +58,16 @@ def send_lastinfo_mail_for_purchase(purchase_pk, verbose=True):
         print
         print mail_body
 
-    email = EmailMessage(
-            subject,
-            mail_body,
-            'ikedaseminar@aikikai-zuerich.ch',
-            [pur_obj.associate.email_address, ],
-            ['michigraber@aikikai-zuerich.ch', ],
-            )
-    #print mail_body
-    email.send(fail_silently=False)
+    if not dryrun:
+        email = EmailMessage(
+                subject,
+                mail_body,
+                'ikedaseminar@aikikai-zuerich.ch',
+                [pur_obj.associate.email_address, ],
+                ['michigraber@aikikai-zuerich.ch', ],
+                )
+        #print mail_body
+        email.send(fail_silently=False)
 
 
 def create_lastinfo_mail_body_for_purchase(pur_obj):
@@ -99,10 +100,10 @@ def send_all_last_info(dryrun=True, verbose=True):
             print 
             print u'{ass}'.format(ass=p.associate)
             print p
-            if not dryrun:
-                try:
-                    send_lastinfo_mail_for_purchase(p.pk, verbose=verbose)
-                    print 'sent'
-                except:
-                    print 'NOT SENT !!'
+            try:
+                send_lastinfo_mail_for_purchase(p.pk, verbose=verbose,
+                        dryrun=dryrun)
+                print 'sent'
+            except:
+                print 'NOT SENT !!'
 
